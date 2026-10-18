@@ -731,7 +731,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "monogram-markup"
+name = "lunagram-markup"
 version = "0.1.0"
 dependencies = [
  "compact_str",
@@ -741,7 +741,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "monogram-mtproto"
+name = "lunagram-mtproto"
 version = "0.1.0"
 dependencies = [
  "aes",
@@ -753,7 +753,7 @@ dependencies = [
  "flate2",
  "indexmap",
  "jni",
- "monogram-mtproto-transport",
+ "lunagram-mtproto-transport",
  "num-bigint",
  "num-traits",
  "parking_lot",
@@ -777,7 +777,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "monogram-mtproto-transport"
+name = "lunagram-mtproto-transport"
 version = "0.1.0"
 dependencies = [
  "base64",
