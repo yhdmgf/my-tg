@@ -3,7 +3,7 @@ package org.lunagram.network.bridge.web
 import org.lunagram.core.models.InstantViewDtoLike
 import org.lunagram.core.models.InstantViewPage
 import org.lunagram.core.models.InstantViewPages
-import uniffi.monogram_mtproto.InstantViewDto
+import uniffi.lunagram_mtproto.InstantViewDto
 
 internal fun InstantViewDto.toModel(): InstantViewPage = InstantViewPages.parse(
     InstantViewDtoLike(

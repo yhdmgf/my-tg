@@ -1,182 +1,182 @@
 package org.lunagram.mtproto
 
-import uniffi.monogram_mtproto.AuthCodeSent
-import uniffi.monogram_mtproto.AuthSignedIn
-import uniffi.monogram_mtproto.BotCallbackAnswerDto
-import uniffi.monogram_mtproto.ChatDto
-import uniffi.monogram_mtproto.ContactsSearchDto
-import uniffi.monogram_mtproto.DiscussionDto
-import uniffi.monogram_mtproto.FolderDto
-import uniffi.monogram_mtproto.ForumTopicsPageDto
-import uniffi.monogram_mtproto.GlobalMessageSearchDto
-import uniffi.monogram_mtproto.InitConnectionInfo
-import uniffi.monogram_mtproto.InlineBotResultsDto
-import uniffi.monogram_mtproto.InstantViewDto
-import uniffi.monogram_mtproto.MessageDto
-import uniffi.monogram_mtproto.MessagesPageDto
-import uniffi.monogram_mtproto.MtprotoException
-import uniffi.monogram_mtproto.NotifyExceptionDto
-import uniffi.monogram_mtproto.NotifySettingsDto
-import uniffi.monogram_mtproto.OutboxReadDto
-import uniffi.monogram_mtproto.PollVotersDto
-import uniffi.monogram_mtproto.ProfileDto
-import uniffi.monogram_mtproto.ReactionChoiceDto
-import uniffi.monogram_mtproto.ReactionPeersDto
-import uniffi.monogram_mtproto.ReadParticipantsDto
-import uniffi.monogram_mtproto.ReadReceiptConfigDto
-import uniffi.monogram_mtproto.ResolvedPeerDto
-import uniffi.monogram_mtproto.SavedGifDto
-import uniffi.monogram_mtproto.StickerCatalogDto
-import uniffi.monogram_mtproto.StickerListDto
-import uniffi.monogram_mtproto.StickerPackDto
-import uniffi.monogram_mtproto.UpdateBatchDto
-import uniffi.monogram_mtproto.UpdateDrainDto
-import uniffi.monogram_mtproto.UpdateEventDto
-import uniffi.monogram_mtproto.UpdatesStateDto
-import uniffi.monogram_mtproto.UploadItemDto
-import uniffi.monogram_mtproto.uniffiEnsureInitialized
+import uniffi.lunagram_mtproto.AuthCodeSent
+import uniffi.lunagram_mtproto.AuthSignedIn
+import uniffi.lunagram_mtproto.BotCallbackAnswerDto
+import uniffi.lunagram_mtproto.ChatDto
+import uniffi.lunagram_mtproto.ContactsSearchDto
+import uniffi.lunagram_mtproto.DiscussionDto
+import uniffi.lunagram_mtproto.FolderDto
+import uniffi.lunagram_mtproto.ForumTopicsPageDto
+import uniffi.lunagram_mtproto.GlobalMessageSearchDto
+import uniffi.lunagram_mtproto.InitConnectionInfo
+import uniffi.lunagram_mtproto.InlineBotResultsDto
+import uniffi.lunagram_mtproto.InstantViewDto
+import uniffi.lunagram_mtproto.MessageDto
+import uniffi.lunagram_mtproto.MessagesPageDto
+import uniffi.lunagram_mtproto.MtprotoException
+import uniffi.lunagram_mtproto.NotifyExceptionDto
+import uniffi.lunagram_mtproto.NotifySettingsDto
+import uniffi.lunagram_mtproto.OutboxReadDto
+import uniffi.lunagram_mtproto.PollVotersDto
+import uniffi.lunagram_mtproto.ProfileDto
+import uniffi.lunagram_mtproto.ReactionChoiceDto
+import uniffi.lunagram_mtproto.ReactionPeersDto
+import uniffi.lunagram_mtproto.ReadParticipantsDto
+import uniffi.lunagram_mtproto.ReadReceiptConfigDto
+import uniffi.lunagram_mtproto.ResolvedPeerDto
+import uniffi.lunagram_mtproto.SavedGifDto
+import uniffi.lunagram_mtproto.StickerCatalogDto
+import uniffi.lunagram_mtproto.StickerListDto
+import uniffi.lunagram_mtproto.StickerPackDto
+import uniffi.lunagram_mtproto.UpdateBatchDto
+import uniffi.lunagram_mtproto.UpdateDrainDto
+import uniffi.lunagram_mtproto.UpdateEventDto
+import uniffi.lunagram_mtproto.UpdatesStateDto
+import uniffi.lunagram_mtproto.UploadItemDto
+import uniffi.lunagram_mtproto.uniffiEnsureInitialized
 import java.io.File
-import uniffi.monogram_mtproto.animatedEmojiMax as nativeAnimatedEmojiMax
-import uniffi.monogram_mtproto.appendTodoItems as nativeAppendTodoItems
-import uniffi.monogram_mtproto.checkPassword as nativeCheckPassword
-import uniffi.monogram_mtproto.clearActiveDialog as nativeClearActiveDialog
-import uniffi.monogram_mtproto.clearProxy as nativeClearProxy
-import uniffi.monogram_mtproto.clientApiId as nativeClientApiId
-import uniffi.monogram_mtproto.clientExists as nativeClientExists
-import uniffi.monogram_mtproto.clientUsesTestDc as nativeClientUsesTestDc
-import uniffi.monogram_mtproto.connect as nativeConnect
-import uniffi.monogram_mtproto.contactsSearch as nativeContactsSearch
-import uniffi.monogram_mtproto.createEncryptedClient as nativeCreateEncryptedClient
-import uniffi.monogram_mtproto.customEmojiIsFree as nativeCustomEmojiIsFree
-import uniffi.monogram_mtproto.decryptPushPayload as nativeDecryptPushPayload
-import uniffi.monogram_mtproto.deleteFolder as nativeDeleteFolder
-import uniffi.monogram_mtproto.deleteMessage as nativeDeleteMessage
-import uniffi.monogram_mtproto.destroyClient as nativeDestroyClient
-import uniffi.monogram_mtproto.downloadCustomEmoji as nativeDownloadCustomEmoji
-import uniffi.monogram_mtproto.downloadMessageMedia as nativeDownloadMessageMedia
-import uniffi.monogram_mtproto.downloadMessageThumb as nativeDownloadMessageThumb
-import uniffi.monogram_mtproto.acknowledgeUpdateBatch as nativeAcknowledgeUpdateBatch
-import uniffi.monogram_mtproto.drainUpdates as nativeDrainUpdates
-import uniffi.monogram_mtproto.pendingUpdateBatches as nativePendingUpdateBatches
-import uniffi.monogram_mtproto.editForumTopicHidden as nativeEditForumTopicHidden
-import uniffi.monogram_mtproto.editTextMessage as nativeEditTextMessage
-import uniffi.monogram_mtproto.forwardMessages as nativeForwardMessages
-import uniffi.monogram_mtproto.getAllStickers as nativeGetAllStickers
-import uniffi.monogram_mtproto.getBotCallbackAnswer as nativeGetBotCallbackAnswer
-import uniffi.monogram_mtproto.getChats as nativeGetChats
-import uniffi.monogram_mtproto.getCommonChats as nativeGetCommonChats
-import uniffi.monogram_mtproto.getDiscussionMessage as nativeGetDiscussionMessage
-import uniffi.monogram_mtproto.getEmojiStickers as nativeGetEmojiStickers
-import uniffi.monogram_mtproto.getFolders as nativeGetFolders
-import uniffi.monogram_mtproto.getForumTopics as nativeGetForumTopics
-import uniffi.monogram_mtproto.getForumTopicsById as nativeGetForumTopicsById
-import uniffi.monogram_mtproto.getGroupAdminTags as nativeGetGroupAdminTags
-import uniffi.monogram_mtproto.getHistory as nativeGetHistory
-import uniffi.monogram_mtproto.getHistoryPage as nativeGetHistoryPage
-import uniffi.monogram_mtproto.getInlineBotResults as nativeGetInlineBotResults
-import uniffi.monogram_mtproto.getMessageReactionsList as nativeGetMessageReactionsList
-import uniffi.monogram_mtproto.getMessageReadParticipants as nativeGetMessageReadParticipants
-import uniffi.monogram_mtproto.getNotifyExceptions as nativeGetNotifyExceptions
-import uniffi.monogram_mtproto.getNotifySettings as nativeGetNotifySettings
-import uniffi.monogram_mtproto.getOutboxReadDate as nativeGetOutboxReadDate
-import uniffi.monogram_mtproto.getParticipants as nativeGetParticipants
-import uniffi.monogram_mtproto.getPinnedMessages as nativeGetPinnedMessages
-import uniffi.monogram_mtproto.getPollVotes as nativeGetPollVotes
-import uniffi.monogram_mtproto.getProfile as nativeGetProfile
-import uniffi.monogram_mtproto.getReadReceiptConfig as nativeGetReadReceiptConfig
-import uniffi.monogram_mtproto.getRecentReactions as nativeGetRecentReactions
-import uniffi.monogram_mtproto.getReplies as nativeGetReplies
-import uniffi.monogram_mtproto.getSavedGifs as nativeGetSavedGifs
-import uniffi.monogram_mtproto.getSearchCounters as nativeGetSearchCounters
-import uniffi.monogram_mtproto.getStickerPack as nativeGetStickerPack
-import uniffi.monogram_mtproto.getStickerSet as nativeGetStickerSet
-import uniffi.monogram_mtproto.getStickers as nativeGetStickers
-import uniffi.monogram_mtproto.getUnreadMentions as nativeGetUnreadMentions
-import uniffi.monogram_mtproto.getUnreadReactions as nativeGetUnreadReactions
-import uniffi.monogram_mtproto.getUpdatesState as nativeGetUpdatesState
-import uniffi.monogram_mtproto.getWebPage as nativeGetWebPage
-import uniffi.monogram_mtproto.getWebPagePreview as nativeGetWebPagePreview
-import uniffi.monogram_mtproto.isAuthorized as nativeIsAuthorized
-import uniffi.monogram_mtproto.joinChat as nativeJoinChat
-import uniffi.monogram_mtproto.libraryVersion as nativeLibraryVersion
-import uniffi.monogram_mtproto.loadMoreChats as nativeLoadMoreChats
-import uniffi.monogram_mtproto.logout as nativeLogout
-import uniffi.monogram_mtproto.markDialogUnread as nativeMarkDialogUnread
-import uniffi.monogram_mtproto.peekMessageInlineThumb as nativePeekMessageInlineThumb
-import uniffi.monogram_mtproto.peekPeerInlineThumb as nativePeekPeerInlineThumb
-import uniffi.monogram_mtproto.pingProxy as nativePingProxy
-import uniffi.monogram_mtproto.readDiscussion as nativeReadDiscussion
-import uniffi.monogram_mtproto.readHistory as nativeReadHistory
-import uniffi.monogram_mtproto.readMentions as nativeReadMentions
-import uniffi.monogram_mtproto.readMessageContents as nativeReadMessageContents
-import uniffi.monogram_mtproto.readReactions as nativeReadReactions
-import uniffi.monogram_mtproto.registerDevice as nativeRegisterDevice
-import uniffi.monogram_mtproto.resendAuthCode as nativeResendAuthCode
-import uniffi.monogram_mtproto.resetNotifySettings as nativeResetNotifySettings
-import uniffi.monogram_mtproto.resolveUsername as nativeResolveUsername
-import uniffi.monogram_mtproto.searchGlobal as nativeSearchGlobal
-import uniffi.monogram_mtproto.searchMessages as nativeSearchMessages
-import uniffi.monogram_mtproto.searchMessagesFiltered as nativeSearchMessagesFiltered
-import uniffi.monogram_mtproto.searchMessagesPage as nativeSearchMessagesPage
-import uniffi.monogram_mtproto.sendAuthCode as nativeSendAuthCode
-import uniffi.monogram_mtproto.sendInlineBotResult as nativeSendInlineBotResult
-import uniffi.monogram_mtproto.sendLocation as nativeSendLocation
-import uniffi.monogram_mtproto.sendPhotoMessage as nativeSendPhotoMessage
-import uniffi.monogram_mtproto.sendPollVote as nativeSendPollVote
-import uniffi.monogram_mtproto.sendReaction as nativeSendReaction
-import uniffi.monogram_mtproto.sendSavedGif as nativeSendSavedGif
-import uniffi.monogram_mtproto.sendTextMessage as nativeSendTextMessage
-import uniffi.monogram_mtproto.sendUploadedAlbum as nativeSendUploadedAlbum
-import uniffi.monogram_mtproto.sendUploadedMedia as nativeSendUploadedMedia
-import uniffi.monogram_mtproto.setClientTestDc as nativeSetClientTestDc
-import uniffi.monogram_mtproto.setContactJoinedSilent as nativeSetContactJoinedSilent
-import uniffi.monogram_mtproto.setInitConnectionInfo as nativeSetInitConnectionInfo
-import uniffi.monogram_mtproto.setProxy as nativeSetProxy
-import uniffi.monogram_mtproto.setTransportMode as nativeSetTransportMode
-import uniffi.monogram_mtproto.setTyping as nativeSetTyping
-import uniffi.monogram_mtproto.signIn as nativeSignIn
-import uniffi.monogram_mtproto.startUpdates as nativeStartUpdates
-import uniffi.monogram_mtproto.toggleTodoCompleted as nativeToggleTodoCompleted
-import uniffi.monogram_mtproto.unblockUser as nativeUnblockUser
-import uniffi.monogram_mtproto.unregisterDevice as nativeUnregisterDevice
-import uniffi.monogram_mtproto.updateFolder as nativeUpdateFolder
-import uniffi.monogram_mtproto.updateFolderOrder as nativeUpdateFolderOrder
-import uniffi.monogram_mtproto.updateLazySyncConfig as nativeUpdateLazySyncConfig
-import uniffi.monogram_mtproto.updateNotifySettings as nativeUpdateNotifySettings
-import uniffi.monogram_mtproto.updateStatus as nativeUpdateStatus
+import uniffi.lunagram_mtproto.animatedEmojiMax as nativeAnimatedEmojiMax
+import uniffi.lunagram_mtproto.appendTodoItems as nativeAppendTodoItems
+import uniffi.lunagram_mtproto.checkPassword as nativeCheckPassword
+import uniffi.lunagram_mtproto.clearActiveDialog as nativeClearActiveDialog
+import uniffi.lunagram_mtproto.clearProxy as nativeClearProxy
+import uniffi.lunagram_mtproto.clientApiId as nativeClientApiId
+import uniffi.lunagram_mtproto.clientExists as nativeClientExists
+import uniffi.lunagram_mtproto.clientUsesTestDc as nativeClientUsesTestDc
+import uniffi.lunagram_mtproto.connect as nativeConnect
+import uniffi.lunagram_mtproto.contactsSearch as nativeContactsSearch
+import uniffi.lunagram_mtproto.createEncryptedClient as nativeCreateEncryptedClient
+import uniffi.lunagram_mtproto.customEmojiIsFree as nativeCustomEmojiIsFree
+import uniffi.lunagram_mtproto.decryptPushPayload as nativeDecryptPushPayload
+import uniffi.lunagram_mtproto.deleteFolder as nativeDeleteFolder
+import uniffi.lunagram_mtproto.deleteMessage as nativeDeleteMessage
+import uniffi.lunagram_mtproto.destroyClient as nativeDestroyClient
+import uniffi.lunagram_mtproto.downloadCustomEmoji as nativeDownloadCustomEmoji
+import uniffi.lunagram_mtproto.downloadMessageMedia as nativeDownloadMessageMedia
+import uniffi.lunagram_mtproto.downloadMessageThumb as nativeDownloadMessageThumb
+import uniffi.lunagram_mtproto.acknowledgeUpdateBatch as nativeAcknowledgeUpdateBatch
+import uniffi.lunagram_mtproto.drainUpdates as nativeDrainUpdates
+import uniffi.lunagram_mtproto.pendingUpdateBatches as nativePendingUpdateBatches
+import uniffi.lunagram_mtproto.editForumTopicHidden as nativeEditForumTopicHidden
+import uniffi.lunagram_mtproto.editTextMessage as nativeEditTextMessage
+import uniffi.lunagram_mtproto.forwardMessages as nativeForwardMessages
+import uniffi.lunagram_mtproto.getAllStickers as nativeGetAllStickers
+import uniffi.lunagram_mtproto.getBotCallbackAnswer as nativeGetBotCallbackAnswer
+import uniffi.lunagram_mtproto.getChats as nativeGetChats
+import uniffi.lunagram_mtproto.getCommonChats as nativeGetCommonChats
+import uniffi.lunagram_mtproto.getDiscussionMessage as nativeGetDiscussionMessage
+import uniffi.lunagram_mtproto.getEmojiStickers as nativeGetEmojiStickers
+import uniffi.lunagram_mtproto.getFolders as nativeGetFolders
+import uniffi.lunagram_mtproto.getForumTopics as nativeGetForumTopics
+import uniffi.lunagram_mtproto.getForumTopicsById as nativeGetForumTopicsById
+import uniffi.lunagram_mtproto.getGroupAdminTags as nativeGetGroupAdminTags
+import uniffi.lunagram_mtproto.getHistory as nativeGetHistory
+import uniffi.lunagram_mtproto.getHistoryPage as nativeGetHistoryPage
+import uniffi.lunagram_mtproto.getInlineBotResults as nativeGetInlineBotResults
+import uniffi.lunagram_mtproto.getMessageReactionsList as nativeGetMessageReactionsList
+import uniffi.lunagram_mtproto.getMessageReadParticipants as nativeGetMessageReadParticipants
+import uniffi.lunagram_mtproto.getNotifyExceptions as nativeGetNotifyExceptions
+import uniffi.lunagram_mtproto.getNotifySettings as nativeGetNotifySettings
+import uniffi.lunagram_mtproto.getOutboxReadDate as nativeGetOutboxReadDate
+import uniffi.lunagram_mtproto.getParticipants as nativeGetParticipants
+import uniffi.lunagram_mtproto.getPinnedMessages as nativeGetPinnedMessages
+import uniffi.lunagram_mtproto.getPollVotes as nativeGetPollVotes
+import uniffi.lunagram_mtproto.getProfile as nativeGetProfile
+import uniffi.lunagram_mtproto.getReadReceiptConfig as nativeGetReadReceiptConfig
+import uniffi.lunagram_mtproto.getRecentReactions as nativeGetRecentReactions
+import uniffi.lunagram_mtproto.getReplies as nativeGetReplies
+import uniffi.lunagram_mtproto.getSavedGifs as nativeGetSavedGifs
+import uniffi.lunagram_mtproto.getSearchCounters as nativeGetSearchCounters
+import uniffi.lunagram_mtproto.getStickerPack as nativeGetStickerPack
+import uniffi.lunagram_mtproto.getStickerSet as nativeGetStickerSet
+import uniffi.lunagram_mtproto.getStickers as nativeGetStickers
+import uniffi.lunagram_mtproto.getUnreadMentions as nativeGetUnreadMentions
+import uniffi.lunagram_mtproto.getUnreadReactions as nativeGetUnreadReactions
+import uniffi.lunagram_mtproto.getUpdatesState as nativeGetUpdatesState
+import uniffi.lunagram_mtproto.getWebPage as nativeGetWebPage
+import uniffi.lunagram_mtproto.getWebPagePreview as nativeGetWebPagePreview
+import uniffi.lunagram_mtproto.isAuthorized as nativeIsAuthorized
+import uniffi.lunagram_mtproto.joinChat as nativeJoinChat
+import uniffi.lunagram_mtproto.libraryVersion as nativeLibraryVersion
+import uniffi.lunagram_mtproto.loadMoreChats as nativeLoadMoreChats
+import uniffi.lunagram_mtproto.logout as nativeLogout
+import uniffi.lunagram_mtproto.markDialogUnread as nativeMarkDialogUnread
+import uniffi.lunagram_mtproto.peekMessageInlineThumb as nativePeekMessageInlineThumb
+import uniffi.lunagram_mtproto.peekPeerInlineThumb as nativePeekPeerInlineThumb
+import uniffi.lunagram_mtproto.pingProxy as nativePingProxy
+import uniffi.lunagram_mtproto.readDiscussion as nativeReadDiscussion
+import uniffi.lunagram_mtproto.readHistory as nativeReadHistory
+import uniffi.lunagram_mtproto.readMentions as nativeReadMentions
+import uniffi.lunagram_mtproto.readMessageContents as nativeReadMessageContents
+import uniffi.lunagram_mtproto.readReactions as nativeReadReactions
+import uniffi.lunagram_mtproto.registerDevice as nativeRegisterDevice
+import uniffi.lunagram_mtproto.resendAuthCode as nativeResendAuthCode
+import uniffi.lunagram_mtproto.resetNotifySettings as nativeResetNotifySettings
+import uniffi.lunagram_mtproto.resolveUsername as nativeResolveUsername
+import uniffi.lunagram_mtproto.searchGlobal as nativeSearchGlobal
+import uniffi.lunagram_mtproto.searchMessages as nativeSearchMessages
+import uniffi.lunagram_mtproto.searchMessagesFiltered as nativeSearchMessagesFiltered
+import uniffi.lunagram_mtproto.searchMessagesPage as nativeSearchMessagesPage
+import uniffi.lunagram_mtproto.sendAuthCode as nativeSendAuthCode
+import uniffi.lunagram_mtproto.sendInlineBotResult as nativeSendInlineBotResult
+import uniffi.lunagram_mtproto.sendLocation as nativeSendLocation
+import uniffi.lunagram_mtproto.sendPhotoMessage as nativeSendPhotoMessage
+import uniffi.lunagram_mtproto.sendPollVote as nativeSendPollVote
+import uniffi.lunagram_mtproto.sendReaction as nativeSendReaction
+import uniffi.lunagram_mtproto.sendSavedGif as nativeSendSavedGif
+import uniffi.lunagram_mtproto.sendTextMessage as nativeSendTextMessage
+import uniffi.lunagram_mtproto.sendUploadedAlbum as nativeSendUploadedAlbum
+import uniffi.lunagram_mtproto.sendUploadedMedia as nativeSendUploadedMedia
+import uniffi.lunagram_mtproto.setClientTestDc as nativeSetClientTestDc
+import uniffi.lunagram_mtproto.setContactJoinedSilent as nativeSetContactJoinedSilent
+import uniffi.lunagram_mtproto.setInitConnectionInfo as nativeSetInitConnectionInfo
+import uniffi.lunagram_mtproto.setProxy as nativeSetProxy
+import uniffi.lunagram_mtproto.setTransportMode as nativeSetTransportMode
+import uniffi.lunagram_mtproto.setTyping as nativeSetTyping
+import uniffi.lunagram_mtproto.signIn as nativeSignIn
+import uniffi.lunagram_mtproto.startUpdates as nativeStartUpdates
+import uniffi.lunagram_mtproto.toggleTodoCompleted as nativeToggleTodoCompleted
+import uniffi.lunagram_mtproto.unblockUser as nativeUnblockUser
+import uniffi.lunagram_mtproto.unregisterDevice as nativeUnregisterDevice
+import uniffi.lunagram_mtproto.updateFolder as nativeUpdateFolder
+import uniffi.lunagram_mtproto.updateFolderOrder as nativeUpdateFolderOrder
+import uniffi.lunagram_mtproto.updateLazySyncConfig as nativeUpdateLazySyncConfig
+import uniffi.lunagram_mtproto.updateNotifySettings as nativeUpdateNotifySettings
+import uniffi.lunagram_mtproto.updateStatus as nativeUpdateStatus
 
 object MtprotoNativeUniFfi : MtprotoNative {
     override fun downloadMessageMediaChunk(handle: Long, chatId: Long, messageId: Int, destPath: String, offset: Long): String =
-        uniffi.monogram_mtproto.downloadMessageMediaChunk(handle.toULong(), chatId, messageId, destPath, offset)
-    override fun createRequestControl(): Long = uniffi.monogram_mtproto.createRequestControl().toLong()
-    override fun bindRequestControl(id: Long): Long = uniffi.monogram_mtproto.bindRequestControl(id.toULong()).toLong()
-    override fun cancelRequestControl(id: Long) = uniffi.monogram_mtproto.cancelRequestControl(id.toULong())
+        uniffi.lunagram_mtproto.downloadMessageMediaChunk(handle.toULong(), chatId, messageId, destPath, offset)
+    override fun createRequestControl(): Long = uniffi.lunagram_mtproto.createRequestControl().toLong()
+    override fun bindRequestControl(id: Long): Long = uniffi.lunagram_mtproto.bindRequestControl(id.toULong()).toLong()
+    override fun cancelRequestControl(id: Long) = uniffi.lunagram_mtproto.cancelRequestControl(id.toULong())
 
     override fun promoteRequestControl(id: Long, dispatchClass: Int) =
-        uniffi.monogram_mtproto.promoteRequestControl(id.toULong(), dispatchClass)
-    override fun releaseRequestControl(id: Long) = uniffi.monogram_mtproto.releaseRequestControl(id.toULong())
+        uniffi.lunagram_mtproto.promoteRequestControl(id.toULong(), dispatchClass)
+    override fun releaseRequestControl(id: Long) = uniffi.lunagram_mtproto.releaseRequestControl(id.toULong())
     override fun setDispatchClass(classId: Int) =
-        uniffi.monogram_mtproto.setDispatchClass(classId)
+        uniffi.lunagram_mtproto.setDispatchClass(classId)
 
     override fun setDownloadConcurrency(lanes: Int, parts: Int) =
-        uniffi.monogram_mtproto.setDownloadConcurrency(lanes, parts)
+        uniffi.lunagram_mtproto.setDownloadConcurrency(lanes, parts)
 
     override fun downloadConcurrency(): List<Int> =
-        uniffi.monogram_mtproto.downloadConcurrency()
+        uniffi.lunagram_mtproto.downloadConcurrency()
 
     override fun setFilePartKib(kib: Int) =
-        uniffi.monogram_mtproto.setFilePartKib(kib)
+        uniffi.lunagram_mtproto.setFilePartKib(kib)
 
     override fun setDownloadChunkKib(kib: Int) =
-        uniffi.monogram_mtproto.setDownloadChunkKib(kib)
+        uniffi.lunagram_mtproto.setDownloadChunkKib(kib)
 
     override fun downloadChunkKib(): Int =
-        uniffi.monogram_mtproto.downloadChunkKib()
+        uniffi.lunagram_mtproto.downloadChunkKib()
 
     override fun setDownloadProgressListener(listener: ((String, Long, Long) -> Unit)?) {
         val cb = listener ?: return
-        uniffi.monogram_mtproto.setDownloadProgressListener(
-            object : uniffi.monogram_mtproto.DownloadProgressListener {
+        uniffi.lunagram_mtproto.setDownloadProgressListener(
+            object : uniffi.lunagram_mtproto.DownloadProgressListener {
                 override fun onProgress(path: String, downloaded: Long, total: Long) {
                     cb(path, downloaded, total)
                 }
@@ -222,10 +222,10 @@ object MtprotoNativeUniFfi : MtprotoNative {
     )
 
     override fun perfSetEnabled(enabled: Boolean) =
-        uniffi.monogram_mtproto.perfSetEnabled(enabled)
+        uniffi.lunagram_mtproto.perfSetEnabled(enabled)
 
     override fun perfSnapshot(reset: Boolean): String =
-        uniffi.monogram_mtproto.perfSnapshot(reset)
+        uniffi.lunagram_mtproto.perfSnapshot(reset)
 
     override fun createClient(apiId: Int, apiHash: String, sessionPath: String): Long {
         val key = try {
@@ -288,10 +288,10 @@ object MtprotoNativeUniFfi : MtprotoNative {
     override fun getChats(handle: Long): List<ChatDto> = nativeGetChats(handle.toULong())
 
     override fun getWallpapers(handle: Long, hash: Long) =
-        uniffi.monogram_mtproto.getWallpapers(handle.toULong(), hash)
+        uniffi.lunagram_mtproto.getWallpapers(handle.toULong(), hash)
 
     override fun downloadWallpaper(handle: Long, id: Long, accessHash: Long, destPath: String) =
-        uniffi.monogram_mtproto.downloadWallpaper(handle.toULong(), id, accessHash, destPath)
+        uniffi.lunagram_mtproto.downloadWallpaper(handle.toULong(), id, accessHash, destPath)
 
     override fun getWebPage(handle: Long, url: String, hash: Int): InstantViewDto =
         nativeGetWebPage(handle.toULong(), url, hash)

@@ -3,8 +3,8 @@ package org.lunagram.network.bridge.notify
 import org.lunagram.core.models.NotifyException
 import org.lunagram.core.models.NotifySettings
 import org.lunagram.core.models.PeerId
-import uniffi.monogram_mtproto.NotifyExceptionDto
-import uniffi.monogram_mtproto.NotifySettingsDto
+import uniffi.lunagram_mtproto.NotifyExceptionDto
+import uniffi.lunagram_mtproto.NotifySettingsDto
 
 internal fun NotifySettingsDto.toModel(): NotifySettings = NotifySettings(
     showPreviews = showPreviews ?: true,

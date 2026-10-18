@@ -1,13 +1,13 @@
 package org.lunagram.markup
 
-import uniffi.monogram_markup.extractMath as nativeExtractMath
-import uniffi.monogram_markup.highlightCode as nativeHighlightCode
-import uniffi.monogram_markup.libraryVersion as nativeLibraryVersion
-import uniffi.monogram_markup.parseTelegramMarkdown as nativeParseTelegramMarkdown
-import uniffi.monogram_markup.supportedHighlightLanguages as nativeSupportedHighlightLanguages
-import uniffi.monogram_markup.uniffiEnsureInitialized
-import uniffi.monogram_markup.renderBlocks as nativeRenderBlocks
-import uniffi.monogram_markup.MarkupEntityDto
+import uniffi.lunagram_markup.extractMath as nativeExtractMath
+import uniffi.lunagram_markup.highlightCode as nativeHighlightCode
+import uniffi.lunagram_markup.libraryVersion as nativeLibraryVersion
+import uniffi.lunagram_markup.parseTelegramMarkdown as nativeParseTelegramMarkdown
+import uniffi.lunagram_markup.supportedHighlightLanguages as nativeSupportedHighlightLanguages
+import uniffi.lunagram_markup.uniffiEnsureInitialized
+import uniffi.lunagram_markup.renderBlocks as nativeRenderBlocks
+import uniffi.lunagram_markup.MarkupEntityDto
 
 /**
  * Thin UniFFI surface for tree-sitter markup. Features must not import `uniffi.*`.

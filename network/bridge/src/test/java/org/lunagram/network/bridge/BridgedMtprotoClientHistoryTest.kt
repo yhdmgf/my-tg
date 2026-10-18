@@ -23,18 +23,18 @@ import org.lunagram.core.models.PeerId
 import org.lunagram.mtproto.MtprotoNative
 import org.lunagram.network.bridge.session.DispatchClass
 import org.lunagram.network.http.MediaPriority
-import uniffi.monogram_mtproto.ChatDto
-import uniffi.monogram_mtproto.ForumTopicDto
-import uniffi.monogram_mtproto.ForumTopicsPageDto
-import uniffi.monogram_mtproto.MessageDto
-import uniffi.monogram_mtproto.UpdateEventDto
+import uniffi.lunagram_mtproto.ChatDto
+import uniffi.lunagram_mtproto.ForumTopicDto
+import uniffi.lunagram_mtproto.ForumTopicsPageDto
+import uniffi.lunagram_mtproto.MessageDto
+import uniffi.lunagram_mtproto.UpdateEventDto
 
 class BridgedMtprotoClientHistoryTest {
     @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
     @Test
     fun metadataUpdatesPublishChatsAndAnEmptyFolderList() = runTest {
         val native = object : RecordingNative() {
-            override fun getFolders(handle: Long): List<uniffi.monogram_mtproto.FolderDto> = emptyList()
+            override fun getFolders(handle: Long): List<uniffi.lunagram_mtproto.FolderDto> = emptyList()
         }.apply { drainEventsOverride = listOf(UpdateEventDto.FoldersChanged, UpdateEventDto.ChatsChanged) }
         val client = BridgedMtprotoClient(
             credentials = TelegramCredentials(1, "hash"), sessionPath = "metadata.session",
@@ -126,10 +126,10 @@ class BridgedMtprotoClientHistoryTest {
             init {
                 drainEventsOverride = listOf(UpdateEventDto.ChatsChanged)
             }
-            override fun getProfile(handle: Long, peerId: Long): uniffi.monogram_mtproto.ProfileDto {
+            override fun getProfile(handle: Long, peerId: Long): uniffi.lunagram_mtproto.ProfileDto {
                 profileCalls++
                 assertEquals(0L, peerId)
-                return uniffi.monogram_mtproto.ProfileDto(
+                return uniffi.lunagram_mtproto.ProfileDto(
                     id = 1, kind = "user", title = "Self", username = null,
                     about = null, avatarCacheKey = null, isSelf = true,
                     status = null, statusAt = null, extraJson = """{"premium":true}""",
@@ -259,10 +259,10 @@ class BridgedMtprotoClientHistoryTest {
                 drainCalls++
                 return listOf(UpdateEventDto.FoldersChanged)
             }
-            override fun getFolders(handle: Long): List<uniffi.monogram_mtproto.FolderDto> {
+            override fun getFolders(handle: Long): List<uniffi.lunagram_mtproto.FolderDto> {
                 folderCalls++
                 if (folderCalls == 1) {
-                    throw uniffi.monogram_mtproto.MtprotoException.Message("FLOOD_WAIT_5")
+                    throw uniffi.lunagram_mtproto.MtprotoException.Message("FLOOD_WAIT_5")
                 }
                 return emptyList()
             }
@@ -354,7 +354,7 @@ class BridgedMtprotoClientHistoryTest {
                 observedOffset = offset
                 assertEquals(42L, chatId)
                 assertEquals(7, messageId)
-                if (offset > 0) throw uniffi.monogram_mtproto.MtprotoException.Message("FILE_REFERENCE_EXPIRED")
+                if (offset > 0) throw uniffi.lunagram_mtproto.MtprotoException.Message("FILE_REFERENCE_EXPIRED")
                 return destPath
             }
         }
@@ -533,7 +533,7 @@ class BridgedMtprotoClientHistoryTest {
                 messageId: Int,
                 destPath: String,
             ): String {
-                throw uniffi.monogram_mtproto.MtprotoException.Message("no downloadable thumb")
+                throw uniffi.lunagram_mtproto.MtprotoException.Message("no downloadable thumb")
             }
         }
         val client = BridgedMtprotoClient(
@@ -560,7 +560,7 @@ class BridgedMtprotoClientHistoryTest {
                 messageId: Int,
                 destPath: String,
             ): String {
-                throw uniffi.monogram_mtproto.MtprotoException.Message("RPC 400: FILE_ID_INVALID")
+                throw uniffi.lunagram_mtproto.MtprotoException.Message("RPC 400: FILE_ID_INVALID")
             }
         }
         val client = BridgedMtprotoClient(
@@ -584,7 +584,7 @@ class BridgedMtprotoClientHistoryTest {
                 messageId: Int,
                 destPath: String,
             ): String {
-                throw uniffi.monogram_mtproto.MtprotoException.Message("FILE_MIGRATE_2")
+                throw uniffi.lunagram_mtproto.MtprotoException.Message("FILE_MIGRATE_2")
             }
         }
         val client = BridgedMtprotoClient(
@@ -869,7 +869,7 @@ class BridgedMtprotoClientHistoryTest {
         private val chatLeft: Boolean = false,
     ) : MtprotoNative by MtprotoNative.Stub {
         override fun drainUpdateBatches(handle: Long) =
-            uniffi.monogram_mtproto.UpdateDrainDto(emptyList(), drainUpdates(handle), false)
+            uniffi.lunagram_mtproto.UpdateDrainDto(emptyList(), drainUpdates(handle), false)
 
         var getChatsCalls = 0
         var getHistoryCalls = 0

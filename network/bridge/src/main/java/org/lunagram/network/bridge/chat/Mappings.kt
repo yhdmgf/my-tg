@@ -6,10 +6,10 @@ import org.lunagram.core.models.ForumTopic
 import org.lunagram.core.models.ForumTopicsPage
 import org.lunagram.core.models.PeerId
 import org.lunagram.core.models.isForcedVerifiedChat
-import uniffi.monogram_mtproto.ChatDto
-import uniffi.monogram_mtproto.FolderDto
-import uniffi.monogram_mtproto.ForumTopicDto
-import uniffi.monogram_mtproto.ForumTopicsPageDto
+import uniffi.lunagram_mtproto.ChatDto
+import uniffi.lunagram_mtproto.FolderDto
+import uniffi.lunagram_mtproto.ForumTopicDto
+import uniffi.lunagram_mtproto.ForumTopicsPageDto
 
 internal fun List<ChatDto>.toChatModels(assignPinOrder: Boolean = true): List<Chat> {
     var pin = 0

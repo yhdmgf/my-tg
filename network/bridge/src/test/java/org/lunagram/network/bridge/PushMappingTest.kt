@@ -6,8 +6,8 @@ import org.junit.Test
 import org.lunagram.core.common.telegram.TelegramError
 import org.lunagram.core.models.PushTokenType
 import org.lunagram.network.bridge.notify.toModel
-import uniffi.monogram_mtproto.NotifyExceptionDto
-import uniffi.monogram_mtproto.NotifySettingsDto
+import uniffi.lunagram_mtproto.NotifyExceptionDto
+import uniffi.lunagram_mtproto.NotifySettingsDto
 
 class PushMappingTest {
     @Test

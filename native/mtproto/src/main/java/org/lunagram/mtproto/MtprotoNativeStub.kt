@@ -1,19 +1,19 @@
 package org.lunagram.mtproto
 
-import uniffi.monogram_mtproto.AuthCodeSent
-import uniffi.monogram_mtproto.AuthSignedIn
-import uniffi.monogram_mtproto.ChatDto
-import uniffi.monogram_mtproto.ContactsSearchDto
-import uniffi.monogram_mtproto.FolderDto
-import uniffi.monogram_mtproto.GlobalMessageSearchDto
-import uniffi.monogram_mtproto.MessageDto
-import uniffi.monogram_mtproto.MtprotoException
-import uniffi.monogram_mtproto.NotifyExceptionDto
-import uniffi.monogram_mtproto.NotifySettingsDto
-import uniffi.monogram_mtproto.ProfileDto
-import uniffi.monogram_mtproto.UpdateEventDto
-import uniffi.monogram_mtproto.UpdatesStateDto
-import uniffi.monogram_mtproto.UploadItemDto
+import uniffi.lunagram_mtproto.AuthCodeSent
+import uniffi.lunagram_mtproto.AuthSignedIn
+import uniffi.lunagram_mtproto.ChatDto
+import uniffi.lunagram_mtproto.ContactsSearchDto
+import uniffi.lunagram_mtproto.FolderDto
+import uniffi.lunagram_mtproto.GlobalMessageSearchDto
+import uniffi.lunagram_mtproto.MessageDto
+import uniffi.lunagram_mtproto.MtprotoException
+import uniffi.lunagram_mtproto.NotifyExceptionDto
+import uniffi.lunagram_mtproto.NotifySettingsDto
+import uniffi.lunagram_mtproto.ProfileDto
+import uniffi.lunagram_mtproto.UpdateEventDto
+import uniffi.lunagram_mtproto.UpdatesStateDto
+import uniffi.lunagram_mtproto.UploadItemDto
 
 object MtprotoNativeStub : MtprotoNative {
     private fun nativeUnavailable(): Nothing =
@@ -118,7 +118,7 @@ object MtprotoNativeStub : MtprotoNative {
         offsetId: Int,
         addOffset: Int,
         limit: Int,
-    ): uniffi.monogram_mtproto.MessagesPageDto {
+    ): uniffi.lunagram_mtproto.MessagesPageDto {
         nativeUnavailable()
     }
 

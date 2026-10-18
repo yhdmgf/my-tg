@@ -2,7 +2,7 @@ package org.lunagram.network.bridge.media
 
 import org.lunagram.core.models.Wallpaper
 import org.lunagram.core.models.WallpaperCatalog
-import uniffi.monogram_mtproto.WallpaperCatalogDto
+import uniffi.lunagram_mtproto.WallpaperCatalogDto
 
 internal fun WallpaperCatalogDto.toModel() = WallpaperCatalog(
     hash = hash,

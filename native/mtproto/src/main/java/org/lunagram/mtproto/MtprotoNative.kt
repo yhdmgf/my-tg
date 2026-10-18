@@ -1,38 +1,38 @@
 package org.lunagram.mtproto
 
-import uniffi.monogram_mtproto.AuthCodeSent
-import uniffi.monogram_mtproto.AuthSignedIn
-import uniffi.monogram_mtproto.BotCallbackAnswerDto
-import uniffi.monogram_mtproto.ChatDto
-import uniffi.monogram_mtproto.ContactsSearchDto
-import uniffi.monogram_mtproto.DiscussionDto
-import uniffi.monogram_mtproto.FolderDto
-import uniffi.monogram_mtproto.ForumTopicsPageDto
-import uniffi.monogram_mtproto.GlobalMessageSearchDto
-import uniffi.monogram_mtproto.InlineBotResultsDto
-import uniffi.monogram_mtproto.InstantViewDto
-import uniffi.monogram_mtproto.MessageDto
-import uniffi.monogram_mtproto.MessagesPageDto
-import uniffi.monogram_mtproto.MtprotoException
-import uniffi.monogram_mtproto.NotifyExceptionDto
-import uniffi.monogram_mtproto.NotifySettingsDto
-import uniffi.monogram_mtproto.OutboxReadDto
-import uniffi.monogram_mtproto.PollVotersDto
-import uniffi.monogram_mtproto.ProfileDto
-import uniffi.monogram_mtproto.ReactionChoiceDto
-import uniffi.monogram_mtproto.ReactionPeersDto
-import uniffi.monogram_mtproto.ReadParticipantsDto
-import uniffi.monogram_mtproto.ReadReceiptConfigDto
-import uniffi.monogram_mtproto.ResolvedPeerDto
-import uniffi.monogram_mtproto.SavedGifDto
-import uniffi.monogram_mtproto.StickerCatalogDto
-import uniffi.monogram_mtproto.StickerListDto
-import uniffi.monogram_mtproto.StickerPackDto
-import uniffi.monogram_mtproto.UpdateBatchDto
-import uniffi.monogram_mtproto.UpdateDrainDto
-import uniffi.monogram_mtproto.UpdateEventDto
-import uniffi.monogram_mtproto.UpdatesStateDto
-import uniffi.monogram_mtproto.UploadItemDto
+import uniffi.lunagram_mtproto.AuthCodeSent
+import uniffi.lunagram_mtproto.AuthSignedIn
+import uniffi.lunagram_mtproto.BotCallbackAnswerDto
+import uniffi.lunagram_mtproto.ChatDto
+import uniffi.lunagram_mtproto.ContactsSearchDto
+import uniffi.lunagram_mtproto.DiscussionDto
+import uniffi.lunagram_mtproto.FolderDto
+import uniffi.lunagram_mtproto.ForumTopicsPageDto
+import uniffi.lunagram_mtproto.GlobalMessageSearchDto
+import uniffi.lunagram_mtproto.InlineBotResultsDto
+import uniffi.lunagram_mtproto.InstantViewDto
+import uniffi.lunagram_mtproto.MessageDto
+import uniffi.lunagram_mtproto.MessagesPageDto
+import uniffi.lunagram_mtproto.MtprotoException
+import uniffi.lunagram_mtproto.NotifyExceptionDto
+import uniffi.lunagram_mtproto.NotifySettingsDto
+import uniffi.lunagram_mtproto.OutboxReadDto
+import uniffi.lunagram_mtproto.PollVotersDto
+import uniffi.lunagram_mtproto.ProfileDto
+import uniffi.lunagram_mtproto.ReactionChoiceDto
+import uniffi.lunagram_mtproto.ReactionPeersDto
+import uniffi.lunagram_mtproto.ReadParticipantsDto
+import uniffi.lunagram_mtproto.ReadReceiptConfigDto
+import uniffi.lunagram_mtproto.ResolvedPeerDto
+import uniffi.lunagram_mtproto.SavedGifDto
+import uniffi.lunagram_mtproto.StickerCatalogDto
+import uniffi.lunagram_mtproto.StickerListDto
+import uniffi.lunagram_mtproto.StickerPackDto
+import uniffi.lunagram_mtproto.UpdateBatchDto
+import uniffi.lunagram_mtproto.UpdateDrainDto
+import uniffi.lunagram_mtproto.UpdateEventDto
+import uniffi.lunagram_mtproto.UpdatesStateDto
+import uniffi.lunagram_mtproto.UploadItemDto
 
 /**
  * Low-level UniFFI surface backed by the Tellers MTProto runtime.
@@ -137,7 +137,7 @@ interface MtprotoNative {
     @Throws(MtprotoException::class)
     fun getChats(handle: Long): List<ChatDto>
 
-    fun getWallpapers(handle: Long, hash: Long): uniffi.monogram_mtproto.WallpaperCatalogDto =
+    fun getWallpapers(handle: Long, hash: Long): uniffi.lunagram_mtproto.WallpaperCatalogDto =
         error("Wallpaper catalog unavailable")
 
     fun downloadWallpaper(handle: Long, id: Long, accessHash: Long, destPath: String): String =

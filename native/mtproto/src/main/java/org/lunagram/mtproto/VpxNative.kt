@@ -1,12 +1,12 @@
 package org.lunagram.mtproto
 
-import uniffi.monogram_mtproto.MtprotoException
-import uniffi.monogram_mtproto.VpxFrame
-import uniffi.monogram_mtproto.createVpxDecoder
-import uniffi.monogram_mtproto.decodeVpxAlphaPacket
-import uniffi.monogram_mtproto.decodeVpxPacket
-import uniffi.monogram_mtproto.destroyVpxDecoder
-import uniffi.monogram_mtproto.uniffiEnsureInitialized
+import uniffi.lunagram_mtproto.MtprotoException
+import uniffi.lunagram_mtproto.VpxFrame
+import uniffi.lunagram_mtproto.createVpxDecoder
+import uniffi.lunagram_mtproto.decodeVpxAlphaPacket
+import uniffi.lunagram_mtproto.decodeVpxPacket
+import uniffi.lunagram_mtproto.destroyVpxDecoder
+import uniffi.lunagram_mtproto.uniffiEnsureInitialized
 
 /** Slim libvpx VP9 decode for video stickers. */
 object VpxNative {

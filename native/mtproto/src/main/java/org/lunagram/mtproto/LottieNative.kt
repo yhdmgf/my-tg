@@ -1,14 +1,14 @@
 package org.lunagram.mtproto
 
-import uniffi.monogram_mtproto.LottieSize
-import uniffi.monogram_mtproto.MtprotoException
-import uniffi.monogram_mtproto.createLottie
-import uniffi.monogram_mtproto.destroyLottie
-import uniffi.monogram_mtproto.lottieFrameCount
-import uniffi.monogram_mtproto.lottieFrameRate
-import uniffi.monogram_mtproto.lottieSize
-import uniffi.monogram_mtproto.renderLottieFrame
-import uniffi.monogram_mtproto.uniffiEnsureInitialized
+import uniffi.lunagram_mtproto.LottieSize
+import uniffi.lunagram_mtproto.MtprotoException
+import uniffi.lunagram_mtproto.createLottie
+import uniffi.lunagram_mtproto.destroyLottie
+import uniffi.lunagram_mtproto.lottieFrameCount
+import uniffi.lunagram_mtproto.lottieFrameRate
+import uniffi.lunagram_mtproto.lottieSize
+import uniffi.lunagram_mtproto.renderLottieFrame
+import uniffi.lunagram_mtproto.uniffiEnsureInitialized
 
 /** UniFFI tlottie playback for TGS. */
 object LottieNative {

@@ -1,7 +1,7 @@
 package org.lunagram.network.bridge.session
 
 import org.lunagram.core.common.telegram.TelegramError
-import uniffi.monogram_mtproto.MtprotoException
+import uniffi.lunagram_mtproto.MtprotoException
 
 /** True when the native client no longer knows the handle this call used. */
 internal fun isStaleHandleFailure(error: Exception): Boolean {

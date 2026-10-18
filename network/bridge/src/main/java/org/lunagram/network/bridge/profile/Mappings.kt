@@ -17,7 +17,7 @@ import org.lunagram.core.models.StickerCatalog
 import org.lunagram.core.models.StickerList
 import org.lunagram.core.models.StickerPack
 import org.lunagram.core.models.isForcedVerifiedUser
-import uniffi.monogram_mtproto.ProfileDto
+import uniffi.lunagram_mtproto.ProfileDto
 import org.lunagram.network.bridge.message.toModel as toMessageModel
 
 internal fun ProfileDto.toModel(): Profile {
@@ -89,7 +89,7 @@ internal fun parseCommonChats(json: String): List<Chat> {
     }
 }
 
-internal fun uniffi.monogram_mtproto.StickerPackDto.toModel(): StickerPack = StickerPack(
+internal fun uniffi.lunagram_mtproto.StickerPackDto.toModel(): StickerPack = StickerPack(
     id = id,
     title = title,
     shortName = shortName,
@@ -99,26 +99,26 @@ internal fun uniffi.monogram_mtproto.StickerPackDto.toModel(): StickerPack = Sti
     accessHash = accessHash,
 )
 
-internal fun uniffi.monogram_mtproto.StickerCatalogDto.toModel() = StickerCatalog(
+internal fun uniffi.lunagram_mtproto.StickerCatalogDto.toModel() = StickerCatalog(
     hash = hash,
     notModified = notModified,
     sets = sets.map { it.toModel() },
 )
 
-internal fun uniffi.monogram_mtproto.StickerListDto.toModel() = StickerList(
+internal fun uniffi.lunagram_mtproto.StickerListDto.toModel() = StickerList(
     hash = hash,
     notModified = notModified,
     documentIds = documentIds,
 )
 
-internal fun uniffi.monogram_mtproto.ResolvedPeerDto.toModel() = ResolvedPeer(
+internal fun uniffi.lunagram_mtproto.ResolvedPeerDto.toModel() = ResolvedPeer(
     peerId = PeerId(peerId),
     username = username,
     title = title,
     isBot = isBot,
 )
 
-internal fun uniffi.monogram_mtproto.InlineBotResultDto.toModel() = InlineBotResult(
+internal fun uniffi.lunagram_mtproto.InlineBotResultDto.toModel() = InlineBotResult(
     id = id,
     kind = kind,
     title = title,
@@ -128,14 +128,14 @@ internal fun uniffi.monogram_mtproto.InlineBotResultDto.toModel() = InlineBotRes
     thumbCacheKey = thumbCacheKey,
 )
 
-internal fun uniffi.monogram_mtproto.BotCallbackAnswerDto.toModel() = BotCallbackAnswer(
+internal fun uniffi.lunagram_mtproto.BotCallbackAnswerDto.toModel() = BotCallbackAnswer(
     alert = alert,
     message = message,
     url = url,
     cacheTime = cacheTime,
 )
 
-internal fun uniffi.monogram_mtproto.InlineBotResultsDto.toModel() = InlineBotResults(
+internal fun uniffi.lunagram_mtproto.InlineBotResultsDto.toModel() = InlineBotResults(
     queryId = queryId,
     gallery = gallery,
     nextOffset = nextOffset,
@@ -143,7 +143,7 @@ internal fun uniffi.monogram_mtproto.InlineBotResultsDto.toModel() = InlineBotRe
     results = results.map { it.toModel() },
 )
 
-internal fun uniffi.monogram_mtproto.SearchPeerDto.toModel() = SearchPeer(
+internal fun uniffi.lunagram_mtproto.SearchPeerDto.toModel() = SearchPeer(
     id = PeerId(peerId),
     title = title,
     username = username,
@@ -153,12 +153,12 @@ internal fun uniffi.monogram_mtproto.SearchPeerDto.toModel() = SearchPeer(
     isChannel = isChannel,
 )
 
-internal fun uniffi.monogram_mtproto.ContactsSearchDto.toModel() = ContactsSearch(
+internal fun uniffi.lunagram_mtproto.ContactsSearchDto.toModel() = ContactsSearch(
     people = people.map { it.toModel() },
     chats = chats.map { it.toModel() },
 )
 
-internal fun uniffi.monogram_mtproto.GlobalMessageSearchDto.toModel() = GlobalMessageSearch(
+internal fun uniffi.lunagram_mtproto.GlobalMessageSearchDto.toModel() = GlobalMessageSearch(
     messages = messages.map { it.toMessageModel() },
     nextRate = nextRate,
     nextPeerId = PeerId(nextPeerId),

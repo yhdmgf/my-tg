@@ -20,9 +20,9 @@ import org.lunagram.network.bridge.session.DispatchClass
 import org.lunagram.network.bridge.session.SessionCore
 import org.lunagram.network.bridge.session.dispatchClassName
 import org.lunagram.network.bridge.session.nativeRequest
-import uniffi.monogram_mtproto.UpdateBatchDto
-import uniffi.monogram_mtproto.UpdateDrainDto
-import uniffi.monogram_mtproto.UpdateEventDto
+import uniffi.lunagram_mtproto.UpdateBatchDto
+import uniffi.lunagram_mtproto.UpdateDrainDto
+import uniffi.lunagram_mtproto.UpdateEventDto
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicLong
 import org.lunagram.network.bridge.chat.toModel as toFolderModel
@@ -187,7 +187,7 @@ internal class UpdatesPump(private val core: SessionCore) : UpdatesOps {
                         throw e
                     } catch (e: Exception) {
                         val raw = when (e) {
-                            is uniffi.monogram_mtproto.MtprotoException.Message -> e.v1
+                            is uniffi.lunagram_mtproto.MtprotoException.Message -> e.v1
                             else -> e.message
                         }?.removePrefix("v1=")?.trim().orEmpty()
                         val telegram = TelegramError.parse(

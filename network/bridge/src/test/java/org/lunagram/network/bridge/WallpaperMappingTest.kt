@@ -2,8 +2,8 @@ package org.lunagram.network.bridge
 
 import org.junit.Assert.*
 import org.junit.Test
-import uniffi.monogram_mtproto.WallpaperCatalogDto
-import uniffi.monogram_mtproto.WallpaperDto
+import uniffi.lunagram_mtproto.WallpaperCatalogDto
+import uniffi.lunagram_mtproto.WallpaperDto
 import org.lunagram.network.bridge.media.toModel
 
 class WallpaperMappingTest {

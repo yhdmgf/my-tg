@@ -33,7 +33,7 @@ import org.lunagram.network.bridge.DurableUpdateSink
 import org.lunagram.network.bridge.MtprotoTransportMode
 import org.lunagram.network.bridge.MtprotoUpdate
 import org.lunagram.network.bridge.ProxyConfig
-import uniffi.monogram_mtproto.MtprotoException
+import uniffi.lunagram_mtproto.MtprotoException
 import java.util.concurrent.atomic.AtomicBoolean
 
 internal class SessionCore(

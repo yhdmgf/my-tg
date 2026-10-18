@@ -1,9 +1,9 @@
 package org.lunagram.core.ui.media
 
-import uniffi.monogram_mtproto.addWaveformPcm
-import uniffi.monogram_mtproto.createWaveform
-import uniffi.monogram_mtproto.destroyWaveform
-import uniffi.monogram_mtproto.finishWaveform
+import uniffi.lunagram_mtproto.addWaveformPcm
+import uniffi.lunagram_mtproto.createWaveform
+import uniffi.lunagram_mtproto.destroyWaveform
+import uniffi.lunagram_mtproto.finishWaveform
 
 internal object NativeWaveform {
     fun create(durationUs: Long): Long = createWaveform(durationUs.toULong()).toLong()

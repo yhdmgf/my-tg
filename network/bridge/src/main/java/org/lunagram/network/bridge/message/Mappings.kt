@@ -7,8 +7,8 @@ import org.lunagram.core.models.PeerId
 import org.lunagram.core.models.ReplyMarkups
 import org.lunagram.core.models.TextEntities
 import org.lunagram.core.models.UploadItem
-import uniffi.monogram_mtproto.MessageDto
-import uniffi.monogram_mtproto.MessagesPageDto
+import uniffi.lunagram_mtproto.MessageDto
+import uniffi.lunagram_mtproto.MessagesPageDto
 
 internal fun MessagesPageDto.toModel(): MessagePage = MessagePage(
     messages = messages.map { it.toModel() },
@@ -52,7 +52,7 @@ internal fun MessageDto.toModel(): Message = Message(
     checklist = if (mediaKind == "todo") Checklists.parse(fileName) else null,
 )
 
-internal fun UploadItem.toDto() = uniffi.monogram_mtproto.UploadItemDto(
+internal fun UploadItem.toDto() = uniffi.lunagram_mtproto.UploadItemDto(
     path = path,
     kind = kind,
     mimeType = mimeType,

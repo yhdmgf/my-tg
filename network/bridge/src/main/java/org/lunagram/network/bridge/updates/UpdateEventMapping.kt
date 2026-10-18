@@ -4,7 +4,7 @@ import org.lunagram.core.common.AppLog
 import org.lunagram.core.models.PeerId
 import org.lunagram.network.bridge.MtprotoUpdate
 import org.lunagram.network.bridge.chat.toChatModels
-import uniffi.monogram_mtproto.UpdateEventDto
+import uniffi.lunagram_mtproto.UpdateEventDto
 import org.lunagram.network.bridge.message.toModel as toMessageModel
 
 /**

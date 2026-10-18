@@ -5,8 +5,8 @@ import org.junit.Assert.assertNull
 import org.junit.Test
 import org.lunagram.core.models.pollOptionHex
 import org.lunagram.network.bridge.message.toViewer
-import uniffi.monogram_mtproto.PollVoterDto
-import uniffi.monogram_mtproto.ReactionPeerDto
+import uniffi.lunagram_mtproto.PollVoterDto
+import uniffi.lunagram_mtproto.ReactionPeerDto
 
 class PeerListMappingTest {
     @Test

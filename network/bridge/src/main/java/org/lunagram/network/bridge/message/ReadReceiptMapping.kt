@@ -8,11 +8,11 @@ import org.lunagram.core.models.ProfileMember
 import org.lunagram.core.models.ReadReceiptConfig
 import org.lunagram.core.models.peerAvatarCacheKey
 import org.lunagram.core.models.pollOptionHex
-import uniffi.monogram_mtproto.OutboxReadDto
-import uniffi.monogram_mtproto.PollVoterDto
-import uniffi.monogram_mtproto.ReactionPeerDto
-import uniffi.monogram_mtproto.ReadParticipantsDto
-import uniffi.monogram_mtproto.ReadReceiptConfigDto
+import uniffi.lunagram_mtproto.OutboxReadDto
+import uniffi.lunagram_mtproto.PollVoterDto
+import uniffi.lunagram_mtproto.ReactionPeerDto
+import uniffi.lunagram_mtproto.ReadParticipantsDto
+import uniffi.lunagram_mtproto.ReadReceiptConfigDto
 
 internal fun readParticipantsOutcome(dto: ReadParticipantsDto, played: Boolean): MessageViewers =
     when (dto.error) {

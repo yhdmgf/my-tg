@@ -20,14 +20,14 @@ import org.lunagram.core.common.TelegramCredentials
 import org.lunagram.core.models.PeerId
 import org.lunagram.mtproto.MtprotoNative
 import org.lunagram.network.bridge.session.nativeFailureLogLine
-import uniffi.monogram_mtproto.AuthSignedIn
-import uniffi.monogram_mtproto.ChatDto
-import uniffi.monogram_mtproto.MessageDto
-import uniffi.monogram_mtproto.MtprotoException
-import uniffi.monogram_mtproto.UpdateBatchDto
-import uniffi.monogram_mtproto.UpdateDrainDto
-import uniffi.monogram_mtproto.UpdateEventDto
-import uniffi.monogram_mtproto.UpdatesStateDto
+import uniffi.lunagram_mtproto.AuthSignedIn
+import uniffi.lunagram_mtproto.ChatDto
+import uniffi.lunagram_mtproto.MessageDto
+import uniffi.lunagram_mtproto.MtprotoException
+import uniffi.lunagram_mtproto.UpdateBatchDto
+import uniffi.lunagram_mtproto.UpdateDrainDto
+import uniffi.lunagram_mtproto.UpdateEventDto
+import uniffi.lunagram_mtproto.UpdatesStateDto
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
@@ -236,7 +236,7 @@ class BridgedMtprotoClientLifecycleTest {
 
             override fun getChats(handle: Long): List<ChatDto> = emptyList()
 
-            override fun getFolders(handle: Long): List<uniffi.monogram_mtproto.FolderDto> = emptyList()
+            override fun getFolders(handle: Long): List<uniffi.lunagram_mtproto.FolderDto> = emptyList()
         }
         val client = client(native, StandardTestDispatcher(testScheduler))
         try {
@@ -258,7 +258,7 @@ class BridgedMtprotoClientLifecycleTest {
                 starts++
             }
             override fun getChats(handle: Long): List<ChatDto> = emptyList()
-            override fun getFolders(handle: Long): List<uniffi.monogram_mtproto.FolderDto> = emptyList()
+            override fun getFolders(handle: Long): List<uniffi.lunagram_mtproto.FolderDto> = emptyList()
         }
         val client = client(native, StandardTestDispatcher(testScheduler))
         try {
