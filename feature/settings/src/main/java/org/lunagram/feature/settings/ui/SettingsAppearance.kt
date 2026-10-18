@@ -720,7 +720,7 @@ private fun AccentPicker(preset: AccentPreset, dynamic: Boolean, onSelect: (Acce
             val ringWidth by animateDpAsState(if (selected) 2.5.dp else 0.dp, label = "accent-ring")
             val name = stringResource(
                 when (accent) {
-                    AccentPreset.Monogram -> R.string.settings_accent_monogram
+                    AccentPreset.Monogram -> R.string.settings_accent_lunagram
                     AccentPreset.Sakura -> R.string.settings_accent_sakura
                     AccentPreset.Ocean -> R.string.settings_accent_ocean
                     AccentPreset.Forest -> R.string.settings_accent_forest
