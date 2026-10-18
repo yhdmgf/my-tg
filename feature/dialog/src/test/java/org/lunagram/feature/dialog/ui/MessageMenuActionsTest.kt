@@ -1,0 +1,62 @@
+package org.lunagram.feature.dialog.ui
+
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
+import org.junit.Test
+import org.lunagram.core.models.Message
+import org.lunagram.core.models.MessageId
+import org.lunagram.core.models.PeerId
+import org.lunagram.feature.dialog.DialogStore
+
+class MessageMenuActionsTest {
+    @Test
+    fun chatWideProtectionHidesForward() {
+        val actions = messageMenuActions(state(canForward = false), message())
+        assertFalse(actions.canForward)
+        assertFalse(actions.forwardRestricted)
+    }
+
+    @Test
+    fun perMessageNoforwardsShowsDisabledForward() {
+        val actions = messageMenuActions(state(canForward = true), message(noforwards = true))
+        assertFalse(actions.canForward)
+        assertTrue(actions.forwardRestricted)
+    }
+
+    @Test
+    fun pendingAndServiceHideForward() {
+        val pending = messageMenuActions(state(), message(pending = true))
+        val service = messageMenuActions(state(), message(mediaKind = "service"))
+        assertFalse(pending.canForward)
+        assertFalse(pending.forwardRestricted)
+        assertFalse(service.canForward)
+        assertFalse(service.forwardRestricted)
+    }
+
+    @Test
+    fun ordinaryMessageCanForwardAndSelect() {
+        val actions = messageMenuActions(state(), message())
+        assertTrue(actions.canForward)
+        assertFalse(actions.forwardRestricted)
+    }
+
+    private fun state(canForward: Boolean = true) = DialogStore.State(
+        chatId = PeerId(1),
+        canForward = canForward,
+    )
+
+    private fun message(
+        pending: Boolean = false,
+        mediaKind: String? = null,
+        noforwards: Boolean = false,
+    ) = Message(
+        id = MessageId(PeerId(1), 7),
+        senderId = PeerId(1),
+        text = "hi",
+        date = 0,
+        outgoing = false,
+        pending = pending,
+        mediaKind = mediaKind,
+        noforwards = noforwards,
+    )
+}

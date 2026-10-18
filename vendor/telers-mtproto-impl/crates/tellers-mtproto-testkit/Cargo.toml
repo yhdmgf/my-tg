@@ -1,0 +1,19 @@
+[package]
+name = "tellers-mtproto-testkit"
+description = "Deterministic fixtures and fakes for MTProto implementations"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+tellers-mtproto-codec = { path = "../tellers-mtproto-codec", version = "0.1.0" }
+tellers-mtproto-crypto = { path = "../tellers-mtproto-crypto", version = "0.1.0" }
+tellers-mtproto-engine = { path = "../tellers-mtproto-engine", version = "0.1.0" }
+tellers-mtproto-session = { path = "../tellers-mtproto-session", version = "0.1.0" }
+tellers-mtproto-transport = { path = "../tellers-mtproto-transport", version = "0.1.0" }
+num-bigint.workspace = true
+
+[lints]
+workspace = true

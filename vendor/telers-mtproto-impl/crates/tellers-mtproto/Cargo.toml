@@ -1,0 +1,26 @@
+[package]
+name = "tellers-mtproto"
+version = "0.2.0+layer.229"
+edition = "2024"
+license = "MPL-2.0"
+rust-version = "1.85"
+description = "Fork of tellers-tl mtproto-types"
+publish = false
+
+[features]
+default = ["layer-229"]
+serde = ["dep:serde", "bnum/serde"]
+bon = ["dep:bon"]
+layer-223 = []
+layer-229 = []
+all-layers = ["layer-223", "layer-229"]
+secret-chat = ["layer-229"]
+tracing = ["dep:tracing"]
+dangerous-unredacted-logging = ["tracing"]
+
+[dependencies]
+bnum = "0.14"
+bon = { version = "=3.8.1", optional = true }
+serde = { version = "1", features = ["derive"], optional = true }
+thiserror = "2"
+tracing = { version = "0.1", optional = true }

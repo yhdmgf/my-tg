@@ -1,0 +1,140 @@
+package org.lunagram.core.database
+
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
+import org.junit.Test
+import org.lunagram.core.database.entity.MessageEntity
+import org.lunagram.core.models.Message
+import org.lunagram.core.models.MessageId
+import org.lunagram.core.models.PeerId
+import org.lunagram.core.models.ReplyButton
+import org.lunagram.core.models.ReplyButtonType
+import org.lunagram.core.models.ReplyMarkup
+import org.lunagram.core.models.ReplyMarkupKind
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicReference
+
+class MessageMediaFieldsTest {
+    @Test
+    fun schemaVersionIsCurrent() {
+        assertEquals(8, DatabaseProvider.SCHEMA_VERSION)
+    }
+
+    @Test
+    fun onlyCurrentSchemaIsCompatible() {
+        assertTrue(DatabaseProvider.hasMigrationPath(1))
+        assertTrue(DatabaseProvider.hasMigrationPath(0, 1))
+        assertTrue(DatabaseProvider.hasMigrationPath(1, 2))
+        assertTrue(DatabaseProvider.hasMigrationPath(2, 3))
+        assertTrue(DatabaseProvider.hasMigrationPath(3, 4))
+        assertFalse(DatabaseProvider.hasMigrationPath(32))
+        assertFalse(DatabaseProvider.hasMigrationPath(3, 2))
+    }
+
+    @Test
+    fun roomExecutorIsDedicated() {
+        val name = AtomicReference<String>()
+        val done = CountDownLatch(1)
+        DatabaseProvider.roomExecutor.execute {
+            name.set(Thread.currentThread().name)
+            done.countDown()
+        }
+        assertTrue(done.await(2, TimeUnit.SECONDS))
+        assertEquals("monogram-room", name.get())
+    }
+
+    @Test
+    fun messageRoundtripsDurationAndSize() {
+        val message = Message(
+            id = MessageId(PeerId(42), 7),
+            senderId = PeerId(1),
+            text = null,
+            date = 1L,
+            editDate = 2L,
+            outgoing = false,
+            pending = true,
+            randomId = 55L,
+            mediaCacheKey = "doc:1",
+            mediaKind = "video",
+            thumbCacheKey = "doc:1:thumb",
+            mediaDuration = 12,
+            mediaWidth = 1280,
+            mediaHeight = 720,
+            fileSize = 8_000_000,
+            supportsStreaming = true,
+            replyToMsgId = 3,
+            replyToTopId = 42,
+            forumTopic = true,
+            fwdFrom = "Alice",
+            fwdFromId = 100L,
+            fwdDate = 1_700_000_000L,
+            viaBot = "gif",
+            senderName = "Bob",
+            replyMarkup = ReplyMarkup(
+                kind = ReplyMarkupKind.Inline,
+                rows = listOf(
+                    listOf(ReplyButton(ReplyButtonType.Url, "Open", url = "https://t.me")),
+                ),
+            ),
+        )
+        val entity = message.toEntity()
+        assertEquals(12, entity.mediaDuration)
+        assertEquals(1280, entity.mediaWidth)
+        assertEquals(720, entity.mediaHeight)
+        val back = entity.toModel()
+        assertEquals(12, back.mediaDuration)
+        assertEquals(1280, back.mediaWidth)
+        assertEquals(720, back.mediaHeight)
+        assertEquals("video", back.mediaKind)
+        assertEquals("doc:1:thumb", back.thumbCacheKey)
+        assertEquals(3, back.replyToMsgId)
+        assertEquals(42, back.replyToTopId)
+        assertEquals(true, back.forumTopic)
+        assertEquals("Alice", back.fwdFrom)
+        assertEquals(100L, back.fwdFromId)
+        assertEquals(1_700_000_000L, back.fwdDate)
+        assertEquals("gif", back.viaBot)
+        assertEquals("Bob", back.senderName)
+        assertEquals(2L, back.editDate)
+        assertEquals(ReplyMarkupKind.Inline, back.replyMarkup?.kind)
+        assertEquals("https://t.me", back.replyMarkup?.rows?.single()?.single()?.url)
+        assertEquals(true, back.pending)
+        assertEquals(55L, back.randomId)
+        assertEquals(true, back.supportsStreaming)
+        assertEquals(8_000_000L, back.fileSize)
+    }
+
+    @Test
+    fun chatRoundtripsUnreadMentionAndReactionCounts() {
+        val chat = org.lunagram.core.models.Chat(
+            id = PeerId(9),
+            title = "Ada",
+            unreadMentionsCount = 3,
+            unreadReactionsCount = 2,
+        )
+        val back = chat.toEntity().toModel()
+        assertEquals(3, back.unreadMentionsCount)
+        assertEquals(2, back.unreadReactionsCount)
+    }
+
+    @Test
+    fun entityDefaultsKeepNullMetrics() {
+        val entity = MessageEntity(
+            chatId = 1L,
+            id = 2,
+            senderId = null,
+            text = "hi",
+            date = 0L,
+            outgoing = true,
+            mediaCacheKey = null,
+            mediaKind = null,
+        )
+        val model = entity.toModel()
+        assertEquals(null, model.mediaDuration)
+        assertEquals(null, model.mediaWidth)
+        assertEquals(null, model.mediaHeight)
+        assertEquals(false, model.supportsStreaming)
+    }
+}

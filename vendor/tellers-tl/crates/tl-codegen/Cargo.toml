@@ -1,0 +1,35 @@
+[package]
+name = "tellers-tl-rust"
+description = "Deterministic Rust generator for validated TL schemas"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+homepage.workspace = true
+# Repository freshness tests require schemas and generated files outside this package.
+exclude = ["tests/current_generated.rs"]
+
+[dependencies]
+heck.workspace = true
+prettyplease.workspace = true
+syn.workspace = true
+thiserror.workspace = true
+tellers-tl-schema = { version = "0.2.0", path = "../tl-model" }
+tracing = { workspace = true, optional = true }
+
+[features]
+default = []
+tracing = ["dep:tracing", "tellers-tl-schema/tracing"]
+dangerous-unredacted-logging = ["tracing", "tellers-tl-schema/dangerous-unredacted-logging"]
+
+[dev-dependencies]
+pretty_assertions = "1"
+tempfile = "3"
+
+[[bin]]
+name = "tellers-tl-rust"
+path = "src/main.rs"
+
+[lints]
+workspace = true

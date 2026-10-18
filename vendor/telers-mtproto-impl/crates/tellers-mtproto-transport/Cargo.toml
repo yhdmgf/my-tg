@@ -1,0 +1,20 @@
+[package]
+name = "tellers-mtproto-transport"
+description = "Runtime-neutral MTProto transport framing"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+crc32fast.workspace = true
+getrandom.workspace = true
+tellers-mtproto-crypto = { path = "../tellers-mtproto-crypto", version = "0.1.0" }
+thiserror.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true
+
+[lints]
+workspace = true

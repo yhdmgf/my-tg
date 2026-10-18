@@ -1,0 +1,814 @@
+{
+  "repository": "https://core.telegram.org/schema",
+  "layers": {
+    "104": {
+      "layer": 104,
+      "revision": "a539fad3e2fcfb3835ea641eadc5f64ae7892157",
+      "tag": "v1.8.2",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/a539fad3e2fcfb3835ea641eadc5f64ae7892157/Telegram/Resources/tl/api.tl",
+      "sha256": "2152e198a5f3b9719f399b1af0f416f47e6772eaba758eb546c3f0f66c31d5c7",
+      "combined_with_transport": false
+    },
+    "105": {
+      "layer": 105,
+      "revision": "883d6dcede0e37618c8be338629026037eb15a7c",
+      "tag": "v1.8.15",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/883d6dcede0e37618c8be338629026037eb15a7c/Telegram/Resources/tl/api.tl",
+      "sha256": "51c88f30e82ef5fde0bd5c05d162e9238b228b0c3c9942d3ac380bd5e1dcf06e",
+      "combined_with_transport": false
+    },
+    "106": {
+      "layer": 106,
+      "revision": "4e1e7a5a9c6c87d00f71dde30f42954f1a73b422",
+      "tag": "v1.9.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/4e1e7a5a9c6c87d00f71dde30f42954f1a73b422/Telegram/Resources/tl/api.tl",
+      "sha256": "b4b3bf9d59fa3850fd12bb72a9d49d95c1639bc3ef7c916f80d48ed6d484e3b8",
+      "combined_with_transport": false
+    },
+    "108": {
+      "layer": 108,
+      "revision": "fc72fe3a78bc2f882159a88e9b35aeba04107e3a",
+      "tag": "v1.9.6",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/fc72fe3a78bc2f882159a88e9b35aeba04107e3a/Telegram/Resources/tl/api.tl",
+      "sha256": "eefba74c5d2dd591475445c4ad3cb9ca2896f2010a35750d2750f3860bd324a9",
+      "combined_with_transport": false
+    },
+    "109": {
+      "layer": 109,
+      "revision": "0bd2d951fb74488ee23ae160d49eba977398fffb",
+      "tag": "v1.9.21",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/0bd2d951fb74488ee23ae160d49eba977398fffb/Telegram/Resources/tl/api.tl",
+      "sha256": "2aadc18bced150dfb3a7da4bd27148d5cfc15edb688a27e511785624a0009f34",
+      "combined_with_transport": false
+    },
+    "111": {
+      "layer": 111,
+      "revision": "aae5024b281004f4b5b7583f427d24ace63f45db",
+      "tag": "v2.0.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/aae5024b281004f4b5b7583f427d24ace63f45db/Telegram/Resources/tl/api.tl",
+      "sha256": "4beac0ccfd51526921bd259f9b5da6d09aee2a5297025fd16d11b27f4d5c8463",
+      "combined_with_transport": false
+    },
+    "112": {
+      "layer": 112,
+      "revision": "c1f3fe1961959f939746a4dad925eb3bae65d585",
+      "tag": "v2.1.0",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/c1f3fe1961959f939746a4dad925eb3bae65d585/Telegram/Resources/tl/api.tl",
+      "sha256": "cf93e29f8f391dc4f99dd75c7321edc792c498e7adba175b452dfba88f41dc44",
+      "combined_with_transport": false
+    },
+    "113": {
+      "layer": 113,
+      "revision": "735164103465a498a4ff8d6aaf426786ecba3898",
+      "tag": "v2.1.7",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/735164103465a498a4ff8d6aaf426786ecba3898/Telegram/Resources/tl/api.tl",
+      "sha256": "fb1e708887cda0deeb7ba44db3a85936fa282a840827efaa602fda1df25fc282",
+      "combined_with_transport": false
+    },
+    "114": {
+      "layer": 114,
+      "revision": "9370e87c5442cf8320a953f44e134213ab292255",
+      "tag": "v2.1.22",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/9370e87c5442cf8320a953f44e134213ab292255/Telegram/Resources/tl/api.tl",
+      "sha256": "c392d237c79e8032bbec6f8a2f2757e056e349745238ee3c1ee504c5d5ae5fd1",
+      "combined_with_transport": false
+    },
+    "116": {
+      "layer": 116,
+      "revision": "e5434ea4915a93eb90b4c75ae79cb571001f7e3b",
+      "tag": "v2.2.0",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/e5434ea4915a93eb90b4c75ae79cb571001f7e3b/Telegram/Resources/tl/api.tl",
+      "sha256": "a9e8b470f509a3dc94fd1e5cc5cec024919184160d4edbb4be7efe460a5db6ed",
+      "combined_with_transport": false
+    },
+    "117": {
+      "layer": 117,
+      "revision": "ae59de7652f8e85c1dab839f4efd694b531448f2",
+      "tag": "v2.3.2",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/ae59de7652f8e85c1dab839f4efd694b531448f2/Telegram/Resources/tl/api.tl",
+      "sha256": "675b273b8e6746c01c788e14253f5e5940621eea8443377d5f35b2e2fcb839b9",
+      "combined_with_transport": false
+    },
+    "119": {
+      "layer": 119,
+      "revision": "9717a8b5fa67e6e3afcc8a741a5a9e050d7b3966",
+      "tag": "v2.4.4",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/9717a8b5fa67e6e3afcc8a741a5a9e050d7b3966/Telegram/Resources/tl/api.tl",
+      "sha256": "b8e6cc9fc12b569a02822219af25b80445c1f432ed2e2d4d50eab6cd3caae2e3",
+      "combined_with_transport": false
+    },
+    "120": {
+      "layer": 120,
+      "revision": "cc48afac1cf70bf98daf79fa2b5c4626329cd378",
+      "tag": "v2.4.11",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/cc48afac1cf70bf98daf79fa2b5c4626329cd378/Telegram/Resources/tl/api.tl",
+      "sha256": "a1c7e719482723c17f5f6882770685b3080311a4ae0f71a135599ba778b60747",
+      "combined_with_transport": false
+    },
+    "122": {
+      "layer": 122,
+      "revision": "8ed56bb4e4d9783154d05b8110082ee9272ddc18",
+      "tag": "v2.5.6",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/8ed56bb4e4d9783154d05b8110082ee9272ddc18/Telegram/Resources/tl/api.tl",
+      "sha256": "4b2e953d778fb0bf3f3cdd4c659396cc247df949a3d01dca916948909196a1ef",
+      "combined_with_transport": false
+    },
+    "123": {
+      "layer": 123,
+      "revision": "b3660f1ed882450c9ac6527ebe08f7c10d9b2c9f",
+      "tag": "v2.5.9",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/b3660f1ed882450c9ac6527ebe08f7c10d9b2c9f/Telegram/Resources/tl/api.tl",
+      "sha256": "84d5c91151898880617be184a335e02c8a1bba0d5fff319243aefc1668baa641",
+      "combined_with_transport": false
+    },
+    "124": {
+      "layer": 124,
+      "revision": "97d8ee75d51874fcb74a9bfadc79f835c82be54a",
+      "tag": "v2.6.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/97d8ee75d51874fcb74a9bfadc79f835c82be54a/Telegram/Resources/tl/api.tl",
+      "sha256": "684f8d97d54cdaa36e076dcd79cea7fc7101bd3f7e735ab9ed40027b9e61c989",
+      "combined_with_transport": false
+    },
+    "125": {
+      "layer": 125,
+      "revision": "eeecc42c2517172c934cf833fc93166fb55880ab",
+      "tag": "v2.7.0",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/eeecc42c2517172c934cf833fc93166fb55880ab/Telegram/Resources/tl/api.tl",
+      "sha256": "2432f2442014e8ba5f4e9b99812ec30e8be94300a843d8fffc0473c5543e95c5",
+      "combined_with_transport": false
+    },
+    "126": {
+      "layer": 126,
+      "revision": "a82d1e863e41d169d2981f6856a01ec595928730",
+      "tag": "v2.7.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/a82d1e863e41d169d2981f6856a01ec595928730/Telegram/Resources/tl/api.tl",
+      "sha256": "9ca5da232cf470ab52bb4ea6dd8aa1af3dc8f05c3f94302306bff41c995d6aec",
+      "combined_with_transport": false
+    },
+    "128": {
+      "layer": 128,
+      "revision": "f1a9884011ca3684afd36469ba0c439b17fc0927",
+      "tag": "v2.7.5",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/f1a9884011ca3684afd36469ba0c439b17fc0927/Telegram/Resources/tl/api.tl",
+      "sha256": "3bdd325205d5870c453580bf5f4a0a664e174b9e2af8dcf7eefd7c2d4404a938",
+      "combined_with_transport": false
+    },
+    "129": {
+      "layer": 129,
+      "revision": "f09b91ebb59e193f66e6f725c7e9604e4445dfdc",
+      "tag": "v2.8.5",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/f09b91ebb59e193f66e6f725c7e9604e4445dfdc/Telegram/Resources/tl/api.tl",
+      "sha256": "0dbb81906dd35d803385decea91b1e103ba392cd16bff4c772d349735c94587c",
+      "combined_with_transport": false
+    },
+    "130": {
+      "layer": 130,
+      "revision": "3cdd1153176fd37aed2f8dfe64b22b84544966a7",
+      "tag": "v2.8.6",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/3cdd1153176fd37aed2f8dfe64b22b84544966a7/Telegram/Resources/tl/api.tl",
+      "sha256": "d024dc994b05128e5f6b8770fe30bc3decf310fb5b3f41623c72c214e64ad5b5",
+      "combined_with_transport": false
+    },
+    "131": {
+      "layer": 131,
+      "revision": "b5ae492f5eb984123b11e90c91d40082d1e26c23",
+      "tag": "v2.9.12",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/b5ae492f5eb984123b11e90c91d40082d1e26c23/Telegram/Resources/tl/api.tl",
+      "sha256": "0bd2a4fb03ca4f8854ae39135e914ab631e6d46f789c48b1c688200e09125c55",
+      "combined_with_transport": false
+    },
+    "132": {
+      "layer": 132,
+      "revision": "b0f54822e05fa8347a9cd23a4e3e518d4578353a",
+      "tag": "v3.0.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/b0f54822e05fa8347a9cd23a4e3e518d4578353a/Telegram/Resources/tl/api.tl",
+      "sha256": "9ffd3562106760e18256017ded56935021e2659001b4c1155db84dc071cc1f15",
+      "combined_with_transport": false
+    },
+    "133": {
+      "layer": 133,
+      "revision": "31f15a2f095fd0ffd42a7298d10157688c12788e",
+      "tag": "v3.1.10",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/31f15a2f095fd0ffd42a7298d10157688c12788e/Telegram/Resources/tl/api.tl",
+      "sha256": "a7775c73ea4db1f3618a5dca455276e65fb45cbcefb4855f25dcaf55cb884256",
+      "combined_with_transport": false
+    },
+    "134": {
+      "layer": 134,
+      "revision": "f55d3d1c6a7b5b0df9b683119a869a60ace74206",
+      "tag": "v3.2.5",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/f55d3d1c6a7b5b0df9b683119a869a60ace74206/Telegram/Resources/tl/api.tl",
+      "sha256": "dcce1eab8bc31ca35ca85104cf7226aa5e82d42a25c65cd7ff0332412c888175",
+      "combined_with_transport": false
+    },
+    "135": {
+      "layer": 135,
+      "revision": "ede4c0f7812ea9f411f76ecc674bd6ba55892af9",
+      "tag": "v3.3.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/ede4c0f7812ea9f411f76ecc674bd6ba55892af9/Telegram/Resources/tl/api.tl",
+      "sha256": "b816b29283bf8d2912fc12d0f75bfb0a5b1d434af5275ac864372d1cb4970d40",
+      "combined_with_transport": false
+    },
+    "136": {
+      "layer": 136,
+      "revision": "5c9c836857dbc14cabf18f576b00d2248fa3f203",
+      "tag": "v3.4.3",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/5c9c836857dbc14cabf18f576b00d2248fa3f203/Telegram/Resources/tl/api.tl",
+      "sha256": "01c44f593056293ed3ea01389337de379025459110913e3a041362de5c2c8449",
+      "combined_with_transport": false
+    },
+    "137": {
+      "layer": 137,
+      "revision": "dc892624616b2e8901c3df1f707f0132c1e5dcdf",
+      "tag": "v3.4.8",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/dc892624616b2e8901c3df1f707f0132c1e5dcdf/Telegram/Resources/tl/api.tl",
+      "sha256": "dc2233feb0976164571345f011fa531b1560a1c76531866f48bd2e504ad3a015",
+      "combined_with_transport": false
+    },
+    "138": {
+      "layer": 138,
+      "revision": "6ce3f9bb71066605db5558c05dd337748c703cb2",
+      "tag": "v3.5.2",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/6ce3f9bb71066605db5558c05dd337748c703cb2/Telegram/Resources/tl/api.tl",
+      "sha256": "e4394d689aae7a56d9b81f444df7f182ec54f5b8eb2a0289a7ef9b19cfecabff",
+      "combined_with_transport": false
+    },
+    "139": {
+      "layer": 139,
+      "revision": "eec2992be5ed3a3fcb04c2506b77455668dd5b16",
+      "tag": "v3.6.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/eec2992be5ed3a3fcb04c2506b77455668dd5b16/Telegram/Resources/tl/api.tl",
+      "sha256": "80cbdbe9df4d7a9dda681537ce4ae739567051782b9fb4237d3cab78c1d70384",
+      "combined_with_transport": false
+    },
+    "140": {
+      "layer": 140,
+      "revision": "e206f42e4e5c8ff798d8fb5e59d1784e445995a7",
+      "tag": "v3.7.4",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/e206f42e4e5c8ff798d8fb5e59d1784e445995a7/Telegram/Resources/tl/api.tl",
+      "sha256": "283b3306402528272ff3bcd1bb80089d471f721b3b7618695b6a41378eb90a3e",
+      "combined_with_transport": false
+    },
+    "142": {
+      "layer": 142,
+      "revision": "b5bc567eb808804b665ee7eb934a4dab9cd37a41",
+      "tag": "v3.7.5",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/b5bc567eb808804b665ee7eb934a4dab9cd37a41/Telegram/Resources/tl/api.tl",
+      "sha256": "14900204943c253cf6347d4b69cd239004d7b5b9d568d36f779eb80aef3351b1",
+      "combined_with_transport": false
+    },
+    "143": {
+      "layer": 143,
+      "revision": "bf0ad9e7ca22f94c9cb7eb64de1c77cb3b7235cd",
+      "tag": "v4.0.2",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/bf0ad9e7ca22f94c9cb7eb64de1c77cb3b7235cd/Telegram/Resources/tl/api.tl",
+      "sha256": "d6f4e62f672967f02dadb40526f45fc83302660917c25d54cc582f55a2b0ec36",
+      "combined_with_transport": false
+    },
+    "144": {
+      "layer": 144,
+      "revision": "c793537d963efe96d0ae7ab30a8b6b262f039151",
+      "tag": "v4.1.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/c793537d963efe96d0ae7ab30a8b6b262f039151/Telegram/Resources/tl/api.tl",
+      "sha256": "4f7ff5bf96b712b8884b6d220e003e47dc45f00674709adbc9938d3ee34d83c2",
+      "combined_with_transport": false
+    },
+    "146": {
+      "layer": 146,
+      "revision": "1350fa64f3d78ac639cc5e940ea2cda799648855",
+      "tag": "v4.2.4",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/1350fa64f3d78ac639cc5e940ea2cda799648855/Telegram/Resources/tl/api.tl",
+      "sha256": "ba16bf92d16a2cdcb07672ac0b463e9fea6bc3d9b5641adced6f9cd9f006ebdc",
+      "combined_with_transport": false
+    },
+    "148": {
+      "layer": 148,
+      "revision": "e675dc1ef13c2593e02e9371d53de35932fa5271",
+      "tag": "v4.3.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/e675dc1ef13c2593e02e9371d53de35932fa5271/Telegram/Resources/tl/api.tl",
+      "sha256": "19fd5971d04078f793254cd1e591d1e9ad9aed8ace833187bc55edb5c7ffa541",
+      "combined_with_transport": false
+    },
+    "149": {
+      "layer": 149,
+      "revision": "b474db2106d4ba81af7938382b915393a8fec817",
+      "tag": "v4.3.4",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/b474db2106d4ba81af7938382b915393a8fec817/Telegram/Resources/tl/api.tl",
+      "sha256": "ad5229b179d1350bca43eee099a5c538613f9d4148b7933cd87a4fca02e2cc8f",
+      "combined_with_transport": false
+    },
+    "150": {
+      "layer": 150,
+      "revision": "6986430f37f3a6f36d71fe0b83ef86e4de332252",
+      "tag": "v4.4.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/6986430f37f3a6f36d71fe0b83ef86e4de332252/Telegram/Resources/tl/api.tl",
+      "sha256": "16379ae5b0f59f8a9aa17d9f8289db7a61869ad5acddf74cd07fcac7e5f91d5e",
+      "combined_with_transport": false
+    },
+    "151": {
+      "layer": 151,
+      "revision": "37cf12f06e0338ecf3b7d8b5c20532a76383f432",
+      "tag": "v4.5.9",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/37cf12f06e0338ecf3b7d8b5c20532a76383f432/Telegram/Resources/tl/api.tl",
+      "sha256": "53b88e0873d7e5c9aab54d9d0b8ef4d4eaa15dde37e1df618c361206bf9c53eb",
+      "combined_with_transport": false
+    },
+    "152": {
+      "layer": 152,
+      "revision": "ccbab25fae81923f7af2b81bb392e22b21d707b9",
+      "tag": "v4.6.7",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/ccbab25fae81923f7af2b81bb392e22b21d707b9/Telegram/Resources/tl/api.tl",
+      "sha256": "4b47f6761042b98ef531681c9dc89068950fc8e01fed60c69ae92c7d64495e61",
+      "combined_with_transport": false
+    },
+    "154": {
+      "layer": 154,
+      "revision": "a4d8b78bc50e03bbc0c7a4c1695728584ba4e2c9",
+      "tag": "v4.6.9",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/a4d8b78bc50e03bbc0c7a4c1695728584ba4e2c9/Telegram/Resources/tl/api.tl",
+      "sha256": "837aa13de32b168d84ecb00368f2a34a768552d6720d3273b382281f3c6b27ee",
+      "combined_with_transport": false
+    },
+    "155": {
+      "layer": 155,
+      "revision": "e368de008d0bfd5b3d4632a762c388c2dda5c34e",
+      "tag": "v4.7.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/e368de008d0bfd5b3d4632a762c388c2dda5c34e/Telegram/Resources/tl/api.tl",
+      "sha256": "509400232b134c9e6be6610d12fe34faec9ca9afa2ebc8906401b0d64c7fbb39",
+      "combined_with_transport": false
+    },
+    "158": {
+      "layer": 158,
+      "revision": "9c6ffa01015bdb9747a9bb3b7f21369a0154fe00",
+      "tag": "v4.8.4",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/9c6ffa01015bdb9747a9bb3b7f21369a0154fe00/Telegram/Resources/tl/api.tl",
+      "sha256": "a90aa726b1ab470dbba749e893626b1dd4795e1053a5c4cc612fa2f3ece3d907",
+      "combined_with_transport": false
+    },
+    "160": {
+      "layer": 160,
+      "revision": "ff2df4b1e5f55014990775761d64305fb51db02a",
+      "tag": "v4.8.12",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/ff2df4b1e5f55014990775761d64305fb51db02a/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "0bb7bf5281ca7c3f92dcadf0c1765c336057b64e076780008b0e3298693267e5",
+      "combined_with_transport": false
+    },
+    "161": {
+      "layer": 161,
+      "revision": "dff168c62e275204e680a8075f1b667e82bdce8b",
+      "tag": "v4.9.4",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/dff168c62e275204e680a8075f1b667e82bdce8b/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "d965a12705e94e8e5236b50dbe6876ce076c9745f15f0749c64b9d1b6907c945",
+      "combined_with_transport": false
+    },
+    "162": {
+      "layer": 162,
+      "revision": "9f0a756f712015d25aa09f13df9ad75b93aefb89",
+      "tag": "v4.9.5",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/9f0a756f712015d25aa09f13df9ad75b93aefb89/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "60115550acaf154681df5ab0de3accdf8e394cf2f22cd3958d8f619800a19d16",
+      "combined_with_transport": false
+    },
+    "163": {
+      "layer": 163,
+      "revision": "a54bc449e40156fd6463e4905ec16c864098d447",
+      "tag": "v4.9.9",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/a54bc449e40156fd6463e4905ec16c864098d447/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "b067ec8f502f9f7e31cbe6e9441961e94f98f3c95e1f0bc184947b045c85c224",
+      "combined_with_transport": false
+    },
+    "164": {
+      "layer": 164,
+      "revision": "ea9386f0aa44fada4d2dd725b075bedafb5ec728",
+      "tag": "v4.10.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/ea9386f0aa44fada4d2dd725b075bedafb5ec728/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "a4cca4e7f5855411131051c8995a65a5a3621a5ef1c2bc4125c9cdf3df296a16",
+      "combined_with_transport": false
+    },
+    "165": {
+      "layer": 165,
+      "revision": "1f253012830b080ff8c4dba80051c0dbdd8a0177",
+      "tag": "v4.10.5",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/1f253012830b080ff8c4dba80051c0dbdd8a0177/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "60e537705fd22d722feb8d4f02eca5941f1b7775459f4b4d57e6229b196187dc",
+      "combined_with_transport": false
+    },
+    "166": {
+      "layer": 166,
+      "revision": "830e9a59537dd8720735c6b0612230aac486b74c",
+      "tag": "v4.11.8",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/830e9a59537dd8720735c6b0612230aac486b74c/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "d3e43f8464265d3f0eb96c0e2412a4bddf229bb0be9fdb9083080fe99a0704a0",
+      "combined_with_transport": false
+    },
+    "167": {
+      "layer": 167,
+      "revision": "cb3dece4789197ac0cae5391bcc5cc9d1749f7ae",
+      "tag": "v4.12.2",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/cb3dece4789197ac0cae5391bcc5cc9d1749f7ae/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "4313c183fe2e60588dc1323061b46db2b105347501d9a5fb33032d2fe58ecfaa",
+      "combined_with_transport": false
+    },
+    "169": {
+      "layer": 169,
+      "revision": "cb4fce251e77fe5a7f9f311ce9447804c01a1fc8",
+      "tag": "v4.13.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/cb4fce251e77fe5a7f9f311ce9447804c01a1fc8/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "af77ecca722a36320c78d681dac9a9ccdfa2ba5282c0d7426619c6d866a4865e",
+      "combined_with_transport": false
+    },
+    "170": {
+      "layer": 170,
+      "revision": "6b44143f5b93f85fb2c479fe970f7efef5ef9c8a",
+      "tag": "v4.14.4",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/6b44143f5b93f85fb2c479fe970f7efef5ef9c8a/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "8b65a10c0b08104a5e6db51a611e61bc23c6d57d13888de4c941bd251a180e3c",
+      "combined_with_transport": false
+    },
+    "171": {
+      "layer": 171,
+      "revision": "c364383cf0cfd6949baa113069aa91b92f1a37fd",
+      "tag": "v4.14.6",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/c364383cf0cfd6949baa113069aa91b92f1a37fd/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "1f6f4c8d13f73d5649ebf26977e0d30503b477db6b95cde88661839c2ee666f8",
+      "combined_with_transport": false
+    },
+    "172": {
+      "layer": 172,
+      "revision": "20bd7db4d9426432cd373156550655d4213c0ef0",
+      "tag": "v4.14.11",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/20bd7db4d9426432cd373156550655d4213c0ef0/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "fbaa11d3539fd1f369fb788b89b3e7ff55cf25f5bcc6a9822d0da5f14fbd9433",
+      "combined_with_transport": false
+    },
+    "173": {
+      "layer": 173,
+      "revision": "e5f90cd40d552674d7943f8f422c340203909658",
+      "tag": "v4.14.15",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/e5f90cd40d552674d7943f8f422c340203909658/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "e9fedcc9c68ac53e741e5ea9122fa99f7918d8931635a213217fd4c1e947f7da",
+      "combined_with_transport": false
+    },
+    "174": {
+      "layer": 174,
+      "revision": "cb065146c2377a16c287d667e35f014956069953",
+      "tag": "v4.15.0",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/cb065146c2377a16c287d667e35f014956069953/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "0ddea0bde6ac2c064737f407b043fa0ef68eb8d7710f92f8c7e758af19ca65bf",
+      "combined_with_transport": false
+    },
+    "176": {
+      "layer": 176,
+      "revision": "962c64b33ccff3a82688cbf34706be9928238ffc",
+      "tag": "v4.15.7",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/962c64b33ccff3a82688cbf34706be9928238ffc/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "e447f36c77d29528496ba50bba150f93d90641232d01fbb0fe1d55ddf1eb29f7",
+      "combined_with_transport": false
+    },
+    "177": {
+      "layer": 177,
+      "revision": "78c8d0562b783403ffe772f149c6cb202c3e0196",
+      "tag": "v4.16.8",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/78c8d0562b783403ffe772f149c6cb202c3e0196/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "a5110909d1c88f8858263bac74c3ca3443cb02e34f71f7f830301ca76cf62f3a",
+      "combined_with_transport": false
+    },
+    "178": {
+      "layer": 178,
+      "revision": "331e8c3ec6ee1ff8d0b838286ab0b0bcda27d39c",
+      "tag": "v4.16.9",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/331e8c3ec6ee1ff8d0b838286ab0b0bcda27d39c/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "7a4c0f192ad4dd77a24614884fd716bcf680b683c45bd2b921af13369ebcf68a",
+      "combined_with_transport": false
+    },
+    "179": {
+      "layer": 179,
+      "revision": "2bbc7406da448659aa2ef7de69a8f95115af6350",
+      "tag": "v5.0.6",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/2bbc7406da448659aa2ef7de69a8f95115af6350/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "9eb6aa1c5c25c900796809ce40385160142eaebc0ab5b68af4b8a4567fec6f05",
+      "combined_with_transport": false
+    },
+    "181": {
+      "layer": 181,
+      "revision": "81d7fcba7e3e6241755fecc1a648f63961a8f9bf",
+      "tag": "v5.1.8",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/81d7fcba7e3e6241755fecc1a648f63961a8f9bf/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "681a5cff504a6851c9671e750ddd78d022d24b9d22c6411b415582dff0a2b944",
+      "combined_with_transport": false
+    },
+    "183": {
+      "layer": 183,
+      "revision": "78093173a92e9b0b60086ed5d91bdc051be7fb67",
+      "tag": "v5.2.3",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/78093173a92e9b0b60086ed5d91bdc051be7fb67/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "2fe40c704d7e99cee6c66ba26009eb804559e4909d4ec6c26cee752c4ae35549",
+      "combined_with_transport": false
+    },
+    "184": {
+      "layer": 184,
+      "revision": "b0981ea8e341ae6d71432a237ab086a9ab6d4b44",
+      "tag": "v5.2.6",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/b0981ea8e341ae6d71432a237ab086a9ab6d4b44/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "a37868b9861499415a8c27ae47e42b3cd96eb175bd49a91f272e43dd57261c51",
+      "combined_with_transport": false
+    },
+    "185": {
+      "layer": 185,
+      "revision": "0de50808743cfeaff0925cf7a63fdda207e29e85",
+      "tag": "v5.3.2",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/0de50808743cfeaff0925cf7a63fdda207e29e85/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "c488cd16de64bea5e744d4a0954cfdec14947c71bcf21084f281bf062b23a173",
+      "combined_with_transport": false
+    },
+    "186": {
+      "layer": 186,
+      "revision": "5024f1db8c142a579b5bad5d6abf05ba583d1a32",
+      "tag": "v5.4.6",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/5024f1db8c142a579b5bad5d6abf05ba583d1a32/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "35167eaa90ebc3170311143745be0c43d5881c3bd3b94fe6dc99f3e80d5e3363",
+      "combined_with_transport": false
+    },
+    "187": {
+      "layer": 187,
+      "revision": "98ba2c7ce4da95176d874f17943c248bb07b8538",
+      "tag": "v5.5.5",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/98ba2c7ce4da95176d874f17943c248bb07b8538/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "13e5ee643d6d776ab46f2cd1a21c9b274a4cb46106dea20770ebce90115e1e42",
+      "combined_with_transport": false
+    },
+    "188": {
+      "layer": 188,
+      "revision": "335095a332607c41a8d20b47e61f5bbd66366d4b",
+      "tag": "v5.5.8",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/335095a332607c41a8d20b47e61f5bbd66366d4b/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "89808bbed6042add7f7ed5bf49c07086c6e4b17e38744a4653d30865ab7eb3da",
+      "combined_with_transport": false
+    },
+    "189": {
+      "layer": 189,
+      "revision": "51f1999412fd563b7b40117197541207f5995952",
+      "tag": "v5.6.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/51f1999412fd563b7b40117197541207f5995952/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "274a71c5b60947275de376cce5cecb0a907181439ae6d53c54f4a0331c66be75",
+      "combined_with_transport": false
+    },
+    "190": {
+      "layer": 190,
+      "revision": "78937d716fe6e8fa3b470d378d2fcb54a643f06c",
+      "tag": "v5.6.4",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/78937d716fe6e8fa3b470d378d2fcb54a643f06c/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "c11f249c649c94dceb1f98240ae67b6ada880367eb6f94805c66b69ff1237848",
+      "combined_with_transport": false
+    },
+    "192": {
+      "layer": 192,
+      "revision": "7dd1e9bfbef377c7ce50e06fdf0056603ba2f751",
+      "tag": "v5.7.4",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/7dd1e9bfbef377c7ce50e06fdf0056603ba2f751/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "8de881afe6424446c01b781ba56351db3ae6853674140329dcea4bcf17bded31",
+      "combined_with_transport": false
+    },
+    "193": {
+      "layer": 193,
+      "revision": "96398daa783da04d57aadfb16a5a7f2f0f3423f2",
+      "tag": "v5.8.5",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/96398daa783da04d57aadfb16a5a7f2f0f3423f2/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "588d13327ad4d323f81aca924d229c272fb446dc723714d1d107e4699fcb2085",
+      "combined_with_transport": false
+    },
+    "195": {
+      "layer": 195,
+      "revision": "4505a2bf2dbb73185b4bb8b18b2aab721765bb7e",
+      "tag": "v5.9.2",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/4505a2bf2dbb73185b4bb8b18b2aab721765bb7e/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "a2228b646b7d44dd8aedbf3e4c22749697bd16bf628aca14fb1031cee656e9f6",
+      "combined_with_transport": false
+    },
+    "196": {
+      "layer": 196,
+      "revision": "48fb0f3b1e3921b7ddd5bd4b7bb0e30875c91583",
+      "tag": "v5.10.3",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/48fb0f3b1e3921b7ddd5bd4b7bb0e30875c91583/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "85572a379b8d07b2713026487070b7254aca403b7c3264de7a231f815208cdc5",
+      "combined_with_transport": false
+    },
+    "198": {
+      "layer": 198,
+      "revision": "46bf7781aaf8b0aa0a3d0b9371d6f3c41f34df7e",
+      "tag": "v5.10.7",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/46bf7781aaf8b0aa0a3d0b9371d6f3c41f34df7e/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "96d5d03b4fdd27bbc0f1d80e88d10306e590d8fec2d5bbdb0cf268be5e9e1aa6",
+      "combined_with_transport": false
+    },
+    "199": {
+      "layer": 199,
+      "revision": "ef859d77e9ca639d2a2c5429f7dd93875ec47dff",
+      "tag": "v5.11.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/ef859d77e9ca639d2a2c5429f7dd93875ec47dff/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "0fe747dde89fdae0ca56903a634fe21dddaeab71929f9f5de2c796cc13d9c497",
+      "combined_with_transport": false
+    },
+    "200": {
+      "layer": 200,
+      "revision": "4e4604e00a00b51838c7b73ca4a6395ee6e99974",
+      "tag": "v5.12.6",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/4e4604e00a00b51838c7b73ca4a6395ee6e99974/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "d412e1766320a7dce05248226f7e77ac7b0134766db340612212e5470b48d4e6",
+      "combined_with_transport": false
+    },
+    "201": {
+      "layer": 201,
+      "revision": "5f73e8b3bf0d08693a76157da989206c00afe892",
+      "tag": "v5.13.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/5f73e8b3bf0d08693a76157da989206c00afe892/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "9ed575bcb2fe2b7e16eee144145141f64ff61f6c577340c981a19cb73a02788e",
+      "combined_with_transport": false
+    },
+    "202": {
+      "layer": 202,
+      "revision": "7d88c48c39b2d88b0af29a147691613653b3bc9f",
+      "tag": "v5.14.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/7d88c48c39b2d88b0af29a147691613653b3bc9f/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "e371f4c465b896c65248791264ded50314fd4a4ee37d09cfb899a47540fe3706",
+      "combined_with_transport": false
+    },
+    "203": {
+      "layer": 203,
+      "revision": "d22afa36c3e5c394043430d1358a856b8e52bdff",
+      "tag": "v5.14.3",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/d22afa36c3e5c394043430d1358a856b8e52bdff/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "be49f53e0894ff06e489b279e38dfca821e66462fa27fd0e19a7232d36887553",
+      "combined_with_transport": false
+    },
+    "204": {
+      "layer": 204,
+      "revision": "2e4a437d32c6b1141d8ac541ba013e5e4239b38c",
+      "tag": "v5.15.4",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/2e4a437d32c6b1141d8ac541ba013e5e4239b38c/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "21a7c3d4b245cd896149abd28e114be32e2a27519682b72fd917a06630f5ef7d",
+      "combined_with_transport": false
+    },
+    "206": {
+      "layer": 206,
+      "revision": "d205e3b4a3d03eb9497782158a980133e15e343b",
+      "tag": "v5.16.2",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/d205e3b4a3d03eb9497782158a980133e15e343b/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "6a185dab1ffc2bd9ca03d991f99ad19e471fa6e2a5e16f2e47a5b0b10beeb042",
+      "combined_with_transport": false
+    },
+    "207": {
+      "layer": 207,
+      "revision": "36bb1d0cf36311503b87aa38a573e82fb835f86a",
+      "tag": "v5.16.3",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/36bb1d0cf36311503b87aa38a573e82fb835f86a/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "836860446a161ffea4fa6a6ed709d6504d0f0de40948dcb31b599835e69c20c7",
+      "combined_with_transport": false
+    },
+    "209": {
+      "layer": 209,
+      "revision": "0514f13af0d7d1686944e7ba909df2dab16a6f5e",
+      "tag": "v5.16.4",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/0514f13af0d7d1686944e7ba909df2dab16a6f5e/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "0898f4a6aaf19eef901911067282b1fd1b5359e884ab9f7bb4f559d35e2bc33a",
+      "combined_with_transport": false
+    },
+    "210": {
+      "layer": 210,
+      "revision": "d458748a7a3d62dde3e6bf7c75c309626eabe128",
+      "tag": "v5.16.6",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/d458748a7a3d62dde3e6bf7c75c309626eabe128/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "57528b0241145928bbdefee72285449c239e1e25d1cd3d7e8750419ab08e1eaa",
+      "combined_with_transport": false
+    },
+    "211": {
+      "layer": 211,
+      "revision": "7e15722eabe0bfe61f3056843990b10bda448cb3",
+      "tag": "v6.0.3",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/7e15722eabe0bfe61f3056843990b10bda448cb3/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "73ee853c1bfa1dc20285cce4f6fd6a24b28ff91475341aad524089559f562cd9",
+      "combined_with_transport": false
+    },
+    "214": {
+      "layer": 214,
+      "revision": "1a3eb0f209da9a5e4b510439c93d7baeddd4be48",
+      "tag": "v6.1.4",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/1a3eb0f209da9a5e4b510439c93d7baeddd4be48/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "3b9d9b9200e2681594e6c154cdeacf9e0435703c6c502b316aa132d54cc7298d",
+      "combined_with_transport": false
+    },
+    "216": {
+      "layer": 216,
+      "revision": "6fea6393c62106dc60c589304e42fb39b59f03a0",
+      "tag": "v6.2.6",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/6fea6393c62106dc60c589304e42fb39b59f03a0/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "3b21cf28fc39ff27d51047a66b0c850f3c676f8782dcd7bd365edacb5ac71d69",
+      "combined_with_transport": false
+    },
+    "218": {
+      "layer": 218,
+      "revision": "6e75a41ee67fbbb463e1f71108c4f6450078d5bc",
+      "tag": "v6.3.4",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/6e75a41ee67fbbb463e1f71108c4f6450078d5bc/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "33b36383ad43d41e6b592791311ca0d65a06cf2d3ef9d607a6e187cddac7f14b",
+      "combined_with_transport": false
+    },
+    "220": {
+      "layer": 220,
+      "revision": "e762ec46312e5fbc13d746b439e4c571fcdd080e",
+      "tag": "v6.3.10",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/e762ec46312e5fbc13d746b439e4c571fcdd080e/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "f0a3c65319a6539019e997225ec959a75c74b91148ebee9a4cd016a960296ee9",
+      "combined_with_transport": false
+    },
+    "221": {
+      "layer": 221,
+      "revision": "f9699e19af2278a6fb50157fc9d2d1c4772aabff",
+      "tag": "v6.4.4",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/f9699e19af2278a6fb50157fc9d2d1c4772aabff/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "b28137dde9c77984fc420b4064552cdbdb027ebd24ca160c6af0f6e3f9dac304",
+      "combined_with_transport": false
+    },
+    "222": {
+      "layer": 222,
+      "revision": "6b0fc1bef684898ff00e896ebb3842b5b060c548",
+      "tag": "v6.5.1",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/6b0fc1bef684898ff00e896ebb3842b5b060c548/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "dff1942eaf874fbe379794a1d8e39d56fa35e6ea6eba5b71a0749c58e4ccb08e",
+      "combined_with_transport": false
+    },
+    "223": {
+      "layer": 223,
+      "revision": "official-current",
+      "tag": "official",
+      "url": "https://core.telegram.org/schema?raw=1",
+      "sha256": "07a1808c20ef37db861f9d44a5167cbe3e202cf574b5c9e68dc9dd8e68de33b4",
+      "combined_with_transport": false
+    },
+    "224": {
+      "layer": 224,
+      "revision": "6e90f6876e2a2daf04d97ea97345cc9ad8ade378",
+      "tag": "v6.7.8",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/6e90f6876e2a2daf04d97ea97345cc9ad8ade378/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "44b4a8cced28a25e13fcb2bfd34983e6b906414f42dc04bbd0e3dded9253331d",
+      "combined_with_transport": false
+    },
+    "225": {
+      "layer": 225,
+      "revision": "4d4ba03f28d31d222dfb43d73df7595c9fb4c08c",
+      "tag": "v6.8.5",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/4d4ba03f28d31d222dfb43d73df7595c9fb4c08c/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "539272f5ad8992ee97b61bd134fcf3a28a41ce720e806d0e7dc0e2e408c581f9",
+      "combined_with_transport": false
+    },
+    "227": {
+      "layer": 227,
+      "revision": "8a22f2c106dd3c601e11d124b8d1894613d596fd",
+      "tag": "v6.9.4",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/8a22f2c106dd3c601e11d124b8d1894613d596fd/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "f8fe06d2279657cc36f7d5280a28fa00a176ca6c99b5208038850b40e9aa5518",
+      "combined_with_transport": false
+    },
+    "228": {
+      "layer": 228,
+      "revision": "8e18cb71103d83d7d98994ff27f0a2bca55c489c",
+      "tag": "dev",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/8e18cb71103d83d7d98994ff27f0a2bca55c489c/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "bbddd9c4c3f5ff16fd4abbf39f2a864fdac7553e9f05b6bf9ead2aeb9c8eb566",
+      "combined_with_transport": false
+    },
+    "229": {
+      "layer": 229,
+      "revision": "11d18d829b25d583f2e3058663b522a528fde51a",
+      "tag": "dev",
+      "url": "https://raw.githubusercontent.com/telegramdesktop/tdesktop/11d18d829b25d583f2e3058663b522a528fde51a/Telegram/SourceFiles/mtproto/scheme/api.tl",
+      "sha256": "7655504c25a5d3a368e7729d3e9e64afffcacbcb54ec85508c60f0472064b617",
+      "combined_with_transport": false
+    }
+  },
+  "transport": {
+    "revision": "official-current",
+    "url": "https://core.telegram.org/schema/mtproto?raw=1",
+    "sha256": "844ee9be2060808424654d08e5804f7f8f2fb5522587821c7ba2736265632bad"
+  },
+  "secret_chat": {
+    "revision": "official-current",
+    "url": "https://core.telegram.org/schema/end-to-end?raw=1",
+    "sha256": "f176f4564d9746757841cee19b2f210e069283093e258f83421c4841f9bd38f6",
+    "current_layer": 216,
+    "layers": {
+      "8": "64a117bcf7f166b1bc5faf1b8ce8cb7eab9ec6527410861528a3912f2549acfe",
+      "17": "54cb6cf30c4d6f9ae7661102bf5ac662a6a33900fc3ba22fa87e18f6c87825ed",
+      "20": "6f3f5f32c20c59ba8b715c88d8af07c6f4ddc01bfaf22f7af33e331a8560188b",
+      "23": "dd83c1eac0ce48fcec7bc02ba23bc3650c6d40160e1defa4823718b42ed59b72",
+      "45": "3a4e712c64d6bb974057732368bda06c6d40742aa85ade7740c5af86767cbdd0",
+      "46": "ed3fa8938426d5c369f3a5a95520b1b62c6733bbb97efdbdd9f10cc94307aa4f",
+      "66": "76bac47c42f0da2fde337f1b0271799ddf53058932585b2bbc17d2616e52358c",
+      "73": "2cea38cd31bae44ae440544823e32dc2b3b3ce08f91bb8be098335da27226ba7",
+      "101": "de9935e15a3a5d95cf72c00c45c02d33949708383f7ac67874390b8cc2bb1676",
+      "143": "5ec73880f41c6e80becc8a22e5fda77dcc43e37247076d25485caa0b1addc500",
+      "144": "7a65ba8df7c38ada0e5e38262a387fdb355141dc3eebf15ce262cf736ac71a26",
+      "216": "1f10089a570c4fcf84f0a9cdb5aeba2d5f24f40351d748f27d13133407069ae0"
+    }
+  }
+}

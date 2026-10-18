@@ -1,0 +1,34 @@
+[package]
+name = "tellers-tl-json"
+description = "Export TL schemas as documented JSON with an attached JSON Schema"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+[[bin]]
+name = "tellers-tl-json"
+path = "src/main.rs"
+
+[dependencies]
+clap.workspace = true
+schemars.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tellers-tl-schema = { version = "0.2.0", path = "../tl-model" }
+tracing = { workspace = true, optional = true }
+
+[features]
+default = []
+tracing = ["dep:tracing", "tellers-tl-schema/tracing"]
+dangerous-unredacted-logging = ["tracing", "tellers-tl-schema/dangerous-unredacted-logging"]
+
+[dev-dependencies]
+assert_cmd = "2"
+tempfile = "3"
+predicates = "3"
+
+[lints]
+workspace = true

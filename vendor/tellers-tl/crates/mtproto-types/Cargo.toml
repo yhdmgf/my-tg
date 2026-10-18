@@ -1,0 +1,34 @@
+[package]
+name = "tellers-mtproto"
+description = "Generated Rust types for versioned Telegram MTProto TL layers"
+version = "0.2.0+layer.229"
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+[features]
+default = ["layer-229"]
+serde = ["dep:serde", "bnum/serde"]
+bon = ["dep:bon"]
+layer-223 = []
+layer-229 = []
+all-layers = ["layer-223", "layer-229"]
+secret-chat = ["layer-229"]
+tracing = ["dep:tracing"]
+dangerous-unredacted-logging = ["tracing"]
+
+[dependencies]
+bnum.workspace = true
+# Keep the optional derive compatible with the workspace's Rust 1.85 MSRV.
+bon = { version = "=3.8.1", optional = true }
+serde = { workspace = true, optional = true }
+thiserror = "2"
+tracing = { workspace = true, optional = true }
+
+[dev-dependencies]
+proptest = "1"
+
+[lints]
+workspace = true

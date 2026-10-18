@@ -1,0 +1,71 @@
+package org.lunagram.feature.chats
+
+import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.mvikotlin.core.instancekeeper.getStore
+import com.arkivanov.mvikotlin.core.store.StoreFactory
+import com.arkivanov.mvikotlin.extensions.coroutines.stateFlow
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.StateFlow
+import org.lunagram.core.common.push.NotificationLocalStore
+import org.lunagram.core.database.OfflineWarmup
+import org.lunagram.core.database.SessionMetadataStore
+import org.lunagram.core.models.Message
+import org.lunagram.core.models.PeerId
+import org.lunagram.network.bridge.MtprotoClient
+import org.lunagram.network.bridge.session.ProxyConnectionStatus
+import org.lunagram.network.http.MediaRepository
+
+@OptIn(ExperimentalCoroutinesApi::class)
+class ChatsComponent(
+    componentContext: ComponentContext,
+    storeFactory: StoreFactory,
+    private val client: MtprotoClient,
+    warmup: OfflineWarmup?,
+    sessionStore: SessionMetadataStore?,
+    notifications: NotificationLocalStore? = null,
+    val mediaRepository: MediaRepository? = null,
+    private val onOpenChat: (PeerId, Boolean, Int) -> Unit,
+    private val onOpenProfile: (PeerId) -> Unit = {},
+    private val onOpenSelfProfile: () -> Unit = {},
+    private val onOpenSettings: () -> Unit = {},
+    private val onOpenProxy: () -> Unit = {},
+    private val onOpenFolders: () -> Unit = {},
+) : ComponentContext by componentContext {
+
+    private val store = instanceKeeper.getStore {
+        ChatsStoreFactory(storeFactory, client, warmup, sessionStore, notifications).create()
+    }
+
+    val state: StateFlow<ChatsStore.State> = store.stateFlow
+
+
+    fun onRefresh() = store.accept(ChatsStore.Intent.Refresh)
+    fun onLoadMore() = store.accept(ChatsStore.Intent.LoadMore)
+    fun onQueryChanged(value: String) = store.accept(ChatsStore.Intent.QueryChanged(value))
+    fun onRetrySearch() = store.accept(ChatsStore.Intent.RetrySearch)
+    fun onMarkRead(chatIds: List<PeerId>) = store.accept(ChatsStore.Intent.MarkRead(chatIds))
+    fun onMarkUnread(chatId: PeerId, unread: Boolean) =
+        store.accept(ChatsStore.Intent.MarkUnread(chatId, unread))
+
+    fun onFolderSelected(folderId: Int?) = store.accept(ChatsStore.Intent.FolderSelected(folderId))
+    fun onChatClick(id: PeerId) {
+        openChat(id, messageId = 0)
+    }
+
+    fun onSearchMessageClick(message: Message) {
+        val (peer, messageId) = searchMessageJump(message)
+        openChat(peer, messageId)
+    }
+
+    private fun openChat(id: PeerId, messageId: Int) {
+        val forum = state.value.chats.firstOrNull { it.id == id }?.isForum == true
+        onOpenChat(id, forum, messageId)
+    }
+
+    fun onPeerProfile(id: PeerId) = onOpenProfile(id)
+    fun onOpenSelfProfile() = onOpenSelfProfile.invoke()
+    fun onOpenSettings() = onOpenSettings.invoke()
+    fun onOpenProxy() = onOpenProxy.invoke()
+    fun onOpenFolders() = onOpenFolders.invoke()
+    fun proxyConnectionStatus(): ProxyConnectionStatus = client.proxyConnectionStatus()
+}

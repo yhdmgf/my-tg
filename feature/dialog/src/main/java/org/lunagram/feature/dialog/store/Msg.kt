@@ -1,0 +1,184 @@
+package org.lunagram.feature.dialog.store
+
+import org.lunagram.core.common.telegram.TelegramError
+import org.lunagram.core.models.Chat
+import org.lunagram.core.models.ChatActionKind
+import org.lunagram.core.models.ForumTopic
+import org.lunagram.core.models.InlineBotResults
+import org.lunagram.core.models.Message
+import org.lunagram.core.models.MessageViewer
+import org.lunagram.core.models.MessageViewers
+import org.lunagram.core.models.OutboxReadState
+import org.lunagram.core.models.PeerId
+import org.lunagram.core.models.Profile
+import org.lunagram.core.models.ReactionChoice
+import org.lunagram.core.models.SavedGif
+import org.lunagram.core.models.StickerPack
+import org.lunagram.core.models.StyledText
+import org.lunagram.core.models.TextEntity
+import org.lunagram.core.models.UploadItem
+import org.lunagram.core.models.WebpagePreview
+import org.lunagram.feature.dialog.DraftMention
+import org.lunagram.feature.dialog.InlineBotQuery
+import org.lunagram.feature.dialog.MentionCandidate
+
+internal sealed interface Msg {
+    data class Loading(val value: Boolean) : Msg
+    data class LoadingOlder(val value: Boolean, val prefetch: Boolean = false) : Msg
+    data class LoadingNewer(val value: Boolean) : Msg
+    data class Sending(val value: Boolean) : Msg
+    data class Title(val value: String) : Msg
+    data class IsSelf(val value: Boolean) : Msg
+    data class IsGroup(val value: Boolean) : Msg
+    data class IsChannel(val value: Boolean) : Msg
+    data class IsBot(val value: Boolean) : Msg
+    data class Senders(val value: Map<PeerId, Profile>) : Msg
+    data class SenderTags(val value: Map<PeerId, String>) : Msg
+    data class Draft(val value: String) : Msg
+    data class DraftFormatting(val value: Boolean) : Msg
+    data class DraftEntities(val value: List<TextEntity>) : Msg
+    data class DraftPreview(val value: StyledText?, val hasMarkdown: Boolean) : Msg
+    data class PendingAttach(val items: List<UploadItem>) : Msg
+    data class ReplyTo(val value: Message?, val focusComposer: Boolean = false) : Msg
+    data class Editing(val value: Message?) : Msg
+    data class ForwardMessage(val value: Message?) : Msg
+    data class ForwardTargets(val value: List<Chat>) : Msg
+    data class ForwardQuery(val value: String) : Msg
+    data class Forwarding(val value: Boolean) : Msg
+    data class ForwardHint(val value: String?) : Msg
+    data class Rights(
+        val canView: Boolean,
+        val canSendPlain: Boolean,
+        val canSendPhotos: Boolean,
+        val canForward: Boolean,
+        val canDeleteOthers: Boolean,
+        val canManageTopics: Boolean = false,
+    ) : Msg
+
+    data class SearchQuery(val value: String) : Msg
+    data class Searching(val value: Boolean) : Msg
+    data class Messages(
+        val value: List<Message>,
+        val fromCache: Boolean,
+        val replace: Boolean = false,
+        val liveEdge: Boolean = false,
+        val searchHit: Boolean = false,
+    ) : Msg
+
+    data class Prepend(val value: List<Message>) : Msg
+    data class AppendOlder(val value: List<Message>) : Msg
+    data class ReplacePending(val pendingId: Int, val sent: Message) : Msg
+    data class BindPending(val randomId: Long, val messageId: Int) : Msg
+    data class MessageEdited(val value: Message) : Msg
+    data class MessagesDeleted(val ids: Set<Int>) : Msg
+    data class Append(val value: Message) : Msg
+    data class HasOlder(val value: Boolean) : Msg
+    data class HasNewer(val value: Boolean) : Msg
+    data class PinnedListOpen(val value: Boolean) : Msg
+    data class UnreadCount(val value: Int) : Msg
+    data class UnreadMentionsCount(val value: Int) : Msg
+    data class UnreadReactionsCount(val value: Int) : Msg
+    data class ReadInbox(val value: Int) : Msg
+    data class Pinned(val value: List<Message>) : Msg
+    data class PinnedIndex(val value: Int) : Msg
+    data class Error(val value: TelegramError?) : Msg
+    data class Typing(
+        val userId: PeerId,
+        val name: String?,
+        val active: Boolean,
+        val action: String = ChatActionKind.Typing.wire,
+    ) : Msg
+
+    data class PeerStatus(val status: String?, val at: Long?) : Msg
+    data class EmojiStatus(val documentId: Long?) : Msg
+    data class ChatProfile(
+        val members: Int?,
+        val online: Int?,
+        val authoritative: Boolean = false,
+    ) : Msg
+
+    data class ReadOutbox(val value: Int) : Msg
+    data class ReadReceiptConfig(val value: org.lunagram.core.models.ReadReceiptConfig) : Msg
+    data class Viewers(val messageId: Int, val value: MessageViewers) : Msg
+    data class ReactionUsers(
+        val messageId: Int,
+        val value: List<MessageViewer>,
+    ) : Msg
+
+    data class PollVoters(
+        val messageId: Int,
+        val value: List<MessageViewer>,
+    ) : Msg
+
+    data class OutboxRead(val messageId: Int, val value: OutboxReadState) : Msg
+    data class MarkFailed(val pendingId: Int) : Msg
+    data class Drop(val messageId: Int) : Msg
+    data class PhotoCacheKey(val value: String?) : Msg
+    data class Anchor(val value: Int?, val atTop: Boolean = false) : Msg
+    data class SavedGifs(val value: List<SavedGif>, val error: Boolean = false) : Msg
+    data class SavedGifsLoaded(val value: Boolean) : Msg
+    data class GifPicker(val open: Boolean) : Msg
+    data class ComposerPanel(val value: String?) : Msg
+    data class EmojiTab(val value: String) : Msg
+    data class StickerSets(val value: List<StickerPack>, val error: Boolean = false) : Msg
+    data class EmojiSets(val value: List<StickerPack>, val error: Boolean = false) : Msg
+    data class StickerPackLoading(val setId: Long) : Msg
+    data class StickerPackLoaded(val value: StickerPack) : Msg
+    data class StickerPackFailed(val setId: Long) : Msg
+    data class Reactions(val messageId: Int, val json: String) : Msg
+    data class PendingChat(val chatId: PeerId?, val messageId: Int?) : Msg
+    data class DiscussionUnread(val value: Int) : Msg
+    data class RecentReactions(val value: List<ReactionChoice>) : Msg
+    data class IsForum(val value: Boolean) : Msg
+    data class Topics(
+        val value: List<ForumTopic>,
+        val count: Int,
+        val append: Boolean = false,
+    ) : Msg
+
+    data class LoadingTopics(val value: Boolean) : Msg
+    data class HasMoreTopics(val value: Boolean) : Msg
+    data class TopicClosed(val value: Boolean) : Msg
+    data class TopicHeader(
+        val title: String,
+        val iconColor: Int,
+        val iconEmojiId: Long?,
+    ) : Msg
+
+    data class BotNotice(val text: String?, val alert: Boolean = false) : Msg
+    data class BotUrl(val value: String?) : Msg
+    data class CopyText(val value: String?) : Msg
+    data class KeyboardDismissedKey(val value: String?) : Msg
+    data class InlineQuery(val value: InlineBotQuery?) : Msg
+    data class InlinePage(
+        val results: InlineBotResults?,
+        val loading: Boolean = false,
+        val error: Boolean = false,
+    ) : Msg
+
+    data class MentionQuery(val value: String?) : Msg
+    data class MentionPage(
+        val candidates: List<MentionCandidate>,
+        val loading: Boolean = false,
+        val hasMore: Boolean = false,
+    ) : Msg
+
+    data class DraftMentions(val value: List<DraftMention>) : Msg
+    data class Membership(
+        val left: Boolean? = null,
+        val muted: Boolean? = null,
+        val blockedByMe: Boolean? = null,
+        val canSendPlain: Boolean? = null,
+        val canSendPhotos: Boolean? = null,
+    ) : Msg
+
+    data class LinkPreview(
+        val preview: WebpagePreview?,
+        val url: String? = null,
+        val fixed: Boolean = false,
+        val loading: Boolean = false,
+        val hidden: Boolean = false,
+        val choice: String? = null,
+        val urls: List<String> = emptyList(),
+    ) : Msg
+}

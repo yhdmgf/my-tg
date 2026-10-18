@@ -1,0 +1,7 @@
+-keepattributes SourceFile,LineNumberTable,*Annotation*,InnerClasses,EnclosingMethod,Signature
+-renamesourcefileattribute SourceFile
+-keep class com.sun.jna.** { *; }
+-keep class * extends com.sun.jna.** { *; }
+-keep class * implements com.sun.jna.** { *; }
+-dontwarn java.awt.**
+-dontwarn android.app.Fragment

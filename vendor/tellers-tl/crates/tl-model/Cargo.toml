@@ -1,0 +1,30 @@
+[package]
+name = "tellers-tl-schema"
+description = "Validated language-neutral model for TL schemas"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+homepage.workspace = true
+# Repository freshness tests require checked-in schemas outside this package.
+exclude = ["tests/current_schema.rs"]
+
+[dependencies]
+crc32fast.workspace = true
+schemars.workspace = true
+serde.workspace = true
+thiserror.workspace = true
+tellers-tl-parser = { version = "0.2.0", path = "../tl-parser" }
+tracing = { workspace = true, optional = true }
+
+[features]
+default = []
+tracing = ["dep:tracing", "tellers-tl-parser/tracing"]
+dangerous-unredacted-logging = ["tracing", "tellers-tl-parser/dangerous-unredacted-logging"]
+
+[dev-dependencies]
+serde_json.workspace = true
+
+[lints]
+workspace = true

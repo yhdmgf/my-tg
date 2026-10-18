@@ -1,0 +1,19 @@
+[package]
+name = "tellers-mtproto-engine"
+description = "Runtime-neutral low-level MTProto RPC engine"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+flate2.workspace = true
+tellers-mtproto-codec = { path = "../tellers-mtproto-codec", version = "0.1.0" }
+tellers-mtproto-crypto = { path = "../tellers-mtproto-crypto", version = "0.1.0" }
+tellers-mtproto-session = { path = "../tellers-mtproto-session", version = "0.1.0" }
+tellers-mtproto-transport = { path = "../tellers-mtproto-transport", version = "0.1.0" }
+thiserror.workspace = true
+
+[lints]
+workspace = true

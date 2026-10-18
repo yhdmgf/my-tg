@@ -1,0 +1,263 @@
+package org.lunagram.feature.settings
+
+import com.arkivanov.mvikotlin.core.store.Reducer
+import com.arkivanov.mvikotlin.core.store.SimpleBootstrapper
+import com.arkivanov.mvikotlin.core.store.Store
+import com.arkivanov.mvikotlin.core.store.StoreFactory
+import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.lunagram.core.common.Outcome
+import org.lunagram.core.common.push.PushRegistration
+import org.lunagram.core.common.telegram.TelegramError
+import org.lunagram.core.database.OfflineWarmup
+import org.lunagram.core.database.SessionMetadataStore
+import org.lunagram.core.models.Chat
+import org.lunagram.core.models.PeerId
+import org.lunagram.core.models.Profile
+import org.lunagram.core.ui.ImageCache
+import org.lunagram.network.bridge.MtprotoClient
+import org.lunagram.network.http.MediaRepository
+
+interface SettingsStore : Store<SettingsStore.Intent, SettingsStore.State, SettingsStore.Label> {
+    sealed interface Intent {
+        data object Refresh : Intent
+        data object ClearCache : Intent
+        data class ClearChatCache(val chatId: Long) : Intent
+        data class ClearKinds(val kinds: Set<String>) : Intent
+        data object Logout : Intent
+        data object ExportDebugStats : Intent
+        data object ClearDebugStats : Intent
+    }
+
+    data class CacheChatRow(
+        val chatId: Long,
+        val title: String,
+        val bytes: Long,
+        val photoCacheKey: String? = null,
+    )
+
+    data class State(
+        val profile: Profile? = null,
+        val appVersion: String,
+        val buildStamp: String,
+        val nativeVersion: String,
+        val cacheBytes: Long = 0L,
+        val cacheByKind: Map<String, Long> = emptyMap(),
+        val cacheChats: List<CacheChatRow> = emptyList(),
+        val cacheMessage: String? = null,
+        val loading: Boolean = false,
+        val loggingOut: Boolean = false,
+        val error: TelegramError? = null,
+        val debugExportMessage: String? = null,
+    )
+
+    sealed interface Label {
+        data object LoggedOut : Label
+    }
+}
+
+internal class SettingsStoreFactory(
+    private val storeFactory: StoreFactory,
+    private val client: MtprotoClient,
+    private val sessionStore: SessionMetadataStore?,
+    private val warmup: OfflineWarmup?,
+    private val mediaRepository: MediaRepository?,
+    private val appVersion: String,
+    private val buildStamp: String,
+    private val pushRegistration: PushRegistration?,
+    private val clearKindCache: (String) -> Long = { kind ->
+        mediaRepository?.clearKindCache(kind) ?: 0L
+    },
+) {
+    fun create(): SettingsStore =
+        object :
+            SettingsStore,
+            Store<SettingsStore.Intent, SettingsStore.State, SettingsStore.Label> by storeFactory.create(
+                name = "SettingsStore",
+                initialState = SettingsStore.State(
+                    appVersion = appVersion,
+                    buildStamp = buildStamp,
+                    nativeVersion = client.libraryVersion(),
+                    cacheBytes = mediaRepository?.cacheSizeBytes() ?: 0L,
+                ),
+                bootstrapper = SimpleBootstrapper(Unit),
+                executorFactory = ::ExecutorImpl,
+                reducer = ReducerImpl,
+            ) {}
+
+    private sealed interface Msg {
+        data class Loading(val value: Boolean) : Msg
+        data class LoggingOut(val value: Boolean) : Msg
+        data class ProfileLoaded(val profile: Profile?) : Msg
+        data class CacheBytes(val value: Long) : Msg
+        data class CacheByKind(val value: Map<String, Long>) : Msg
+        data class CacheChats(val value: List<SettingsStore.CacheChatRow>) : Msg
+        data class CacheMessage(val value: String?) : Msg
+        data class Error(val value: TelegramError?) : Msg
+        data class NativeVersion(val value: String) : Msg
+        data class DebugExportMessage(val value: String?) : Msg
+    }
+
+    private inner class ExecutorImpl :
+        CoroutineExecutor<SettingsStore.Intent, Unit, SettingsStore.State, Msg, SettingsStore.Label>() {
+        override fun executeAction(action: Unit) {
+            refresh()
+        }
+
+        override fun executeIntent(intent: SettingsStore.Intent) {
+            when (intent) {
+                SettingsStore.Intent.Refresh -> refresh()
+                SettingsStore.Intent.ClearCache -> clearCache()
+                is SettingsStore.Intent.ClearChatCache -> {
+                    mediaRepository?.clearChatCache(intent.chatId)
+                    refreshCache()
+                }
+                is SettingsStore.Intent.ClearKinds -> {
+                    kindsToClear(intent.kinds, confirmed = true).forEach { kind ->
+                        clearKindCache(kind)
+                    }
+                    refreshCache()
+                }
+                SettingsStore.Intent.Logout -> logout()
+                SettingsStore.Intent.ExportDebugStats -> exportDebugStats()
+                SettingsStore.Intent.ClearDebugStats -> {
+                    org.lunagram.core.common.DebugStats.clear()
+                    dispatch(Msg.DebugExportMessage(null))
+                }
+            }
+        }
+
+        private fun refresh() {
+            dispatch(Msg.Error(null))
+            dispatch(Msg.NativeVersion(client.libraryVersion()))
+            refreshCache()
+            scope.launch {
+                val cachedId = sessionStore?.readAuthorizedUserId()?.value
+                if (cachedId != null) {
+                    sessionStore.readProfile(cachedId)?.let { dispatch(Msg.ProfileLoaded(it)) }
+                }
+                if (state().profile == null) dispatch(Msg.Loading(true))
+                when (val result = client.getProfile(PeerId(0L))) {
+                    is Outcome.Ok -> {
+                        dispatch(Msg.ProfileLoaded(result.value))
+                        sessionStore?.upsertProfile(result.value)
+                    }
+                    is Outcome.Err -> {
+                        if (state().profile == null) {
+                            dispatch(Msg.Error(result.telegramError))
+                        }
+                    }
+                }
+                dispatch(Msg.Loading(false))
+            }
+        }
+
+        private fun refreshCache() {
+            scope.launch {
+                val bytes = withContext(Dispatchers.IO) { mediaRepository?.cacheSizeBytes() ?: 0L }
+                val byKind =
+                    withContext(Dispatchers.IO) { mediaRepository?.cacheByKind().orEmpty() }
+                val byChat =
+                    withContext(Dispatchers.IO) { mediaRepository?.cacheByChat().orEmpty() }
+                dispatch(Msg.CacheBytes(bytes))
+                dispatch(Msg.CacheByKind(byKind))
+                dispatch(Msg.CacheChats(cacheChatRows(byChat, warmup?.chats().orEmpty())))
+            }
+        }
+
+        private fun clearCache() {
+            val freed = mediaRepository?.clearCache() ?: 0L
+            ImageCache.clear()
+            refreshCache()
+            dispatch(Msg.CacheMessage("cleared:$freed"))
+        }
+
+        private fun logout() {
+            if (state().loggingOut) return
+            dispatch(Msg.LoggingOut(true))
+            dispatch(Msg.Loading(true))
+            scope.launch {
+                try {
+                    pushRegistration?.unregisterPush()
+                    when (val result = client.logout()) {
+                        is Outcome.Err -> dispatch(Msg.Error(result.telegramError))
+                        is Outcome.Ok -> Unit
+                    }
+                    pushRegistration?.onLogout()
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    dispatch(Msg.Error(TelegramError.parse(e.message ?: "logout failed")))
+                    pushRegistration?.onLogout()
+                }
+                warmup?.clearAccountCache()
+                sessionStore?.clearSession()
+                mediaRepository?.clearCache()
+                ImageCache.clear()
+                publish(SettingsStore.Label.LoggedOut)
+                dispatch(Msg.Loading(false))
+                dispatch(Msg.LoggingOut(false))
+            }
+        }
+
+        private fun exportDebugStats() {
+            val self = state().profile?.id ?: return
+            scope.launch {
+                val report = org.lunagram.core.common.DebugStats.reportText()
+                val file = java.io.File.createTempFile("monogram-stats", ".txt")
+                file.writeText(report)
+                val item = org.lunagram.core.models.UploadItem(
+                    path = file.absolutePath,
+                    kind = "document",
+                    mimeType = "text/plain",
+                    fileName = "monogram-debug-stats.txt",
+                    caption = "Monogram debug stats",
+                )
+                val result = client.sendUploadedMedia(self, item)
+                file.delete()
+                dispatch(
+                    Msg.DebugExportMessage(
+                        when (result) {
+                            is Outcome.Ok -> "ok"
+                            is Outcome.Err -> "err"
+                        },
+                    ),
+                )
+            }
+        }
+    }
+
+    private object ReducerImpl : Reducer<SettingsStore.State, Msg> {
+        override fun SettingsStore.State.reduce(msg: Msg): SettingsStore.State = when (msg) {
+            is Msg.Loading -> copy(loading = msg.value)
+            is Msg.LoggingOut -> copy(loggingOut = msg.value)
+            is Msg.ProfileLoaded -> copy(profile = msg.profile)
+            is Msg.CacheBytes -> copy(cacheBytes = msg.value)
+            is Msg.CacheByKind -> copy(cacheByKind = msg.value)
+            is Msg.CacheChats -> copy(cacheChats = msg.value)
+            is Msg.CacheMessage -> copy(cacheMessage = msg.value)
+            is Msg.Error -> copy(error = msg.value)
+            is Msg.NativeVersion -> copy(nativeVersion = msg.value)
+            is Msg.DebugExportMessage -> copy(debugExportMessage = msg.value)
+        }
+    }
+}
+
+internal fun cacheChatRows(
+    usageByChat: Map<Long, Long>,
+    chats: List<Chat>,
+): List<SettingsStore.CacheChatRow> {
+    val byId = chats.associateBy { it.id.value }
+    return usageByChat.mapNotNull { (id, bytes) ->
+        val chat = byId[id] ?: return@mapNotNull null
+        SettingsStore.CacheChatRow(
+            chatId = id,
+            title = chat.title,
+            bytes = bytes,
+            photoCacheKey = chat.photoCacheKey,
+        )
+    }.sortedByDescending { it.bytes }
+}

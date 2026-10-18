@@ -1,0 +1,46 @@
+set dotenv-load := false
+
+default: check
+
+# Apply deterministic Rust formatting.
+fmt:
+    cargo fmt --all
+
+# Check formatting without changing files.
+fmt-check:
+    cargo fmt --all -- --check
+
+# Run strict workspace lints.
+lint:
+    cargo clippy --locked --workspace --all-targets --all-features -- -D warnings
+
+# Run unit and integration tests with process isolation and parallel scheduling.
+test:
+    cargo nextest run --locked --workspace --all-features
+
+# Rustdoc tests are intentionally separate because nextest does not execute them.
+test-doc:
+    cargo test --locked --workspace --all-features --doc
+
+check: fmt-check lint test test-doc
+
+# Verify API, MTProto, Secret Chat, archive, and generated artifacts.
+verify-generated:
+    cargo xtask verify
+
+# Regenerate the official current layer without network access.
+generate:
+    cargo xtask generate
+
+# Materialize every archived historical layer (large; normally unnecessary).
+generate-all-layers:
+    cargo xtask generate --all-layers
+
+# Fetch all current official schemas and regenerate declarations.
+sync-current:
+    cargo xtask schemas sync-current
+
+# Discover all modern API layers from stable Telegram Desktop tags.
+sync-layers min_layer="100":
+    cargo xtask schemas sync-layers --min-layer {{min_layer}}
+    cargo xtask generate --all-layers

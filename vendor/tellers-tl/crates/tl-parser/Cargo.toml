@@ -1,0 +1,27 @@
+[package]
+name = "tellers-tl-parser"
+description = "Parser and syntax tree for Telegram's Type Language"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+[dependencies]
+serde = { workspace = true, optional = true }
+thiserror.workspace = true
+tracing = { workspace = true, optional = true }
+
+[features]
+default = []
+serde = ["dep:serde"]
+tracing = ["dep:tracing"]
+dangerous-unredacted-logging = ["tracing"]
+
+[dev-dependencies]
+insta = "1"
+proptest = "1"
+
+[lints]
+workspace = true

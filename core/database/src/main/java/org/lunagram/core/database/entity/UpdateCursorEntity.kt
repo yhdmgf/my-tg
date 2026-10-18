@@ -1,0 +1,24 @@
+package org.lunagram.core.database.entity
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "update_cursors")
+data class UpdateCursorEntity(
+    @PrimaryKey val key: String,
+    val pts: Int,
+    val qts: Int,
+    val date: Int,
+    val seq: Int,
+    val channelPts: Int = 0,
+)
+
+@Entity(
+    tableName = "update_batch_receipts",
+    primaryKeys = ["accountGeneration", "batchId"],
+)
+data class UpdateBatchReceiptEntity(
+    val accountGeneration: Long,
+    val batchId: Long,
+    val appliedAtMs: Long,
+)

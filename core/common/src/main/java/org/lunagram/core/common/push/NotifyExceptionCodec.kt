@@ -1,0 +1,35 @@
+package org.lunagram.core.common.push
+
+import org.lunagram.core.models.NotifyException
+import org.lunagram.core.models.PeerId
+
+/**
+ * Compact storage for [NotifyException] rows: `peerKind<TAB>chatId<TAB>settings<TAB>topicId`.
+ * Older rows without a topic id are dialog exceptions.
+ * Settings reuse [NotifySettingsCodec], so a tab separator cannot collide with `|`.
+ */
+object NotifyExceptionCodec {
+    private const val SEPARATOR = '\t'
+
+    fun encode(item: NotifyException): String =
+        item.peerKind + SEPARATOR + item.chatId.value + SEPARATOR +
+                NotifySettingsCodec.encode(item.settings) + SEPARATOR + (item.topicId ?: 0)
+
+    fun encodeAll(items: List<NotifyException>): String =
+        items.joinToString("\n") { encode(it) }
+
+    fun decode(raw: String?): NotifyException? {
+        val parts = raw?.split(SEPARATOR, limit = 4) ?: return null
+        if (parts.size < 3) return null
+        val chatId = parts[1].toLongOrNull() ?: return null
+        val settings = NotifySettingsCodec.decode(parts[2]) ?: return null
+        val kind = parts[0].trim()
+        if (kind.isEmpty()) return null
+        return NotifyException(
+            peerKind = kind, chatId = PeerId(chatId), settings = settings,
+            topicId = parts.getOrNull(3)?.toIntOrNull()?.takeIf { it > 0 })
+    }
+
+    fun decodeAll(raw: String?): List<NotifyException> =
+        raw?.lineSequence()?.mapNotNull { decode(it) }?.toList().orEmpty()
+}

@@ -1,0 +1,266 @@
+package org.lunagram.feature.dialog
+
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
+import org.junit.Test
+import org.lunagram.core.models.Message
+import org.lunagram.core.models.MessageId
+import org.lunagram.core.models.PeerId
+import org.lunagram.core.ui.AutoDownloadPreset
+import org.lunagram.network.http.MediaPriority
+
+class DialogMediaPreloadTest {
+    @Test
+    fun directionBiasRetainsReverseCoverageWithoutGrowingTheWindow() {
+        val messages = (100 downTo 1).map { photo(it) }
+        val fixed = DialogMediaPreload.plan(messages, visibleIds = setOf(50), radius = 20)
+        val older = DialogMediaPreload.plan(
+            messages,
+            visibleIds = setOf(50),
+            radius = 20,
+            scrollDirection = 1
+        )
+        val newer = DialogMediaPreload.plan(
+            messages,
+            visibleIds = setOf(50),
+            radius = 20,
+            scrollDirection = -1
+        )
+        assertEquals(30..70, fixed.window)
+        assertEquals(40..80, older.window)
+        assertEquals(20..60, newer.window)
+        assertEquals(fixed.window.count(), older.window.count())
+        assertEquals(fixed.window.count(), newer.window.count())
+        assertTrue(older.window.first < older.visibleRange.first)
+        assertTrue(newer.window.last > newer.visibleRange.last)
+    }
+
+    @Test
+    fun emptyVisibleFallsBackToNewestPlusRadius() {
+        val messages = (50 downTo 1).map { photo(it) }
+        val plan = DialogMediaPreload.plan(messages, visibleIds = emptySet(), radius = 20)
+        assertEquals(0..0, plan.visibleRange)
+        assertEquals(0..20, plan.window)
+        assertTrue(plan.media.any { it.message.id.id == 50 && it.priority == MediaPriority.THUMB })
+        assertTrue(plan.media.any { it.message.id.id == 30 && it.priority == MediaPriority.IDLE })
+        assertFalse(plan.media.any { it.message.id.id == 29 })
+    }
+
+    @Test
+    fun windowUsesVisiblePlusMinusRadiusAndSkipsOutside() {
+        val messages = (50 downTo 1).map { photo(it) }
+        val plan = DialogMediaPreload.plan(messages, visibleIds = setOf(25), radius = 20)
+        val visibleIndex = messages.indexOfFirst { it.id.id == 25 }
+        assertEquals(visibleIndex..visibleIndex, plan.visibleRange)
+        assertEquals((visibleIndex - 20)..(visibleIndex + 20), plan.window)
+        val ids = plan.media.map { it.message.id.id }.toSet()
+        assertTrue(25 in ids)
+        assertTrue(5 in ids)
+        assertTrue(45 in ids)
+        assertFalse(4 in ids)
+        assertFalse(46 in ids)
+    }
+
+    @Test
+    fun visibleOutranksNearbyAndGifGetsFull() {
+        val messages = listOf(gif(3), photo(2), photo(1))
+        val plan = DialogMediaPreload.plan(messages, visibleIds = setOf(3), radius = 20)
+        val visibleGif = plan.media.filter { it.message.id.id == 3 }
+        assertTrue(visibleGif.any { it.fetch == DialogMediaPreload.Fetch.Thumb && it.priority == MediaPriority.THUMB })
+        assertTrue(visibleGif.any { it.fetch == DialogMediaPreload.Fetch.Full && it.cacheKey == "gif:3" })
+        assertTrue(plan.media.filter { it.message.id.id == 1 }.all { it.priority == MediaPriority.IDLE })
+        assertTrue(MediaPriority.THUMB > MediaPriority.VISIBLE)
+        assertTrue(MediaPriority.VISIBLE > MediaPriority.DEFAULT)
+        assertTrue(MediaPriority.DEFAULT > MediaPriority.IDLE)
+        assertFalse(plan.media.any { it.message.mediaKind == "document" })
+    }
+
+    @Test
+    fun webpageCardsAndInstantViewArePlannedWithoutRelatedCrawl() {
+        val messages = listOf(
+            webpage(3, """{"u":"https://ex/a","iv":true,"h":4}"""),
+            webpage(2, """{"u":"https://ex/b","iv":false}"""),
+            photo(1),
+        )
+        val plan = DialogMediaPreload.plan(messages, visibleIds = setOf(3), radius = 20)
+        assertTrue(plan.media.any { it.message.id.id == 3 && it.fetch == DialogMediaPreload.Fetch.Thumb })
+        assertTrue(
+            plan.media.any {
+                it.message.id.id == 3 && it.fetch == DialogMediaPreload.Fetch.Display
+            },
+        )
+        assertEquals(listOf("https://ex/a"), plan.instantViews.map { it.url })
+        assertEquals(4, plan.instantViews.single().hash)
+        assertTrue(plan.instantViews.single().visible)
+        assertFalse(plan.instantViews.any { it.url == "https://ex/b" })
+    }
+
+    @Test
+    fun visibleStickersAndDocumentThumbsArePreloadedWithoutFullDocuments() {
+        val messages = listOf(
+            Message(
+                id = MessageId(PeerId(1), 3),
+                senderId = null,
+                text = "file.pdf",
+                date = 0L,
+                outgoing = false,
+                mediaKind = "document",
+                mediaCacheKey = "doc:3",
+                thumbCacheKey = "doc:3:thumb",
+            ),
+            Message(
+                id = MessageId(PeerId(1), 2),
+                senderId = null,
+                text = "plain.bin",
+                date = 0L,
+                outgoing = false,
+                mediaKind = "document",
+                mediaCacheKey = "doc:2",
+            ),
+            Message(
+                id = MessageId(PeerId(1), 1),
+                senderId = null,
+                text = null,
+                date = 0L,
+                outgoing = false,
+                mediaKind = "sticker",
+                mediaCacheKey = "sticker:1",
+                thumbCacheKey = "sticker:1:thumb",
+            ),
+        )
+        val plan = DialogMediaPreload.plan(messages, visibleIds = setOf(3, 1), radius = 20)
+        assertTrue(plan.media.any {
+            it.message.id.id == 3 &&
+                it.fetch == DialogMediaPreload.Fetch.Thumb &&
+                it.cacheKey == "doc:3:thumb"
+        })
+        assertFalse(plan.media.any { it.message.id.id == 3 && it.fetch != DialogMediaPreload.Fetch.Thumb })
+        assertFalse(plan.media.any { it.message.id.id == 2 })
+        assertTrue(plan.media.any {
+            it.message.id.id == 1 &&
+                it.fetch == DialogMediaPreload.Fetch.Full &&
+                it.cacheKey == "sticker:1"
+        })
+        assertTrue(plan.media.any {
+            it.message.id.id == 1 && it.fetch == DialogMediaPreload.Fetch.Thumb
+        })
+        assertTrue(plan.instantViews.isEmpty())
+    }
+
+    @Test
+    fun imageDocumentsFollowFilesPolicyNotPhotos() {
+        val messages = listOf(
+            imageFile(3, size = 200_000),
+            imageFile(2, size = 4L * AutoDownloadPreset.MB),
+        )
+        val wifi = DialogMediaPreload.plan(
+            messages,
+            visibleIds = setOf(3, 2),
+            radius = 20,
+            preset = AutoDownloadPreset.WIFI,
+        )
+        assertTrue(wifi.media.any {
+            it.message.id.id == 3 &&
+                it.fetch == DialogMediaPreload.Fetch.Thumb &&
+                it.cacheKey == "doc:3:thumb"
+        })
+        assertTrue(wifi.media.any {
+            it.message.id.id == 3 && it.fetch == DialogMediaPreload.Fetch.Full
+        })
+        assertFalse(wifi.media.any {
+            it.message.id.id == 3 && it.fetch == DialogMediaPreload.Fetch.Display
+        })
+        assertTrue(wifi.media.any {
+            it.message.id.id == 2 && it.fetch == DialogMediaPreload.Fetch.Thumb
+        })
+        assertFalse(wifi.media.any {
+            it.message.id.id == 2 && it.fetch == DialogMediaPreload.Fetch.Full
+        })
+
+        val roaming = DialogMediaPreload.plan(
+            messages,
+            visibleIds = setOf(3),
+            radius = 20,
+            preset = AutoDownloadPreset.ROAMING,
+        )
+        assertTrue(roaming.media.any {
+            it.message.id.id == 3 && it.fetch == DialogMediaPreload.Fetch.Thumb
+        })
+        assertFalse(roaming.media.any {
+            it.message.id.id == 3 && it.fetch != DialogMediaPreload.Fetch.Thumb
+        })
+    }
+
+    @Test
+    fun streamingVideoPrefetchesPrefixNotTheWholeFile() {
+        val video = Message(
+            id = MessageId(PeerId(1), 9),
+            senderId = null,
+            text = null,
+            date = 9L,
+            outgoing = false,
+            mediaKind = "video",
+            mediaCacheKey = "video:9",
+            thumbCacheKey = "video:9:thumb",
+            supportsStreaming = true,
+            fileSize = 20L * 1024 * 1024,
+        )
+        val plan = DialogMediaPreload.plan(
+            listOf(video),
+            visibleIds = setOf(9),
+            preset = AutoDownloadPreset.WIFI,
+        )
+        assertTrue(plan.media.any { it.fetch == DialogMediaPreload.Fetch.Prefix && it.cacheKey == "video:9:prefix" })
+        assertFalse(plan.media.any { it.fetch == DialogMediaPreload.Fetch.Full })
+        assertTrue(plan.media.any { it.fetch == DialogMediaPreload.Fetch.Thumb })
+    }
+
+    private fun photo(id: Int) = Message(
+        id = MessageId(PeerId(1), id),
+        senderId = null,
+        text = null,
+        date = id.toLong(),
+        outgoing = false,
+        mediaKind = "photo",
+        mediaCacheKey = "photo:$id",
+        thumbCacheKey = "thumb:$id",
+    )
+
+    private fun gif(id: Int) = Message(
+        id = MessageId(PeerId(1), id),
+        senderId = null,
+        text = null,
+        date = id.toLong(),
+        outgoing = false,
+        mediaKind = "gif",
+        mediaCacheKey = "gif:$id",
+        thumbCacheKey = "thumb:$id",
+        fileSize = 200_000,
+    )
+
+    private fun imageFile(id: Int, size: Long) = Message(
+        id = MessageId(PeerId(1), id),
+        senderId = null,
+        text = "pic.jpg",
+        date = id.toLong(),
+        outgoing = false,
+        mediaKind = "document",
+        mediaCacheKey = "doc:$id",
+        thumbCacheKey = "doc:$id:thumb",
+        fileName = "pic.jpg",
+        fileSize = size,
+    )
+
+    private fun webpage(id: Int, json: String) = Message(
+        id = MessageId(PeerId(1), id),
+        senderId = null,
+        text = null,
+        date = id.toLong(),
+        outgoing = false,
+        mediaKind = "webpage",
+        mediaCacheKey = "web:$id",
+        thumbCacheKey = "webthumb:$id",
+        fileName = json,
+    )
+}

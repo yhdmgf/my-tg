@@ -1,0 +1,5 @@
+-keep class com.sun.jna.** { *; }
+-keep class * implements com.sun.jna.** { *; }
+-keep class uniffi.monogram_mtproto.** { *; }
+-keep, includedescriptorclasses class org.rustls.platformverifier.** { *; }
+-dontwarn java.awt.**

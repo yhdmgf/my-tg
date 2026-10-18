@@ -1,0 +1,66 @@
+package org.lunagram.network.bridge.message
+
+import org.lunagram.core.models.Checklists
+import org.lunagram.core.models.Message
+import org.lunagram.core.models.MessageId
+import org.lunagram.core.models.PeerId
+import org.lunagram.core.models.ReplyMarkups
+import org.lunagram.core.models.TextEntities
+import org.lunagram.core.models.UploadItem
+import uniffi.monogram_mtproto.MessageDto
+import uniffi.monogram_mtproto.MessagesPageDto
+
+internal fun MessagesPageDto.toModel(): MessagePage = MessagePage(
+    messages = messages.map { it.toModel() },
+    totalCount = totalCount,
+)
+
+internal fun MessageDto.toModel(): Message = Message(
+    id = MessageId(chatId = PeerId(chatId), id = id),
+    senderId = senderId?.let(::PeerId),
+    text = text,
+    date = date,
+    editDate = editDate,
+    outgoing = outgoing,
+    mediaCacheKey = mediaCacheKey,
+    mediaKind = mediaKind,
+    thumbCacheKey = thumbCacheKey,
+    mediaDuration = mediaDuration,
+    mediaWidth = mediaWidth,
+    mediaHeight = mediaHeight,
+    groupedId = groupedId,
+    fileName = if (mediaKind == "todo") null else fileName,
+    fileSize = fileSize,
+    supportsStreaming = supportsStreaming,
+    reactionsJson = reactionsJson,
+    repliesCount = repliesCount,
+    discussionPeerId = discussionPeerId,
+    replyQuote = replyQuote,
+    entities = TextEntities.parse(entitiesJson),
+    noforwards = noforwards,
+    replyToMsgId = replyToMsgId,
+    replyToTopId = replyToTopId,
+    forumTopic = forumTopic,
+    fwdFrom = fwdFrom,
+    fwdFromId = fwdFromId,
+    fwdDate = fwdDate,
+    viaBot = viaBot,
+    senderName = senderName,
+    senderEmojiStatusDocumentId = senderEmojiStatusDocumentId,
+    senderPhotoCacheKey = senderPhotoCacheKey,
+    replyMarkup = ReplyMarkups.parse(replyMarkupJson),
+    checklist = if (mediaKind == "todo") Checklists.parse(fileName) else null,
+)
+
+internal fun UploadItem.toDto() = uniffi.monogram_mtproto.UploadItemDto(
+    path = path,
+    kind = kind,
+    mimeType = mimeType,
+    fileName = fileName,
+    caption = caption,
+    entitiesJson = TextEntities.serialize(captionEntities),
+    duration = duration,
+    width = width,
+    height = height,
+    randomId = randomId,
+)

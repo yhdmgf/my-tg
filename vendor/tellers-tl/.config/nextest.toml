@@ -1,0 +1,13 @@
+[profile.default]
+fail-fast = false
+slow-timeout = { period = "30s", terminate-after = 4, grace-period = "10s" }
+leak-timeout = "500ms"
+
+[profile.ci]
+inherits = "default"
+failure-output = "immediate-final"
+success-output = "never"
+status-level = "retry"
+final-status-level = "fail"
+flaky-result = "fail"
+

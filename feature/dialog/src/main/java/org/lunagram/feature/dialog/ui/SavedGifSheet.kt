@@ -1,0 +1,260 @@
+package org.lunagram.feature.dialog.ui
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.produceState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
+import org.lunagram.core.common.Outcome
+import org.lunagram.core.models.PeerId
+import org.lunagram.core.models.SavedGif
+import org.lunagram.core.ui.components.LocalMediaAnimationEnabled
+import org.lunagram.core.ui.gzipFile
+import org.lunagram.core.ui.loading.MonogramLoading
+import org.lunagram.core.ui.loading.MonogramLoadingInlineSize
+import org.lunagram.core.ui.mp4File
+import org.lunagram.core.ui.webmFile
+import org.lunagram.feature.dialog.GifCellPlayer
+import org.lunagram.feature.dialog.PanelBucket
+import org.lunagram.feature.dialog.PanelTag
+import org.lunagram.feature.dialog.PickerPoster
+import org.lunagram.feature.dialog.R
+import org.lunagram.feature.dialog.gifCellPlayer
+import org.lunagram.feature.dialog.panelBucketSide
+import org.lunagram.feature.dialog.posterRequestKey
+import org.lunagram.feature.dialog.savedGifPoster
+import org.lunagram.network.http.MediaPriority
+import org.lunagram.network.http.MediaRepository
+import org.lunagram.network.http.mediaThumbCacheKey
+import java.io.File
+
+@Composable
+internal fun SavedGifCell(
+    gif: SavedGif,
+    mediaRepository: MediaRepository?,
+    onClick: () -> Unit,
+    thumbOnly: Boolean = false,
+    panelLoop: Boolean? = null,
+    posterReady: Boolean? = null,
+    animationsEnabled: Boolean? = null,
+) {
+    val animationEnabled = animationsEnabled ?: LocalMediaAnimationEnabled.current
+    val (measuredVisible, visibilityModifier) = rememberViewportVisible("gif:${gif.documentId}")
+    val visible = if (panelLoop == null) measuredVisible else panelLoop
+    val thumbKey = gif.thumbCacheKey ?: mediaThumbCacheKey(gif.cacheKey)
+    val cacheChanges = remember(mediaRepository, gif.cacheKey, thumbKey) {
+        mediaRepository?.cacheGeneration(listOf(gif.cacheKey, thumbKey))
+    }
+    val cacheGeneration = cacheChanges?.collectAsState(initial = 0L)?.value ?: 0L
+    var file by remember(gif.documentId) { mutableStateOf<File?>(null) }
+    var fullLoaded by remember(gif.documentId) { mutableStateOf(false) }
+    var failed by remember(gif.documentId) { mutableStateOf(false) }
+    var unavailable by remember(gif.documentId) { mutableStateOf(false) }
+    var retry by remember(gif.documentId) { mutableStateOf(0) }
+    var poster by remember(gif.documentId) { mutableStateOf<File?>(null) }
+    val animate = animationEnabled && visible && !thumbOnly
+    val lease = panelLoop ?: animate
+    val admitPoster = posterReady ?: (visible && !thumbOnly)
+
+    LaunchedEffect(cacheGeneration, animate, admitPoster) {
+        val repo = mediaRepository ?: return@LaunchedEffect
+        val full = repo.cachedFile(gif.cacheKey)?.takeIf { it.exists() && it.length() > 0L }
+        if (full != null) {
+            file = full
+            fullLoaded = true
+        } else if (file == null) {
+            repo.cachedFile(thumbKey)?.takeIf { it.exists() && it.length() > 0L }?.let { file = it }
+        }
+        repo.cachedFile(thumbKey)?.takeIf {
+            it.exists() && it.length() > 0L && stillImageFile(it) && !gzipFile(it)
+        }?.let { poster = it }
+    }
+
+    LaunchedEffect(mediaRepository, gif.cacheKey, thumbKey, visible, retry) {
+        val repo = mediaRepository ?: return@LaunchedEffect
+        if (file != null || !visible) return@LaunchedEffect
+        when (val thumb = repo.ensureIndexedMedia(
+            PeerId(gif.documentId), 0, thumbKey,
+            thumb = true, priority = MediaPriority.DEFAULT, mediaKind = "gif",
+        )) {
+            is Outcome.Ok -> if (!fullLoaded) file = thumb.value
+            is Outcome.Err -> if (thumbOnly) failed = true
+        }
+    }
+
+    // Full loading must not wait for an absent or slow Telegram thumbnail.
+    LaunchedEffect(mediaRepository, gif.cacheKey, animate, retry) {
+        val repo = mediaRepository ?: return@LaunchedEffect
+        if (!animate) return@LaunchedEffect
+        failed = false
+        unavailable = false
+        val cached = repo.cachedFile(gif.cacheKey)
+        if (cached != null) {
+            file = cached
+            fullLoaded = true
+            return@LaunchedEffect
+        }
+        repeat(3) { attempt ->
+            when (val result = repo.ensureIndexedMedia(
+                PeerId(gif.documentId), 0, gif.cacheKey,
+                thumb = false, priority = MediaPriority.VISIBLE, mediaKind = "gif",
+            )) {
+                is Outcome.Ok -> {
+                    file = result.value
+                    fullLoaded = true
+                    failed = false
+                    return@LaunchedEffect
+                }
+                is Outcome.Err -> {
+                    if (attempt < 2) delay(400L * (attempt + 1))
+                    else failed = true
+                }
+            }
+        }
+    }
+
+    Box(
+        modifier = Modifier
+            .size(PickerMetrics.GifCell.dp)
+            .clip(MaterialTheme.shapes.small)
+            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .then(visibilityModifier)
+            .clickable {
+                if (failed) retry++ else onClick()
+            },
+        contentAlignment = Alignment.Center,
+    ) {
+        when {
+            file == null && !unavailable && !failed ->
+                MonogramLoading(size = MonogramLoadingInlineSize)
+
+            failed -> Text(
+                text = stringResource(R.string.dialog_retry_thumb),
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.labelSmall,
+            )
+        }
+        file?.let { local ->
+            val playableFile = fullLoaded &&
+                    mediaRepository?.cachedFile(gif.cacheKey)?.let { cached ->
+                        cached.exists() && cached.absolutePath == local.absolutePath
+                    } == true
+            val webm = webmFile(local)
+            val gzip = gzipFile(local)
+            var knownAlpha by remember(local.absolutePath) { mutableStateOf<Boolean?>(null) }
+            LaunchedEffect(local.absolutePath, admitPoster, webm) {
+                if (!webm) {
+                    knownAlpha = false
+                    return@LaunchedEffect
+                }
+                if (!admitPoster) return@LaunchedEffect
+                knownAlpha = withContext(Dispatchers.IO) {
+                    sniffStickerTag(local) == PanelTag.WebmAlpha
+                }
+            }
+            val alphaVideo = webm && knownAlpha == true
+            val choice = savedGifPoster(
+                tgs = gzip,
+                webm = webm,
+                knownAlpha = knownAlpha,
+                hasCachedPoster = poster != null,
+                posterIsPng = alphaVideo && pngFile(poster),
+                admitPoster = admitPoster,
+            )
+            when (gifCellPlayer(webm, mp4File(local), gzip, playableFile, lease)) {
+                GifCellPlayer.Video -> VideoPlayer(
+                    file = local,
+                    isGif = true,
+                    durationSeconds = null,
+                    compact = true,
+                    active = true,
+                    onClick = onClick,
+                    modifier = Modifier.fillMaxSize(),
+                )
+
+                GifCellPlayer.Tgs -> {
+                    val bytes by produceState<ByteArray?>(initialValue = null, local) {
+                        value = withContext(Dispatchers.IO) {
+                            runCatching { local.readBytes() }.getOrNull()
+                        }
+                    }
+                    if (bytes != null) {
+                        StickerPlayer(
+                            lottieBytes = bytes!!,
+                            modifier = Modifier.fillMaxSize(),
+                            displaySize = PickerMetrics.GifCell.dp,
+                            active = true,
+                        )
+                    }
+                }
+
+                GifCellPlayer.Still -> {
+                    val posterSide = panelBucketSide(PanelBucket.KeyboardSticker)
+                    if (
+                        (choice == PickerPoster.CachedTransparent || choice == PickerPoster.CachedStill) &&
+                        poster != null
+                    ) {
+                        AsyncImage(
+                            model = poster,
+                            contentDescription = stringResource(R.string.dialog_saved_gifs),
+                            modifier = Modifier.fillMaxSize(),
+                            contentScale = ContentScale.Fit,
+                        )
+                    }
+                    if (!gzip && !alphaVideo) {
+                        VideoStill(
+                            file = local,
+                            modifier = Modifier.fillMaxSize(),
+                            contentScale = ContentScale.Fit,
+                            maxSizePx = posterSide,
+                            extract = choice == PickerPoster.ColdStill,
+                            requestKey = posterRequestKey("gif:${gif.documentId}", posterSide),
+                        )
+                    }
+                }
+
+                GifCellPlayer.Image -> if (stillImageFile(local) && !gzip) {
+                    AsyncImage(
+                        model = local,
+                        contentDescription = stringResource(R.string.dialog_saved_gifs),
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Fit,
+                    )
+                }
+            }
+        }
+    }
+}
+private fun missingThumb(message: String): Boolean {
+    val text = message.lowercase()
+    return text.contains("no downloadable thumb") ||
+        text.contains("file_id_invalid") ||
+        text.contains("provided file id is invalid")
+}
+
+private fun deferredThumb(message: String): Boolean {
+    val text = message.lowercase()
+    return text == "media deferred" ||
+        text.contains("file_migrate") ||
+        text.contains("stored in dc")
+}

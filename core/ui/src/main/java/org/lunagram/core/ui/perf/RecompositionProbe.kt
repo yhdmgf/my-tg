@@ -1,0 +1,79 @@
+package org.lunagram.core.ui.perf
+
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import org.lunagram.core.common.DebugLog
+import org.lunagram.core.common.PerfLog
+
+/**
+ * Dev-only recomposition counter for the compose perf harness
+ * (`scripts/perf/compose-perf.sh`), the chat-list equivalent of the netcode spans.
+ *
+ * One `recomp <name> [detail]` line is emitted per composition that actually runs; skipped
+ * compositions emit nothing, so counting the lines for a scenario gives restart counts and
+ * lets a probe count be compared against the Studio Layout Inspector "Recompositions" column.
+ *
+ * [inline] on purpose: a non-inlined probe is itself a skippable composable call, so restarts
+ * that repeat the same arguments would be silently skipped and under-counted. Inlined, the
+ * `SideEffect` is registered in the caller's own group and every execution of the caller's body
+ * is counted.
+ *
+ * The detail overloads take the raw id, and the primitive ones take it unboxed, so nothing is
+ * formatted or boxed while the gate is off; these probes sit on the paths being optimised. The
+ * nullable `Int?` overload exists for ids that arrive nullable (folder filters). Ids only ever reach
+ * logcat in a build where someone enabled the gate deliberately.
+ */
+@Composable
+inline fun RecompositionProbe(name: String) {
+    if (PerfLog.isEnabled() || DebugLog.enabled) {
+        SideEffect {
+            if (PerfLog.isEnabled()) PerfLog.event("recomp", name)
+            else DebugLog.ingestPerf("recomp", name, null)
+        }
+    }
+}
+
+@Composable
+inline fun RecompositionProbe(name: String, detail: Int?) {
+    if (PerfLog.isEnabled() || DebugLog.enabled) {
+        SideEffect {
+            val line = if (detail == null) name else "$name $detail"
+            if (PerfLog.isEnabled()) PerfLog.event("recomp", line)
+            else DebugLog.ingestPerf("recomp", line, null)
+        }
+    }
+}
+
+@Composable
+inline fun RecompositionProbe(name: String, detail: Int) {
+    if (PerfLog.isEnabled() || DebugLog.enabled) {
+        SideEffect {
+            val line = "$name $detail"
+            if (PerfLog.isEnabled()) PerfLog.event("recomp", line)
+            else DebugLog.ingestPerf("recomp", line, null)
+        }
+    }
+}
+
+@Composable
+inline fun RecompositionProbe(name: String, detail: Long) {
+    if (PerfLog.isEnabled() || DebugLog.enabled) {
+        SideEffect {
+            val line = "$name $detail"
+            if (PerfLog.isEnabled()) PerfLog.event("recomp", line)
+            else DebugLog.ingestPerf("recomp", line, null)
+        }
+    }
+}
+
+/**
+ * Times [block] and emits one `mark <op> <millis>ms` line. Used around `remember` blocks so
+ * the span count *is* the recomputation count: a block that used to re-run on every state
+ * emission logs fewer, cheaper spans after the fix. `PerfLog.dump` is deliberately not used
+ * here; probing the native snapshot on every recomputation would drown the log.
+ */
+inline fun <T> perfSpan(op: String, block: () -> T): T {
+    if (!PerfLog.isEnabled()) return block()
+    val started = PerfLog.nowMs()
+    return block().also { PerfLog.mark(op, PerfLog.nowMs() - started) }
+}
