@@ -150,6 +150,7 @@ pub(crate) fn append_rich(text: &RichText, out: &mut media::FormattedText) {
                 mark(out, start, "text_url", Some(url));
             }
         }
+        _ => {}
     }
 }
 

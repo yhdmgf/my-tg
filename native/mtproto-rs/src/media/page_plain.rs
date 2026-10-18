@@ -617,5 +617,6 @@ fn push_rich(text: &RichText, out: &mut FormattedText) {
         }
         RichText::TextDiff(t) => push_rich(&t.text, out),
         RichText::TextButton(t) => push_rich(&t.text, out),
+        _ => {}
     }
 }
