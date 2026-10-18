@@ -113,3 +113,5 @@ private fun field(obj: String, key: String): String? {
         val end = obj.indexOf(',', i).let { if (it < 0) obj.indexOf('}', i) else it }
             .let { if (it < 0) obj.length else it }
         obj.substring(i, end).trim().trimEnd('}')
+    }
+}
