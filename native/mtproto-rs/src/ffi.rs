@@ -3,7 +3,7 @@ use crate::{UpdateBatchDto, UpdateDrainDto};
 
 #[cfg(target_os = "android")]
 #[allow(unsafe_code)]
-#[jni::jni_mangle("org.monogram.mtproto.MtprotoNativeLoader")]
+#[jni::jni_mangle("org.lunagram.mtproto.MtprotoNativeLoader")]
 pub extern "system" fn init_platform_verifier<'caller>(
     mut unowned_env: jni::EnvUnowned<'caller>,
     _this: jni::objects::JObject<'caller>,
@@ -171,7 +171,7 @@ pub fn perf_snapshot(reset: bool) -> String {
 #[uniffi::export]
 pub fn library_version() -> String {
     format!(
-        "monogram-mtproto/{}; tellers-mtproto-impl; layer {}",
+        "lunagram-mtproto/{}; tellers-mtproto-impl; layer {}",
         env!("CARGO_PKG_VERSION"),
         tellers_mtproto::LATEST_API_LAYER
     )
@@ -215,19 +215,19 @@ pub fn set_proxy(
     secret: Vec<u8>,
 ) -> Result<(), MtprotoError> {
     let kind = match kind.to_ascii_lowercase().as_str() {
-        "socks5" => monogram_mtproto_transport::ProxyKind::Socks5,
-        "http" => monogram_mtproto_transport::ProxyKind::Http,
-        "https" => monogram_mtproto_transport::ProxyKind::Https,
-        "mtproto" => monogram_mtproto_transport::ProxyKind::Mtproto,
+        "socks5" => lunagram_mtproto_transport::ProxyKind::Socks5,
+        "http" => lunagram_mtproto_transport::ProxyKind::Http,
+        "https" => lunagram_mtproto_transport::ProxyKind::Https,
+        "mtproto" => lunagram_mtproto_transport::ProxyKind::Mtproto,
         _ => return Err(MtprotoError::Message("unsupported proxy type".into())),
     };
-    let parsed = monogram_mtproto_transport::ProxyConfig::decode_mtproto_secret(&secret)
+    let parsed = lunagram_mtproto_transport::ProxyConfig::decode_mtproto_secret(&secret)
         .map_err(|error| MtprotoError::Message(error.to_string()))?;
     let (secret, fake_tls_domain) = match parsed {
         Some((key, domain)) => (Some(key), domain),
         None => (None, None),
     };
-    crate::tcp::set_proxy(Some(monogram_mtproto_transport::ProxyConfig {
+    crate::tcp::set_proxy(Some(lunagram_mtproto_transport::ProxyConfig {
         kind,
         host,
         port,
@@ -249,19 +249,19 @@ pub fn ping_proxy(
     secret: Vec<u8>,
 ) -> Result<i64, MtprotoError> {
     let kind = match kind.to_ascii_lowercase().as_str() {
-        "socks5" => monogram_mtproto_transport::ProxyKind::Socks5,
-        "http" => monogram_mtproto_transport::ProxyKind::Http,
-        "https" => monogram_mtproto_transport::ProxyKind::Https,
-        "mtproto" => monogram_mtproto_transport::ProxyKind::Mtproto,
+        "socks5" => lunagram_mtproto_transport::ProxyKind::Socks5,
+        "http" => lunagram_mtproto_transport::ProxyKind::Http,
+        "https" => lunagram_mtproto_transport::ProxyKind::Https,
+        "mtproto" => lunagram_mtproto_transport::ProxyKind::Mtproto,
         _ => return Err(MtprotoError::Message("unsupported proxy type".into())),
     };
-    let parsed = monogram_mtproto_transport::ProxyConfig::decode_mtproto_secret(&secret)
+    let parsed = lunagram_mtproto_transport::ProxyConfig::decode_mtproto_secret(&secret)
         .map_err(|error| MtprotoError::Message(error.to_string()))?;
     let (secret, fake_tls_domain) = match parsed {
         Some((key, domain)) => (Some(key), domain),
         None => (None, None),
     };
-    crate::tcp::probe_proxy(monogram_mtproto_transport::ProxyConfig {
+    crate::tcp::probe_proxy(lunagram_mtproto_transport::ProxyConfig {
         kind,
         host,
         port,
@@ -282,9 +282,9 @@ pub fn clear_proxy() -> Result<(), MtprotoError> {
 pub fn set_transport_mode(mode: String) -> Result<(), MtprotoError> {
     let mode = match mode.to_ascii_lowercase().as_str() {
         "padded_intermediate" | "padded-intermediate" | "mtproto" => {
-            monogram_mtproto_transport::TransportMode::PaddedIntermediate
+            lunagram_mtproto_transport::TransportMode::PaddedIntermediate
         }
-        "http" => monogram_mtproto_transport::TransportMode::Http,
+        "http" => lunagram_mtproto_transport::TransportMode::Http,
         _ => return Err(MtprotoError::Message("unsupported transport mode".into())),
     };
     crate::tcp::set_transport_mode(mode);

@@ -55,7 +55,7 @@ fn channel_recovery_survives_restart_and_closed_view() {
 #[test]
 fn begin_updates_preserves_the_unapplied_cursor_in_persistence() {
     let path = std::env::temp_dir().join(format!(
-        "monogram-start-updates-{}-{}.json",
+        "lunagram-start-updates-{}-{}.json",
         std::process::id(),
         recovery_now()
     ));
@@ -101,7 +101,7 @@ fn begin_updates_preserves_the_unapplied_cursor_in_persistence() {
 #[test]
 fn clearing_active_dialog_keeps_server_recovery_hints() {
     let path = std::env::temp_dir().join(format!(
-        "monogram-clear-dialog-{}-{}.json",
+        "lunagram-clear-dialog-{}-{}.json",
         std::process::id(),
         recovery_now()
     ));

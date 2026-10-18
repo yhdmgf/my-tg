@@ -7,7 +7,7 @@ fn stock_policy() -> crate::transfer_policy::PolicyGuard {
 
 fn temp_file(name: &str, size: usize) -> std::path::PathBuf {
     let path = std::env::temp_dir().join(format!(
-        "monogram-upload-{}-{}-{name}",
+        "lunagram-upload-{}-{}-{name}",
         std::process::id(),
         random_id(),
     ));

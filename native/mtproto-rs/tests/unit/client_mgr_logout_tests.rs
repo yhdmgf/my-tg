@@ -2,7 +2,7 @@ use super::*;
 
 #[test]
 fn logout_clears_unauthorized_local_session_without_network() {
-    let path = std::env::temp_dir().join(format!("monogram-logout-{}.json", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-logout-{}.json", std::process::id()));
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
     let client = get_client(handle).expect("client");
     {
@@ -71,7 +71,7 @@ fn seed_dc_auth(handle: u64) {
 
 #[test]
 fn cached_foreign_dc_key_skips_export_until_the_key_is_unusable() {
-    let path = std::env::temp_dir().join(format!("monogram-dc-fast-{}.json", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-dc-fast-{}.json", std::process::id()));
     let _ = std::fs::remove_file(&path);
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
     let client = get_client(handle).unwrap();
@@ -135,7 +135,7 @@ fn cached_foreign_dc_key_skips_export_until_the_key_is_unusable() {
 
 #[test]
 fn identity_changes_drop_dc_auth_and_a_later_save_cannot_restore_them() {
-    let path = std::env::temp_dir().join(format!("monogram-dc-clear-{}.json", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-dc-clear-{}.json", std::process::id()));
     let _ = std::fs::remove_file(&path);
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
     seed_dc_auth(handle);
@@ -177,7 +177,7 @@ fn identity_changes_drop_dc_auth_and_a_later_save_cannot_restore_them() {
     destroy_client(handle);
     let _ = std::fs::remove_file(&path);
     let path = std::env::temp_dir().join(format!(
-        "monogram-dc-logout-{}.json",
+        "lunagram-dc-logout-{}.json",
         std::process::id()
     ));
     let _ = std::fs::remove_file(&path);
@@ -355,7 +355,7 @@ fn merge_changed_entries_reports_no_change() {
 #[test]
 fn empty_update_poll_skips_cache_clone() {
     let path =
-        std::env::temp_dir().join(format!("monogram-empty-poll-{}.json", std::process::id()));
+        std::env::temp_dir().join(format!("lunagram-empty-poll-{}.json", std::process::id()));
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
     let client = get_client(handle).expect("client");
     authorize_test_client(handle);
@@ -401,7 +401,7 @@ fn empty_update_poll_skips_cache_clone() {
 #[test]
 fn extra_lane_persist_is_coalesced_onto_one_worker() {
     let path =
-        std::env::temp_dir().join(format!("monogram-persist-{}.session", std::process::id()));
+        std::env::temp_dir().join(format!("lunagram-persist-{}.session", std::process::id()));
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
     let client = get_client(handle).expect("client");
     let session_id = client.data.lock().home_session_id;
@@ -427,7 +427,7 @@ fn extra_lane_persist_is_coalesced_onto_one_worker() {
 #[test]
 fn main_lane_schedules_persist_and_flush_on_destroy() {
     let path = std::env::temp_dir().join(format!(
-        "monogram-main-persist-{}.session",
+        "lunagram-main-persist-{}.session",
         std::process::id()
     ));
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());

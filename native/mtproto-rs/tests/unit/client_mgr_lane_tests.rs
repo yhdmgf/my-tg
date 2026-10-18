@@ -19,7 +19,7 @@ fn configured_single_media_lane_disables_second_download_socket() {
 
 #[test]
 fn download_sessions_grow_from_one_to_eight_and_reset_after_idle() {
-    let path = std::env::temp_dir().join(format!("monogram-growth-{}.json", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-growth-{}.json", std::process::id()));
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
     let client = get_client(handle).unwrap();
     client.policy.own_media_lanes(8);
@@ -48,7 +48,7 @@ fn download_sessions_grow_from_one_to_eight_and_reset_after_idle() {
 
 #[test]
 fn idle_main_ack_deadline_flushes_all_pending_ids_without_an_rpc() {
-    let path = std::env::temp_dir().join(format!("monogram-ack-idle-{}.json", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-ack-idle-{}.json", std::process::id()));
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
     let client = get_client(handle).unwrap();
     let listener = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
@@ -87,7 +87,7 @@ fn idle_main_ack_deadline_flushes_all_pending_ids_without_an_rpc() {
 #[test]
 fn measured_upload_rtt_selects_the_small_part_path_in_production_staging() {
     let path =
-        std::env::temp_dir().join(format!("monogram-upload-rtt-{}.json", std::process::id()));
+        std::env::temp_dir().join(format!("lunagram-upload-rtt-{}.json", std::process::id()));
     let file = path.with_extension("bin");
     std::fs::write(&file, vec![1; 96 * 1024]).unwrap();
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
@@ -127,7 +127,7 @@ fn measured_upload_rtt_selects_the_small_part_path_in_production_staging() {
 
 #[test]
 fn updates_yield_to_main_rpc_and_media_keep_distinct_sessions() {
-    let path = std::env::temp_dir().join(format!("monogram-lane-{}.json", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-lane-{}.json", std::process::id()));
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
     let client = get_client(handle).expect("client");
     let main = client.main.lock();
@@ -158,7 +158,7 @@ fn updates_yield_to_main_rpc_and_media_keep_distinct_sessions() {
 #[test]
 fn updates_drain_uses_main_gate_between_home_media_batches() {
     let path =
-        std::env::temp_dir().join(format!("monogram-updates-gate-{}.json", std::process::id()));
+        std::env::temp_dir().join(format!("lunagram-updates-gate-{}.json", std::process::id()));
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
     let client = get_client(handle).expect("client");
     let media_batch = client
@@ -288,7 +288,7 @@ fn allow_read_lanes() -> std::sync::MutexGuard<'static, ()> {
 fn read_keeps_home_session_when_a_secondary_lane_is_busy() {
     let _allowance = allow_read_lanes();
     let path =
-        std::env::temp_dir().join(format!("monogram-read-lane-{}.session", std::process::id()));
+        std::env::temp_dir().join(format!("lunagram-read-lane-{}.session", std::process::id()));
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
     authorize_test_client(handle);
     let client = get_client(handle).expect("client");
@@ -321,7 +321,7 @@ fn read_keeps_home_session_when_a_secondary_lane_is_busy() {
 fn read_does_not_wait_for_unused_secondary_lanes_without_pfs() {
     let _allowance = allow_read_lanes();
     let path =
-        std::env::temp_dir().join(format!("monogram-read-wait-{}.session", std::process::id()));
+        std::env::temp_dir().join(format!("lunagram-read-wait-{}.session", std::process::id()));
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
     authorize_test_client(handle);
     let client = get_client(handle).expect("client");
@@ -397,7 +397,7 @@ fn extra_read_lane_reuses_home_auth_without_export() {
 fn server_allowance_without_pfs_preserves_home_identity() {
     let _allowance = allow_read_lanes();
     let path =
-        std::env::temp_dir().join(format!("monogram-extra-rpc-{}.session", std::process::id()));
+        std::env::temp_dir().join(format!("lunagram-extra-rpc-{}.session", std::process::id()));
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
     let (home_id, auth) = authorize_test_client(handle);
     let mut seen_session = 0_i64;
@@ -425,7 +425,7 @@ fn server_allowance_without_pfs_preserves_home_identity() {
 fn idle_work_uses_home_session_without_pfs() {
     let _allowance = allow_read_lanes();
     let path = std::env::temp_dir().join(format!(
-        "monogram-extra-busy-{}.session",
+        "lunagram-extra-busy-{}.session",
         std::process::id()
     ));
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
@@ -452,7 +452,7 @@ fn bound_temp_read_lane_does_not_reuse_the_permanent_key() {
     }
     let _reset = Reset;
     let path =
-        std::env::temp_dir().join(format!("monogram-temp-read-{}.session", std::process::id()));
+        std::env::temp_dir().join(format!("lunagram-temp-read-{}.session", std::process::id()));
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
     let (home_id, home_auth) = authorize_test_client(handle);
     let client = get_client(handle).expect("client");
@@ -503,7 +503,7 @@ fn upload_batches_take_the_main_lane_once_per_batch() {
         "a home DC without tmp_sessions allows one main session"
     );
 
-    let stem = format!("monogram-upload-{}", std::process::id());
+    let stem = format!("lunagram-upload-{}", std::process::id());
     let file = std::env::temp_dir().join(format!("{stem}.bin"));
     let session = std::env::temp_dir().join(format!("{stem}.session"));
     std::fs::write(
@@ -662,7 +662,7 @@ fn extra_main_sessions_stay_zero_without_tmp_sessions() {
 #[test]
 fn file_parts_use_one_upload_session_and_metadata_stays_on_main() {
     let stem = format!(
-        "monogram-upload-session-{}-{}",
+        "lunagram-upload-session-{}-{}",
         std::process::id(),
         std::time::SystemTime::now()
             .duration_since(std::time::UNIX_EPOCH)
@@ -741,7 +741,7 @@ fn file_parts_use_one_upload_session_and_metadata_stays_on_main() {
 #[test]
 fn idle_file_cleanup_closes_sockets_and_preserves_busy_lanes_and_main() {
     use std::io::Read;
-    let path = std::env::temp_dir().join(format!("monogram-file-idle-{}.json", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-file-idle-{}.json", std::process::id()));
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
     let client = get_client(handle).unwrap();
     let listener = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
@@ -782,7 +782,7 @@ fn idle_file_cleanup_closes_sockets_and_preserves_busy_lanes_and_main() {
 #[test]
 fn media_waiters_use_any_freed_lane_and_admit_interactive_before_background() {
     let path =
-        std::env::temp_dir().join(format!("monogram-lane-wakeup-{}.json", std::process::id()));
+        std::env::temp_dir().join(format!("lunagram-lane-wakeup-{}.json", std::process::id()));
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
     let client = get_client(handle).unwrap();
     client.policy.own_media_lanes(2);
@@ -839,7 +839,7 @@ fn media_waiters_use_any_freed_lane_and_admit_interactive_before_background() {
 #[test]
 fn expired_upload_rtt_does_not_require_a_probe_connection_or_inherit_download_caps() {
     let path = std::env::temp_dir().join(format!(
-        "monogram-upload-fallback-{}.json",
+        "lunagram-upload-fallback-{}.json",
         std::process::id()
     ));
     let file = path.with_extension("bin");
@@ -881,7 +881,7 @@ fn expired_upload_rtt_does_not_require_a_probe_connection_or_inherit_download_ca
 #[test]
 fn failed_rtt_probe_on_an_existing_upload_connection_does_not_fail_saved_parts() {
     let path = std::env::temp_dir().join(format!(
-        "monogram-upload-probe-error-{}.json",
+        "lunagram-upload-probe-error-{}.json",
         std::process::id()
     ));
     let file = path.with_extension("bin");

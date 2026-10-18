@@ -256,7 +256,7 @@ fn boosted_policy_applies_full_interactive_windows_and_caps_parts_at_eight() {
 #[test]
 fn two_clients_keep_independent_transfer_limits() {
     let path_a = std::env::temp_dir().join(format!(
-        "monogram-policy-a-{}-{}.json",
+        "lunagram-policy-a-{}-{}.json",
         std::process::id(),
         std::time::SystemTime::now()
             .duration_since(std::time::UNIX_EPOCH)
@@ -264,7 +264,7 @@ fn two_clients_keep_independent_transfer_limits() {
             .as_nanos()
     ));
     let path_b = std::env::temp_dir().join(format!(
-        "monogram-policy-b-{}-{}.json",
+        "lunagram-policy-b-{}-{}.json",
         std::process::id(),
         std::time::SystemTime::now()
             .duration_since(std::time::UNIX_EPOCH)

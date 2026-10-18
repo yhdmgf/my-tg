@@ -3,27 +3,27 @@ use std::net::TcpStream;
 use std::sync::Arc;
 use std::time::Duration;
 
-use monogram_mtproto_transport::tcp as transport_tcp;
+use lunagram_mtproto_transport::tcp as transport_tcp;
 use tellers_mtproto_transport::{Connection, Error as TransportError};
 
 pub(crate) fn set_proxy(
-    config: Option<monogram_mtproto_transport::ProxyConfig>,
+    config: Option<lunagram_mtproto_transport::ProxyConfig>,
 ) -> Result<(), TransportError> {
     transport_tcp::set_proxy(config)
 }
 
-fn proxy() -> Option<monogram_mtproto_transport::ProxyConfig> {
+fn proxy() -> Option<lunagram_mtproto_transport::ProxyConfig> {
     transport_tcp::config().proxy
 }
 
-pub(crate) fn set_transport_mode(mode: monogram_mtproto_transport::TransportMode) {
+pub(crate) fn set_transport_mode(mode: lunagram_mtproto_transport::TransportMode) {
     transport_tcp::set_transport_mode(mode);
 }
-fn transport_mode() -> monogram_mtproto_transport::TransportMode {
+fn transport_mode() -> lunagram_mtproto_transport::TransportMode {
     transport_tcp::config().mode
 }
 pub struct TcpConnection {
-    inner: monogram_mtproto_transport::TcpConnection,
+    inner: lunagram_mtproto_transport::TcpConnection,
     stream: Arc<TcpStream>,
     read_timeout: Duration,
 }
@@ -31,7 +31,7 @@ pub struct TcpConnection {
 fn closed_error() -> TransportError {
     TransportError::Connection("client closed".into())
 }
-pub(crate) type ConnectionControl = monogram_mtproto_transport::tcp::ConnectionControl;
+pub(crate) type ConnectionControl = lunagram_mtproto_transport::tcp::ConnectionControl;
 
 thread_local! {
     static CONTROL: RefCell<Option<Arc<ConnectionControl>>> = const { RefCell::new(None) };
@@ -74,10 +74,10 @@ pub(crate) fn while_client_open<T>(operation: impl FnOnce() -> T) -> Result<T, T
 fn open_registered_connection(
     addr: &str,
     connect_secs: u64,
-) -> Result<(monogram_mtproto_transport::TcpConnection, Arc<TcpStream>), TransportError> {
+) -> Result<(lunagram_mtproto_transport::TcpConnection, Arc<TcpStream>), TransportError> {
     check_open()?;
     let mut socket = None;
-    let inner = monogram_mtproto_transport::TcpConnection::connect_controlled(
+    let inner = lunagram_mtproto_transport::TcpConnection::connect_controlled(
         addr,
         Duration::from_secs(connect_secs.max(1)),
         proxy().as_ref(),
@@ -85,18 +85,18 @@ fn open_registered_connection(
             let stream = stream.clone();
             if let Some(control) = CONTROL.with(|cell| cell.borrow().clone()) {
                 control.register(&stream).map_err(|_| {
-                    monogram_mtproto_transport::ProxyError::Handshake("connection cancelled".into())
+                    lunagram_mtproto_transport::ProxyError::Handshake("connection cancelled".into())
                 })?;
             }
             crate::request_control::register(&stream).map_err(|_| {
-                monogram_mtproto_transport::ProxyError::Handshake("request cancelled".into())
+                lunagram_mtproto_transport::ProxyError::Handshake("request cancelled".into())
             })?;
             socket = Some(stream);
             Ok(())
         },
         || {
             check_open().map_err(|_| {
-                monogram_mtproto_transport::ProxyError::Handshake("connection cancelled".into())
+                lunagram_mtproto_transport::ProxyError::Handshake("connection cancelled".into())
             })
         },
     )
@@ -160,8 +160,8 @@ impl Connection for TcpConnection {
 }
 
 enum NativeTransportConnection {
-    Obfuscated(monogram_mtproto_transport::ObfuscatedConnection),
-    Http(monogram_mtproto_transport::TransportConnection),
+    Obfuscated(lunagram_mtproto_transport::ObfuscatedConnection),
+    Http(lunagram_mtproto_transport::TransportConnection),
 }
 
 pub struct ObfuscatedTcp {
@@ -264,7 +264,7 @@ pub fn connect_obfuscated_timeout_obf(
     secret: Option<&[u8]>,
 ) -> Result<ObfuscatedTcp, TransportError> {
     let secret = if let Some(config) = proxy() {
-        if config.kind == monogram_mtproto_transport::ProxyKind::Mtproto {
+        if config.kind == lunagram_mtproto_transport::ProxyKind::Mtproto {
             Some(
                 config
                     .secret
@@ -279,16 +279,16 @@ pub fn connect_obfuscated_timeout_obf(
     let (connection, stream) = open_registered_connection(addr, connect_secs)?;
     let mode = transport_mode();
     let inner = match mode {
-        monogram_mtproto_transport::TransportMode::PaddedIntermediate => {
+        lunagram_mtproto_transport::TransportMode::PaddedIntermediate => {
             NativeTransportConnection::Obfuscated(
                 connection
                     .into_obfuscated(secret, dc_id)
                     .map_err(|error| TransportError::Connection(error.to_string()))?,
             )
         }
-        monogram_mtproto_transport::TransportMode::Http => {
+        lunagram_mtproto_transport::TransportMode::Http => {
             if proxy()
-                .is_some_and(|config| config.kind == monogram_mtproto_transport::ProxyKind::Mtproto)
+                .is_some_and(|config| config.kind == lunagram_mtproto_transport::ProxyKind::Mtproto)
             {
                 return Err(TransportError::Connection(
                     "Telegram HTTP transport cannot run through an MTProto proxy".into(),
@@ -298,7 +298,7 @@ pub fn connect_obfuscated_timeout_obf(
                 connection
                     .into_transport(
                         addr,
-                        monogram_mtproto_transport::TransportMode::Http,
+                        lunagram_mtproto_transport::TransportMode::Http,
                         dc_id,
                         secret,
                     )
@@ -344,17 +344,17 @@ fn probe_packet() -> Result<Vec<u8>, TransportError> {
 /// Does not read or change the process-wide proxy used by the signed-in session.
 /// The clock matches Telegram Desktop: it starts after the proxy/fake-TLS handshake
 /// and stops when the datacenter answers `req_pq_multi`.
-pub fn probe_proxy(proxy: monogram_mtproto_transport::ProxyConfig) -> Result<i64, TransportError> {
+pub fn probe_proxy(proxy: lunagram_mtproto_transport::ProxyConfig) -> Result<i64, TransportError> {
     let addr = crate::rpc::dc_endpoints(2)
         .first()
         .copied()
         .ok_or_else(|| TransportError::Connection("no DC endpoints".into()))?;
     let timeout = Duration::from_secs(10);
     let connection =
-        monogram_mtproto_transport::TcpConnection::connect(addr, timeout, Some(&proxy))
+        lunagram_mtproto_transport::TcpConnection::connect(addr, timeout, Some(&proxy))
             .map_err(|error| TransportError::Connection(format!("connect: {error}")))?;
     let started = std::time::Instant::now();
-    let secret = if proxy.kind == monogram_mtproto_transport::ProxyKind::Mtproto {
+    let secret = if proxy.kind == lunagram_mtproto_transport::ProxyKind::Mtproto {
         proxy.secret
     } else {
         None

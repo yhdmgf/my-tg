@@ -62,7 +62,7 @@ fn parts_outside_the_seek_window_are_cancelled_and_cdn_stays_on_origin() {
         sticker_set_access_hash: None,
         source_url: None,
     };
-    let path = std::env::temp_dir().join(format!("monogram-seek-cdn-{}", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-seek-cdn-{}", std::process::id()));
     let mut cdn_flags = Vec::new();
     let result = download_media_range_with_fetch(2, &media, &path, &path, Some(step), |request| {
         cdn_flags.push(request.cdn_supported.is_some());

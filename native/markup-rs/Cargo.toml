@@ -1,5 +1,5 @@
 [package]
-name = "monogram-markup"
+name = "lunagram-markup"
 version = "0.1.0"
 edition = "2024"
 rust-version = "1.98"
@@ -8,7 +8,7 @@ description = "UniFFI tree-sitter markup bridge for Monogram (Telegram markdown,
 publish = false
 
 [lib]
-name = "monogram_markup"
+name = "lunagram_markup"
 crate-type = ["cdylib", "rlib"]
 
 [features]

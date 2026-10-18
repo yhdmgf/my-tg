@@ -37,7 +37,7 @@ fn lazy_route_preserves_difference_recovery_for_every_channel_gap() {
 
 #[test]
 fn lazy_gap_survives_session_reload_without_advancing_pts() {
-    let path = std::env::temp_dir().join(format!("monogram-lazy-gap-{}.json", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-lazy-gap-{}.json", std::process::id()));
     let handle = create_client(1, "hash".into(), path.to_string_lossy().into());
     let chat = peers::chat_id_for_channel(3);
     let mut lazy = HashSet::new();

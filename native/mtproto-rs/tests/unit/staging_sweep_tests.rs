@@ -3,7 +3,7 @@ use super::*;
 #[test]
 fn sweep_drops_stale_parts_over_the_cap_and_keeps_the_protected_file() {
     let dir = std::env::temp_dir().join(format!(
-        "monogram-staging-{}-{}",
+        "lunagram-staging-{}-{}",
         std::process::id(),
         std::time::SystemTime::now()
             .duration_since(std::time::UNIX_EPOCH)

@@ -3,7 +3,7 @@ use super::*;
 #[test]
 fn idle_destination_lock_leaves_the_map() {
     let path = std::env::temp_dir().join(format!(
-        "monogram-dest-lock-{}-{}",
+        "lunagram-dest-lock-{}-{}",
         std::process::id(),
         std::time::SystemTime::now()
             .duration_since(std::time::UNIX_EPOCH)

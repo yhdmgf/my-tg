@@ -1,5 +1,5 @@
 //! Android UniFFI surface for Telegram-style markup (tree-sitter).
-//! Separate from monogram-mtproto. Features must call the Kotlin facade, not this crate.
+//! Separate from lunagram-mtproto. Features must call the Kotlin facade, not this crate.
 
 #![deny(unsafe_code)]
 
@@ -64,7 +64,7 @@ pub struct MathSpanDto {
 #[uniffi::export]
 pub fn library_version() -> String {
     format!(
-        "monogram-markup/{}; tree-sitter markup",
+        "lunagram-markup/{}; tree-sitter markup",
         env!("CARGO_PKG_VERSION")
     )
 }

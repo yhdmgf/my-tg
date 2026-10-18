@@ -1,5 +1,5 @@
 [package]
-name = "monogram-mtproto"
+name = "lunagram-mtproto"
 version = "0.1.0"
 edition = "2024"
 rust-version = "1.98"
@@ -8,7 +8,7 @@ description = "UniFFI MTProto bridge for Monogram (telers-mtproto-impl runtime)"
 publish = false
 
 [lib]
-name = "monogram_mtproto"
+name = "lunagram_mtproto"
 crate-type = ["cdylib", "rlib"]
 
 [features]
@@ -37,7 +37,7 @@ cipher = "0.5"
 pbkdf2 = { version = "0.13", default-features = false, features = ["hmac"] }
 flate2 = "1"
 tlottie = { path = "../../vendor/tlottie", default-features = false, features = ["cpu", "std"] }
-monogram-mtproto-transport = { path = "../mtproto-transport" }
+lunagram-mtproto-transport = { path = "../mtproto-transport" }
 
 tellers-mtproto = { path = "../../../telers-mtproto-impl/crates/tellers-mtproto" }
 tellers-mtproto-codec = { path = "../../../telers-mtproto-impl/crates/tellers-mtproto-codec" }

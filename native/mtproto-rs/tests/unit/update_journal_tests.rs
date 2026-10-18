@@ -22,7 +22,7 @@ fn cursor(pts: i32) -> Option<UpdatesStateDto> {
 }
 
 fn temp_session(name: &str) -> std::path::PathBuf {
-    let path = std::env::temp_dir().join(format!("monogram-journal-{name}-{}.session", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-journal-{name}-{}.session", std::process::id()));
     let _ = std::fs::remove_file(&path);
     path
 }
@@ -251,7 +251,7 @@ fn exhausted_persistence_reports_the_error_and_keeps_the_batch() {
     let client = get_client(handle).unwrap();
     queue(handle, 4);
     let session_id = client.data.lock().home_session_id;
-    let blocker = std::env::temp_dir().join(format!("monogram-journal-dir-{}", std::process::id()));
+    let blocker = std::env::temp_dir().join(format!("lunagram-journal-dir-{}", std::process::id()));
     std::fs::create_dir_all(&blocker).unwrap();
     client.data.lock().session_path = blocker.clone();
 

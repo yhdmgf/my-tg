@@ -17,7 +17,7 @@ use tellers_mtproto::latest::api::{
 
 #[test]
 fn stale_staging_preserves_existing_destination_and_removes_partial_bytes() {
-    let dest = std::env::temp_dir().join(format!("monogram-staging-{}", std::process::id()));
+    let dest = std::env::temp_dir().join(format!("lunagram-staging-{}", std::process::id()));
     fs::write(&dest, b"previous").unwrap();
     let staged = StagedDownload::new(&dest).unwrap();
     let path = staged.path().to_owned();
@@ -30,7 +30,7 @@ fn stale_staging_preserves_existing_destination_and_removes_partial_bytes() {
 
 #[test]
 fn cancel_before_publication_cleans_staging_without_publishing() {
-    let dest = std::env::temp_dir().join(format!("monogram-publish-cancel-{}", std::process::id()));
+    let dest = std::env::temp_dir().join(format!("lunagram-publish-cancel-{}", std::process::id()));
     let staged = StagedDownload::new(&dest).unwrap();
     let path = staged.path().to_owned();
     fs::write(&path, b"complete").unwrap();
@@ -48,7 +48,7 @@ fn cancel_before_publication_cleans_staging_without_publishing() {
 
 #[test]
 fn successful_staging_publishes_complete_file() {
-    let dest = std::env::temp_dir().join(format!("monogram-publish-{}", std::process::id()));
+    let dest = std::env::temp_dir().join(format!("lunagram-publish-{}", std::process::id()));
     let staged = StagedDownload::new(&dest).unwrap();
     let path = staged.path().to_owned();
     fs::write(&path, b"complete").unwrap();
@@ -63,7 +63,7 @@ fn successful_staging_publishes_complete_file() {
 
 #[test]
 fn resume_reopens_the_longest_part_and_cancel_deletes_it() {
-    let dest = std::env::temp_dir().join(format!("monogram-resume-{}", std::process::id()));
+    let dest = std::env::temp_dir().join(format!("lunagram-resume-{}", std::process::id()));
     let short = StagedDownload::new(&dest).unwrap();
     fs::write(short.path(), vec![1; 32]).unwrap();
     let short_path = short.path().to_owned();
@@ -135,7 +135,7 @@ fn android_range_file_round_trips_and_rejects_a_negative_count() {
 
 #[test]
 fn retryable_failure_keeps_the_part_and_cancel_does_not() {
-    let dest = std::env::temp_dir().join(format!("monogram-keep-{}", std::process::id()));
+    let dest = std::env::temp_dir().join(format!("lunagram-keep-{}", std::process::id()));
     let staged = StagedDownload::new(&dest).unwrap();
     let path = staged.path().to_owned();
     fs::write(&path, b"partial").unwrap();
@@ -152,7 +152,7 @@ fn retryable_failure_keeps_the_part_and_cancel_does_not() {
 
 #[test]
 fn one_destination_has_one_writer() {
-    let dest = std::env::temp_dir().join(format!("monogram-lock-{}", std::process::id()));
+    let dest = std::env::temp_dir().join(format!("lunagram-lock-{}", std::process::id()));
     let first = DestinationLock::acquire(&dest);
     let dest_for_thread = dest.clone();
     let (started, started_rx) = std::sync::mpsc::channel();
@@ -216,7 +216,7 @@ fn download_dc_uses_location_or_home() {
 #[test]
 fn failed_chunked_download_removes_partial_file() {
     let path = std::env::temp_dir().join(format!(
-        "monogram-download-partial-{}.bin",
+        "lunagram-download-partial-{}.bin",
         std::process::id()
     ));
     let _ = fs::remove_file(&path);
@@ -232,7 +232,7 @@ fn failed_chunked_download_removes_partial_file() {
 #[test]
 fn cancel_marker_aborts_partial_write() {
     let path = std::env::temp_dir().join(format!(
-        "monogram-download-cancel-{}.bin",
+        "lunagram-download-cancel-{}.bin",
         std::process::id()
     ));
     let marker = cancel_marker(&path);
@@ -255,7 +255,7 @@ fn cancel_marker_aborts_partial_write() {
 #[test]
 fn successful_chunked_download_keeps_file() {
     let path =
-        std::env::temp_dir().join(format!("monogram-download-ok-{}.bin", std::process::id()));
+        std::env::temp_dir().join(format!("lunagram-download-ok-{}.bin", std::process::id()));
     let _ = fs::remove_file(&path);
     write_file_or_cleanup(&path, |file| {
         file.write_all(b"hello")
@@ -293,7 +293,7 @@ fn shared_transport_fetches_bounded_parts_and_removes_failed_download() {
         sticker_set_access_hash: None,
         source_url: None,
     };
-    let path = std::env::temp_dir().join(format!("monogram-shared-parts-{}", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-shared-parts-{}", std::process::id()));
     for fail_second in [false, true] {
         let mut offsets = Vec::new();
         let result = download_media_with_fetch(2, &media, &path, &path, |request| {
@@ -362,7 +362,7 @@ fn batched_range_requests_parts_together_and_writes_each_at_its_offset() {
         sticker_set_access_hash: None,
         source_url: None,
     };
-    let path = std::env::temp_dir().join(format!("monogram-batched-{}", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-batched-{}", std::process::id()));
     let file_size = (CHUNK as i64) * 2 + 5;
     let mut batches: Vec<Vec<i64>> = Vec::new();
     let result = download_media_range_batched(
@@ -437,7 +437,7 @@ fn batched_range_reports_a_failed_part_and_removes_the_partial_file() {
         sticker_set_access_hash: None,
         source_url: None,
     };
-    let path = std::env::temp_dir().join(format!("monogram-batched-fail-{}", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-batched-fail-{}", std::process::id()));
     let result = download_media_range_batched(
         2,
         &media,
@@ -504,7 +504,7 @@ fn media_range_fetches_one_aligned_part_and_rejects_invalid_bounds() {
         sticker_set_access_hash: None,
         source_url: None,
     };
-    let path = std::env::temp_dir().join(format!("monogram-range-{}", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-range-{}", std::process::id()));
     for size in [0, 3, CHUNK as usize, CHUNK as usize + 1] {
         let mut calls = 0;
         let result = download_media_range_with_fetch(
@@ -624,7 +624,7 @@ fn limit_invalid_falls_back_to_128kib() {
         sticker_set_access_hash: None,
         source_url: None,
     };
-    let path = std::env::temp_dir().join(format!("monogram-limit-invalid-{}", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-limit-invalid-{}", std::process::id()));
     let mut limits: Vec<i32> = Vec::new();
     let file_size = 200i64;
     let result =
@@ -689,7 +689,7 @@ fn batched_streaming_writes_a_part_before_the_batch_returns() {
         sticker_set_access_hash: None,
         source_url: None,
     };
-    let path = std::env::temp_dir().join(format!("monogram-stream-write-{}", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-stream-write-{}", std::process::id()));
     let mut lengths_during_batch: Vec<u64> = Vec::new();
     let mut batches = 0usize;
     let file_size = CHUNK as i64 * 3;
@@ -765,7 +765,7 @@ fn progress_counts_each_offset_once_when_on_chunk_and_batch_both_deliver() {
         sticker_set_access_hash: None,
         source_url: None,
     };
-    let path = std::env::temp_dir().join(format!("monogram-progress-once-{}", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-progress-once-{}", std::process::id()));
     let file_size = CHUNK as i64 * 4;
     let result = download_media_range_batched_streaming(
         2,
@@ -840,7 +840,7 @@ fn completed_part_refills_inflight_window_without_waiting_for_the_batch() {
         sticker_set_access_hash: None,
         source_url: None,
     };
-    let path = std::env::temp_dir().join(format!("monogram-slide-refill-{}", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-slide-refill-{}", std::process::id()));
     let file_size = CHUNK as i64 * 5;
     let mut batches = 0usize;
     let mut max_inflight = 0usize;
@@ -922,7 +922,7 @@ fn parallel_media_download_preserves_bytes_with_out_of_order_refills() {
         source_url: None,
     };
     let path =
-        std::env::temp_dir().join(format!("monogram-parallel-refill-{}", std::process::id()));
+        std::env::temp_dir().join(format!("lunagram-parallel-refill-{}", std::process::id()));
     let mut batches = 0;
     let mut file_size = 0;
     let result = download_media_range_batched_streaming(
@@ -1118,7 +1118,7 @@ fn flood_wait_unwinds_without_retrying_on_the_lane() {
         sticker_set_access_hash: None,
         source_url: None,
     };
-    let path = std::env::temp_dir().join(format!("monogram-flood-{}", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-flood-{}", std::process::id()));
     let mut calls = 0u8;
     let result =
         download_media_range_batched(2, &media, &path, &path, None, 1, |_init, requests| {
@@ -1231,7 +1231,7 @@ fn rpc_timeout_retries_from_missing_offset_without_dropping_written_parts() {
         sticker_set_access_hash: None,
         source_url: None,
     };
-    let path = std::env::temp_dir().join(format!("monogram-timeout-{}", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-timeout-{}", std::process::id()));
     let file_size = CHUNK as i64 * 3;
     let mut calls = 0u8;
     let result = download_media_range_batched_streaming(
@@ -1307,7 +1307,7 @@ fn capped_refill_releases_fetch_batch_before_eof() {
         sticker_set_access_hash: None,
         source_url: None,
     };
-    let path = std::env::temp_dir().join(format!("monogram-window-{}", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-window-{}", std::process::id()));
     let file_size = CHUNK as i64 * 6;
     let mut batches = 0usize;
     let result = download_media_range_batched_streaming_capped(

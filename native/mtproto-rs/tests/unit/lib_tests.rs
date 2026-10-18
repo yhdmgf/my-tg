@@ -2,7 +2,7 @@ use super::*;
 
 #[test]
 fn create_and_destroy_client() {
-    let path = std::env::temp_dir().join("monogram-tellers-test.session");
+    let path = std::env::temp_dir().join("lunagram-tellers-test.session");
     let handle = create_client(12345, "hash".into(), path.display().to_string());
     assert!(client_exists(handle));
     assert_eq!(client_api_id(handle), 12345);
@@ -15,7 +15,7 @@ fn session_file_persists_user_id() {
     use crate::session_file::{ClientSession, FileSessionStore};
     use tellers_mtproto_session::{OsRandom, Snapshot};
 
-    let path = std::env::temp_dir().join(format!("monogram-session-{}.json", std::process::id()));
+    let path = std::env::temp_dir().join(format!("lunagram-session-{}.json", std::process::id()));
     let _ = std::fs::remove_file(&path);
     let store = FileSessionStore::new(&path);
     let snapshot = Snapshot::new(2, &mut OsRandom).expect("snapshot");
