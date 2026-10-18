@@ -636,6 +636,7 @@ pub fn drain_difference(
             });
             events.push(UpdateEventDto::ChatsChanged);
         }
+    }
     Ok((events, has_more))
 }
 
