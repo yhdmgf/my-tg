@@ -636,8 +636,6 @@ pub fn drain_difference(
             });
             events.push(UpdateEventDto::ChatsChanged);
         }
-        _ => {}
-    }
     Ok((events, has_more))
 }
 
@@ -740,7 +738,6 @@ pub(crate) fn drain_channel_difference(
             next_pts = next_channel_pts_after_too_long(pts, next_pts, n);
             events.push(UpdateEventDto::ChatsChanged);
         }
-        _ => {}
     }
     Ok(ChannelDifferencePage {
         events,
