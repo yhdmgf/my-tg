@@ -3,7 +3,7 @@
 
 @file:Suppress("NAME_SHADOWING")
 
-package uniffi.monogram_mtproto
+package uniffi.lunagram_mtproto
 
 // Common helper code.
 //
@@ -53,7 +53,7 @@ open class RustBuffer : Structure() {
     companion object {
         internal fun alloc(size: ULong = 0UL) = uniffiRustCall { status ->
             // Note: need to convert the size to a `Long` value to make this work with JVM.
-            UniffiLib.ffi_monogram_mtproto_rustbuffer_alloc(size.toLong(), status)
+            UniffiLib.ffi_lunagram_mtproto_rustbuffer_alloc(size.toLong(), status)
         }.also {
             if(it.data == null) {
                throw RuntimeException("RustBuffer.alloc() returned null data pointer (size=${size})")
@@ -69,7 +69,7 @@ open class RustBuffer : Structure() {
         }
 
         internal fun free(buf: ByValue) = uniffiRustCall { status ->
-            UniffiLib.ffi_monogram_mtproto_rustbuffer_free(buf, status)
+            UniffiLib.ffi_lunagram_mtproto_rustbuffer_free(buf, status)
         }
     }
 
@@ -392,7 +392,7 @@ private fun findLibraryName(componentName: String): String {
     if (libOverride != null) {
         return libOverride
     }
-    return "monogram_mtproto"
+    return "lunagram_mtproto"
 }
 
 // Define FFI callback types
@@ -695,295 +695,295 @@ internal open class UniffiVTableCallbackInterfaceDownloadProgressListener(
 // We now use JNA's "direct mapping" - unclear if same considerations apply exactly.
 internal object IntegrityCheckingUniffiLib {
     init {
-        Native.register(IntegrityCheckingUniffiLib::class.java, findLibraryName(componentName = "monogram_mtproto"))
+        Native.register(IntegrityCheckingUniffiLib::class.java, findLibraryName(componentName = "lunagram_mtproto"))
         uniffiCheckContractApiVersion(this)
         uniffiCheckApiChecksums(this)
     }
-    external fun uniffi_monogram_mtproto_checksum_func_acknowledge_update_batch(
+    external fun uniffi_lunagram_mtproto_checksum_func_acknowledge_update_batch(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_add_waveform_pcm(
+    external fun uniffi_lunagram_mtproto_checksum_func_add_waveform_pcm(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_animated_emoji_max(
+    external fun uniffi_lunagram_mtproto_checksum_func_animated_emoji_max(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_append_todo_items(
+    external fun uniffi_lunagram_mtproto_checksum_func_append_todo_items(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_bind_request_control(
+    external fun uniffi_lunagram_mtproto_checksum_func_bind_request_control(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_cancel_request_control(
+    external fun uniffi_lunagram_mtproto_checksum_func_cancel_request_control(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_check_password(
+    external fun uniffi_lunagram_mtproto_checksum_func_check_password(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_clear_active_dialog(
+    external fun uniffi_lunagram_mtproto_checksum_func_clear_active_dialog(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_clear_proxy(
+    external fun uniffi_lunagram_mtproto_checksum_func_clear_proxy(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_client_api_id(
+    external fun uniffi_lunagram_mtproto_checksum_func_client_api_id(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_client_exists(
+    external fun uniffi_lunagram_mtproto_checksum_func_client_exists(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_client_uses_test_dc(
+    external fun uniffi_lunagram_mtproto_checksum_func_client_uses_test_dc(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_connect(
+    external fun uniffi_lunagram_mtproto_checksum_func_connect(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_contacts_search(
+    external fun uniffi_lunagram_mtproto_checksum_func_contacts_search(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_create_client(
+    external fun uniffi_lunagram_mtproto_checksum_func_create_client(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_create_encrypted_client(
+    external fun uniffi_lunagram_mtproto_checksum_func_create_encrypted_client(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_create_lottie(
+    external fun uniffi_lunagram_mtproto_checksum_func_create_lottie(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_create_request_control(
+    external fun uniffi_lunagram_mtproto_checksum_func_create_request_control(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_create_vpx_decoder(
+    external fun uniffi_lunagram_mtproto_checksum_func_create_vpx_decoder(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_create_waveform(
+    external fun uniffi_lunagram_mtproto_checksum_func_create_waveform(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_custom_emoji_is_free(
+    external fun uniffi_lunagram_mtproto_checksum_func_custom_emoji_is_free(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_decode_vpx_alpha_packet(
+    external fun uniffi_lunagram_mtproto_checksum_func_decode_vpx_alpha_packet(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_decode_vpx_packet(
+    external fun uniffi_lunagram_mtproto_checksum_func_decode_vpx_packet(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_decrypt_push_payload(
+    external fun uniffi_lunagram_mtproto_checksum_func_decrypt_push_payload(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_delete_folder(
+    external fun uniffi_lunagram_mtproto_checksum_func_delete_folder(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_delete_message(
+    external fun uniffi_lunagram_mtproto_checksum_func_delete_message(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_destroy_client(
+    external fun uniffi_lunagram_mtproto_checksum_func_destroy_client(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_destroy_lottie(
+    external fun uniffi_lunagram_mtproto_checksum_func_destroy_lottie(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_destroy_vpx_decoder(
+    external fun uniffi_lunagram_mtproto_checksum_func_destroy_vpx_decoder(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_destroy_waveform(
+    external fun uniffi_lunagram_mtproto_checksum_func_destroy_waveform(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_download_chunk_kib(
+    external fun uniffi_lunagram_mtproto_checksum_func_download_chunk_kib(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_download_concurrency(
+    external fun uniffi_lunagram_mtproto_checksum_func_download_concurrency(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_download_custom_emoji(
+    external fun uniffi_lunagram_mtproto_checksum_func_download_custom_emoji(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_download_message_display(
+    external fun uniffi_lunagram_mtproto_checksum_func_download_message_display(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_download_message_media(
+    external fun uniffi_lunagram_mtproto_checksum_func_download_message_media(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_download_message_media_chunk(
+    external fun uniffi_lunagram_mtproto_checksum_func_download_message_media_chunk(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_download_message_thumb(
+    external fun uniffi_lunagram_mtproto_checksum_func_download_message_thumb(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_download_wallpaper(
+    external fun uniffi_lunagram_mtproto_checksum_func_download_wallpaper(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_drain_updates(
+    external fun uniffi_lunagram_mtproto_checksum_func_drain_updates(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_edit_forum_topic_hidden(
+    external fun uniffi_lunagram_mtproto_checksum_func_edit_forum_topic_hidden(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_edit_text_message(
+    external fun uniffi_lunagram_mtproto_checksum_func_edit_text_message(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_finish_waveform(
+    external fun uniffi_lunagram_mtproto_checksum_func_finish_waveform(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_forward_messages(
+    external fun uniffi_lunagram_mtproto_checksum_func_forward_messages(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_all_stickers(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_all_stickers(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_bot_callback_answer(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_bot_callback_answer(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_chats(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_chats(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_common_chats(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_common_chats(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_discussion_message(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_discussion_message(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_emoji_stickers(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_emoji_stickers(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_folders(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_folders(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_forum_topics(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_forum_topics(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_forum_topics_by_id(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_forum_topics_by_id(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_group_admin_tags(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_group_admin_tags(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_history(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_history(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_history_page(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_history_page(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_inline_bot_results(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_inline_bot_results(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_message_reactions_list(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_message_reactions_list(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_message_read_participants(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_message_read_participants(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_notify_exceptions(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_notify_exceptions(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_notify_settings(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_notify_settings(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_outbox_read_date(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_outbox_read_date(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_participants(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_participants(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_pinned_messages(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_pinned_messages(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_poll_votes(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_poll_votes(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_profile(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_profile(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_read_receipt_config(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_read_receipt_config(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_recent_reactions(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_recent_reactions(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_replies(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_replies(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_saved_gifs(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_saved_gifs(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_search_counters(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_search_counters(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_sticker_pack(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_sticker_pack(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_sticker_set(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_sticker_set(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_stickers(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_stickers(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_unread_mentions(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_unread_mentions(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_unread_reactions(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_unread_reactions(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_updates_state(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_updates_state(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_wallpapers(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_wallpapers(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_web_page(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_web_page(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_get_web_page_preview(
+    external fun uniffi_lunagram_mtproto_checksum_func_get_web_page_preview(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_is_authorized(
+    external fun uniffi_lunagram_mtproto_checksum_func_is_authorized(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_join_chat(
+    external fun uniffi_lunagram_mtproto_checksum_func_join_chat(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_library_version(
+    external fun uniffi_lunagram_mtproto_checksum_func_library_version(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_load_more_chats(
+    external fun uniffi_lunagram_mtproto_checksum_func_load_more_chats(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_logout(
+    external fun uniffi_lunagram_mtproto_checksum_func_logout(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_lottie_frame_count(
+    external fun uniffi_lunagram_mtproto_checksum_func_lottie_frame_count(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_lottie_frame_rate(
+    external fun uniffi_lunagram_mtproto_checksum_func_lottie_frame_rate(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_lottie_size(
+    external fun uniffi_lunagram_mtproto_checksum_func_lottie_size(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_mark_dialog_unread(
+    external fun uniffi_lunagram_mtproto_checksum_func_mark_dialog_unread(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_peek_message_inline_thumb(
+    external fun uniffi_lunagram_mtproto_checksum_func_peek_message_inline_thumb(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_peek_peer_inline_thumb(
+    external fun uniffi_lunagram_mtproto_checksum_func_peek_peer_inline_thumb(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_pending_update_batches(
+    external fun uniffi_lunagram_mtproto_checksum_func_pending_update_batches(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_perf_set_enabled(
+    external fun uniffi_lunagram_mtproto_checksum_func_perf_set_enabled(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_perf_snapshot(
+    external fun uniffi_lunagram_mtproto_checksum_func_perf_snapshot(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_ping_proxy(
+    external fun uniffi_lunagram_mtproto_checksum_func_ping_proxy(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_promote_request_control(
+    external fun uniffi_lunagram_mtproto_checksum_func_promote_request_control(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_read_discussion(
+    external fun uniffi_lunagram_mtproto_checksum_func_read_discussion(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_read_history(
+    external fun uniffi_lunagram_mtproto_checksum_func_read_history(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_read_mentions(
+    external fun uniffi_lunagram_mtproto_checksum_func_read_mentions(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_read_message_contents(
+    external fun uniffi_lunagram_mtproto_checksum_func_read_message_contents(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_read_reactions(
+    external fun uniffi_lunagram_mtproto_checksum_func_read_reactions(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_register_device(
+    external fun uniffi_lunagram_mtproto_checksum_func_register_device(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_release_request_control(
+    external fun uniffi_lunagram_mtproto_checksum_func_release_request_control(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_render_lottie_frame(
+    external fun uniffi_lunagram_mtproto_checksum_func_render_lottie_frame(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_resend_auth_code(
+    external fun uniffi_lunagram_mtproto_checksum_func_resend_auth_code(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_reset_notify_settings(
+    external fun uniffi_lunagram_mtproto_checksum_func_reset_notify_settings(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_resolve_username(
+    external fun uniffi_lunagram_mtproto_checksum_func_resolve_username(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_search_global(
+    external fun uniffi_lunagram_mtproto_checksum_func_search_global(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_search_messages(
+    external fun uniffi_lunagram_mtproto_checksum_func_search_messages(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_search_messages_filtered(
+    external fun uniffi_lunagram_mtproto_checksum_func_search_messages_filtered(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_search_messages_page(
+    external fun uniffi_lunagram_mtproto_checksum_func_search_messages_page(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_send_auth_code(
+    external fun uniffi_lunagram_mtproto_checksum_func_send_auth_code(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_send_inline_bot_result(
+    external fun uniffi_lunagram_mtproto_checksum_func_send_inline_bot_result(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_send_location(
+    external fun uniffi_lunagram_mtproto_checksum_func_send_location(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_send_photo_message(
+    external fun uniffi_lunagram_mtproto_checksum_func_send_photo_message(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_send_poll_vote(
+    external fun uniffi_lunagram_mtproto_checksum_func_send_poll_vote(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_send_reaction(
+    external fun uniffi_lunagram_mtproto_checksum_func_send_reaction(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_send_saved_gif(
+    external fun uniffi_lunagram_mtproto_checksum_func_send_saved_gif(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_send_text_message(
+    external fun uniffi_lunagram_mtproto_checksum_func_send_text_message(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_send_uploaded_album(
+    external fun uniffi_lunagram_mtproto_checksum_func_send_uploaded_album(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_send_uploaded_media(
+    external fun uniffi_lunagram_mtproto_checksum_func_send_uploaded_media(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_set_client_test_dc(
+    external fun uniffi_lunagram_mtproto_checksum_func_set_client_test_dc(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_set_contact_joined_silent(
+    external fun uniffi_lunagram_mtproto_checksum_func_set_contact_joined_silent(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_set_dispatch_class(
+    external fun uniffi_lunagram_mtproto_checksum_func_set_dispatch_class(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_set_download_chunk_kib(
+    external fun uniffi_lunagram_mtproto_checksum_func_set_download_chunk_kib(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_set_download_concurrency(
+    external fun uniffi_lunagram_mtproto_checksum_func_set_download_concurrency(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_set_download_progress_listener(
+    external fun uniffi_lunagram_mtproto_checksum_func_set_download_progress_listener(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_set_file_part_kib(
+    external fun uniffi_lunagram_mtproto_checksum_func_set_file_part_kib(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_set_init_connection_info(
+    external fun uniffi_lunagram_mtproto_checksum_func_set_init_connection_info(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_set_proxy(
+    external fun uniffi_lunagram_mtproto_checksum_func_set_proxy(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_set_transport_mode(
+    external fun uniffi_lunagram_mtproto_checksum_func_set_transport_mode(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_set_typing(
+    external fun uniffi_lunagram_mtproto_checksum_func_set_typing(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_sign_in(
+    external fun uniffi_lunagram_mtproto_checksum_func_sign_in(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_start_updates(
+    external fun uniffi_lunagram_mtproto_checksum_func_start_updates(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_toggle_todo_completed(
+    external fun uniffi_lunagram_mtproto_checksum_func_toggle_todo_completed(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_unblock_user(
+    external fun uniffi_lunagram_mtproto_checksum_func_unblock_user(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_unregister_device(
+    external fun uniffi_lunagram_mtproto_checksum_func_unregister_device(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_update_folder(
+    external fun uniffi_lunagram_mtproto_checksum_func_update_folder(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_update_folder_order(
+    external fun uniffi_lunagram_mtproto_checksum_func_update_folder_order(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_update_lazy_sync_config(
+    external fun uniffi_lunagram_mtproto_checksum_func_update_lazy_sync_config(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_update_notify_settings(
+    external fun uniffi_lunagram_mtproto_checksum_func_update_notify_settings(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_func_update_status(
+    external fun uniffi_lunagram_mtproto_checksum_func_update_status(
     ): Int
-    external fun uniffi_monogram_mtproto_checksum_method_downloadprogresslistener_on_progress(
+    external fun uniffi_lunagram_mtproto_checksum_method_downloadprogresslistener_on_progress(
     ): Int
-    external fun ffi_monogram_mtproto_uniffi_contract_version(
+    external fun ffi_lunagram_mtproto_uniffi_contract_version(
     ): Int
 
 
@@ -993,23 +993,23 @@ internal object UniffiLib {
 
 
     init {
-        Native.register(UniffiLib::class.java, findLibraryName(componentName = "monogram_mtproto"))
+        Native.register(UniffiLib::class.java, findLibraryName(componentName = "lunagram_mtproto"))
         uniffiCallbackInterfaceDownloadProgressListener.register(this)
 
     }
 
-    external fun uniffi_monogram_mtproto_fn_init_callback_vtable_downloadprogresslistener(
+    external fun uniffi_lunagram_mtproto_fn_init_callback_vtable_downloadprogresslistener(
         `vtable`: UniffiVTableCallbackInterfaceDownloadProgressListener,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_acknowledge_update_batch(
+    external fun uniffi_lunagram_mtproto_fn_func_acknowledge_update_batch(
         `handle`: Long,
         `accountGeneration`: Long,
         `batchId`: Long,
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_add_waveform_pcm(
+    external fun uniffi_lunagram_mtproto_fn_func_add_waveform_pcm(
         `handle`: Long,
         `samples`: RustBuffer.ByValue,
         `sampleRate`: Int,
@@ -1018,9 +1018,9 @@ internal object UniffiLib {
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_animated_emoji_max(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_animated_emoji_max(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Int
-    external fun uniffi_monogram_mtproto_fn_func_append_todo_items(
+    external fun uniffi_lunagram_mtproto_fn_func_append_todo_items(
         `handle`: Long,
         `chatId`: Long,
         `messageId`: Int,
@@ -1029,59 +1029,59 @@ internal object UniffiLib {
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_bind_request_control(`id`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_bind_request_control(`id`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Long
-    external fun uniffi_monogram_mtproto_fn_func_cancel_request_control(
+    external fun uniffi_lunagram_mtproto_fn_func_cancel_request_control(
         `id`: Long, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_check_password(`handle`: Long,`password`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_check_password(`handle`: Long,`password`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_clear_active_dialog(
+    external fun uniffi_lunagram_mtproto_fn_func_clear_active_dialog(
         `handle`: Long, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_clear_proxy(
+    external fun uniffi_lunagram_mtproto_fn_func_clear_proxy(
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_client_api_id(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_client_api_id(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Int
-    external fun uniffi_monogram_mtproto_fn_func_client_exists(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_client_exists(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Byte
-    external fun uniffi_monogram_mtproto_fn_func_client_uses_test_dc(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_client_uses_test_dc(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Byte
-    external fun uniffi_monogram_mtproto_fn_func_connect(
+    external fun uniffi_lunagram_mtproto_fn_func_connect(
         `handle`: Long, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_contacts_search(`handle`: Long,`query`: RustBuffer.ByValue,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_contacts_search(`handle`: Long,`query`: RustBuffer.ByValue,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_create_client(`apiId`: Int,`apiHash`: RustBuffer.ByValue,`sessionPath`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_create_client(`apiId`: Int,`apiHash`: RustBuffer.ByValue,`sessionPath`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): Long
-    external fun uniffi_monogram_mtproto_fn_func_create_encrypted_client(`apiId`: Int,`apiHash`: RustBuffer.ByValue,`sessionPath`: RustBuffer.ByValue,`key`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_create_encrypted_client(`apiId`: Int,`apiHash`: RustBuffer.ByValue,`sessionPath`: RustBuffer.ByValue,`key`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): Long
-    external fun uniffi_monogram_mtproto_fn_func_create_lottie(`data`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_create_lottie(`data`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): Long
-    external fun uniffi_monogram_mtproto_fn_func_create_request_control(uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_create_request_control(uniffi_out_err: UniffiRustCallStatus,
     ): Long
-    external fun uniffi_monogram_mtproto_fn_func_create_vpx_decoder(uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_create_vpx_decoder(uniffi_out_err: UniffiRustCallStatus,
     ): Long
-    external fun uniffi_monogram_mtproto_fn_func_create_waveform(`durationUs`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_create_waveform(`durationUs`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Long
-    external fun uniffi_monogram_mtproto_fn_func_custom_emoji_is_free(`handle`: Long,`documentId`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_custom_emoji_is_free(`handle`: Long,`documentId`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Byte
-    external fun uniffi_monogram_mtproto_fn_func_decode_vpx_alpha_packet(`handle`: Long,`data`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_decode_vpx_alpha_packet(`handle`: Long,`data`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_decode_vpx_packet(`handle`: Long,`data`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_decode_vpx_packet(`handle`: Long,`data`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_decrypt_push_payload(`secret`: RustBuffer.ByValue,`payload`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_decrypt_push_payload(`secret`: RustBuffer.ByValue,`payload`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_delete_folder(
+    external fun uniffi_lunagram_mtproto_fn_func_delete_folder(
         `handle`: Long, `id`: Int, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_delete_message(
+    external fun uniffi_lunagram_mtproto_fn_func_delete_message(
         `handle`: Long,
         `chatId`: Long,
         `messageId`: Int,
@@ -1089,41 +1089,41 @@ internal object UniffiLib {
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_destroy_client(
+    external fun uniffi_lunagram_mtproto_fn_func_destroy_client(
         `handle`: Long, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_destroy_lottie(
+    external fun uniffi_lunagram_mtproto_fn_func_destroy_lottie(
         `handle`: Long, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_destroy_vpx_decoder(
+    external fun uniffi_lunagram_mtproto_fn_func_destroy_vpx_decoder(
         `handle`: Long, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_destroy_waveform(
+    external fun uniffi_lunagram_mtproto_fn_func_destroy_waveform(
         `handle`: Long, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_download_chunk_kib(uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_download_chunk_kib(uniffi_out_err: UniffiRustCallStatus,
     ): Int
-    external fun uniffi_monogram_mtproto_fn_func_download_concurrency(uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_download_concurrency(uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_download_custom_emoji(`handle`: Long,`documentId`: Long,`destPath`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_download_custom_emoji(`handle`: Long,`documentId`: Long,`destPath`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_download_message_display(`handle`: Long,`chatId`: Long,`messageId`: Int,`destPath`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_download_message_display(`handle`: Long,`chatId`: Long,`messageId`: Int,`destPath`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_download_message_media(`handle`: Long,`chatId`: Long,`messageId`: Int,`destPath`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_download_message_media(`handle`: Long,`chatId`: Long,`messageId`: Int,`destPath`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_download_message_media_chunk(`handle`: Long,`chatId`: Long,`messageId`: Int,`destPath`: RustBuffer.ByValue,`offset`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_download_message_media_chunk(`handle`: Long,`chatId`: Long,`messageId`: Int,`destPath`: RustBuffer.ByValue,`offset`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_download_message_thumb(`handle`: Long,`chatId`: Long,`messageId`: Int,`destPath`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_download_message_thumb(`handle`: Long,`chatId`: Long,`messageId`: Int,`destPath`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_download_wallpaper(`handle`: Long,`id`: Long,`accessHash`: Long,`destPath`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_download_wallpaper(`handle`: Long,`id`: Long,`accessHash`: Long,`destPath`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_drain_updates(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_drain_updates(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_edit_forum_topic_hidden(
+    external fun uniffi_lunagram_mtproto_fn_func_edit_forum_topic_hidden(
         `handle`: Long,
         `chatId`: Long,
         `topicId`: Int,
@@ -1131,127 +1131,127 @@ internal object UniffiLib {
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_edit_text_message(`handle`: Long,`chatId`: Long,`messageId`: Int,`text`: RustBuffer.ByValue,`entitiesJson`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_edit_text_message(`handle`: Long,`chatId`: Long,`messageId`: Int,`text`: RustBuffer.ByValue,`entitiesJson`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_finish_waveform(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_finish_waveform(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_forward_messages(`handle`: Long,`fromChatId`: Long,`messageIds`: RustBuffer.ByValue,`toChatId`: Long,`dropAuthor`: Byte,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_forward_messages(`handle`: Long,`fromChatId`: Long,`messageIds`: RustBuffer.ByValue,`toChatId`: Long,`dropAuthor`: Byte,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_all_stickers(`handle`: Long,`hash`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_all_stickers(`handle`: Long,`hash`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_bot_callback_answer(`handle`: Long,`chatId`: Long,`messageId`: Int,`dataHex`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_bot_callback_answer(`handle`: Long,`chatId`: Long,`messageId`: Int,`dataHex`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_chats(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_chats(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_common_chats(`handle`: Long,`userId`: Long,`maxId`: Long,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_common_chats(`handle`: Long,`userId`: Long,`maxId`: Long,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_discussion_message(`handle`: Long,`chatId`: Long,`messageId`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_discussion_message(`handle`: Long,`chatId`: Long,`messageId`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_emoji_stickers(`handle`: Long,`hash`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_emoji_stickers(`handle`: Long,`hash`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_folders(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_folders(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_forum_topics(`handle`: Long,`chatId`: Long,`offsetDate`: Int,`offsetId`: Int,`offsetTopic`: Int,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_forum_topics(`handle`: Long,`chatId`: Long,`offsetDate`: Int,`offsetId`: Int,`offsetTopic`: Int,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_forum_topics_by_id(`handle`: Long,`chatId`: Long,`topicIds`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_forum_topics_by_id(`handle`: Long,`chatId`: Long,`topicIds`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_group_admin_tags(`handle`: Long,`chatId`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_group_admin_tags(`handle`: Long,`chatId`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_history(`handle`: Long,`chatId`: Long,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_history(`handle`: Long,`chatId`: Long,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_history_page(`handle`: Long,`chatId`: Long,`limit`: Int,`offsetId`: Int,`offsetDate`: Int,`addOffset`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_history_page(`handle`: Long,`chatId`: Long,`limit`: Int,`offsetId`: Int,`offsetDate`: Int,`addOffset`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_inline_bot_results(`handle`: Long,`chatId`: Long,`botId`: Long,`query`: RustBuffer.ByValue,`offset`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_inline_bot_results(`handle`: Long,`chatId`: Long,`botId`: Long,`query`: RustBuffer.ByValue,`offset`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_message_reactions_list(`handle`: Long,`chatId`: Long,`messageId`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_message_reactions_list(`handle`: Long,`chatId`: Long,`messageId`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_message_read_participants(`handle`: Long,`chatId`: Long,`msgId`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_message_read_participants(`handle`: Long,`chatId`: Long,`msgId`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_notify_exceptions(`handle`: Long,`compareSound`: Byte,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_notify_exceptions(`handle`: Long,`compareSound`: Byte,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_notify_settings(`handle`: Long,`peerKind`: RustBuffer.ByValue,`chatId`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_notify_settings(`handle`: Long,`peerKind`: RustBuffer.ByValue,`chatId`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_outbox_read_date(`handle`: Long,`chatId`: Long,`msgId`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_outbox_read_date(`handle`: Long,`chatId`: Long,`msgId`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_participants(`handle`: Long,`chatId`: Long,`filter`: RustBuffer.ByValue,`query`: RustBuffer.ByValue,`offset`: Int,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_participants(`handle`: Long,`chatId`: Long,`filter`: RustBuffer.ByValue,`query`: RustBuffer.ByValue,`offset`: Int,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_pinned_messages(`handle`: Long,`chatId`: Long,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_pinned_messages(`handle`: Long,`chatId`: Long,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_poll_votes(`handle`: Long,`chatId`: Long,`messageId`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_poll_votes(`handle`: Long,`chatId`: Long,`messageId`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_profile(`handle`: Long,`peerId`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_profile(`handle`: Long,`peerId`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_read_receipt_config(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_read_receipt_config(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_recent_reactions(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_recent_reactions(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_replies(`handle`: Long,`chatId`: Long,`msgId`: Int,`limit`: Int,`offsetId`: Int,`addOffset`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_replies(`handle`: Long,`chatId`: Long,`msgId`: Int,`limit`: Int,`offsetId`: Int,`addOffset`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_saved_gifs(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_saved_gifs(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_search_counters(`handle`: Long,`chatId`: Long,`filters`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_search_counters(`handle`: Long,`chatId`: Long,`filters`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_sticker_pack(`handle`: Long,`documentId`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_sticker_pack(`handle`: Long,`documentId`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_sticker_set(`handle`: Long,`setId`: Long,`accessHash`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_sticker_set(`handle`: Long,`setId`: Long,`accessHash`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_stickers(`handle`: Long,`emoticon`: RustBuffer.ByValue,`hash`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_stickers(`handle`: Long,`emoticon`: RustBuffer.ByValue,`hash`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_unread_mentions(`handle`: Long,`chatId`: Long,`offsetId`: Int,`addOffset`: Int,`limit`: Int,`topMsgId`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_unread_mentions(`handle`: Long,`chatId`: Long,`offsetId`: Int,`addOffset`: Int,`limit`: Int,`topMsgId`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_unread_reactions(`handle`: Long,`chatId`: Long,`offsetId`: Int,`addOffset`: Int,`limit`: Int,`topMsgId`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_unread_reactions(`handle`: Long,`chatId`: Long,`offsetId`: Int,`addOffset`: Int,`limit`: Int,`topMsgId`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_updates_state(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_updates_state(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_wallpapers(`handle`: Long,`hash`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_wallpapers(`handle`: Long,`hash`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_web_page(`handle`: Long,`url`: RustBuffer.ByValue,`hash`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_web_page(`handle`: Long,`url`: RustBuffer.ByValue,`hash`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_get_web_page_preview(`handle`: Long,`message`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_get_web_page_preview(`handle`: Long,`message`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_is_authorized(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_is_authorized(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Byte
-    external fun uniffi_monogram_mtproto_fn_func_join_chat(`handle`: Long,`chatId`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_join_chat(`handle`: Long,`chatId`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_library_version(uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_library_version(uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_load_more_chats(`handle`: Long,`offsetDate`: Int,`offsetId`: Int,`offsetPeerId`: Long,`folderId`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_load_more_chats(`handle`: Long,`offsetDate`: Int,`offsetId`: Int,`offsetPeerId`: Long,`folderId`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_logout(
+    external fun uniffi_lunagram_mtproto_fn_func_logout(
         `handle`: Long, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_lottie_frame_count(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_lottie_frame_count(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Int
-    external fun uniffi_monogram_mtproto_fn_func_lottie_frame_rate(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_lottie_frame_rate(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Float
-    external fun uniffi_monogram_mtproto_fn_func_lottie_size(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_lottie_size(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_mark_dialog_unread(
+    external fun uniffi_lunagram_mtproto_fn_func_mark_dialog_unread(
         `handle`: Long, `chatId`: Long, `unread`: Byte, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_peek_message_inline_thumb(`handle`: Long,`chatId`: Long,`messageId`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_peek_message_inline_thumb(`handle`: Long,`chatId`: Long,`messageId`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_peek_peer_inline_thumb(`handle`: Long,`peerId`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_peek_peer_inline_thumb(`handle`: Long,`peerId`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_pending_update_batches(
+    external fun uniffi_lunagram_mtproto_fn_func_pending_update_batches(
         `handle`: Long, uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
 
-    external fun uniffi_monogram_mtproto_fn_func_perf_set_enabled(
+    external fun uniffi_lunagram_mtproto_fn_func_perf_set_enabled(
         `enabled`: Byte, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_perf_snapshot(`reset`: Byte,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_perf_snapshot(`reset`: Byte,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_ping_proxy(`kind`: RustBuffer.ByValue,`host`: RustBuffer.ByValue,`port`: Short,`username`: RustBuffer.ByValue,`password`: RustBuffer.ByValue,`secret`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_ping_proxy(`kind`: RustBuffer.ByValue,`host`: RustBuffer.ByValue,`port`: Short,`username`: RustBuffer.ByValue,`password`: RustBuffer.ByValue,`secret`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): Long
-    external fun uniffi_monogram_mtproto_fn_func_promote_request_control(
+    external fun uniffi_lunagram_mtproto_fn_func_promote_request_control(
         `id`: Long, `class`: Int, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_read_discussion(
+    external fun uniffi_lunagram_mtproto_fn_func_read_discussion(
         `handle`: Long,
         `chatId`: Long,
         `msgId`: Int,
@@ -1259,26 +1259,26 @@ internal object UniffiLib {
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_read_history(
+    external fun uniffi_lunagram_mtproto_fn_func_read_history(
         `handle`: Long, `chatId`: Long, `maxId`: Int, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_read_mentions(
+    external fun uniffi_lunagram_mtproto_fn_func_read_mentions(
         `handle`: Long, `chatId`: Long, `topMsgId`: Int, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_read_message_contents(
+    external fun uniffi_lunagram_mtproto_fn_func_read_message_contents(
         `handle`: Long,
         `chatId`: Long,
         `messageIds`: RustBuffer.ByValue,
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_read_reactions(
+    external fun uniffi_lunagram_mtproto_fn_func_read_reactions(
         `handle`: Long, `chatId`: Long, `topMsgId`: Int, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_register_device(
+    external fun uniffi_lunagram_mtproto_fn_func_register_device(
         `handle`: Long,
         `tokenType`: Int,
         `token`: RustBuffer.ByValue,
@@ -1289,33 +1289,33 @@ internal object UniffiLib {
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_release_request_control(
+    external fun uniffi_lunagram_mtproto_fn_func_release_request_control(
         `id`: Long, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_render_lottie_frame(`handle`: Long,`frame`: Float,`width`: Int,`height`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_render_lottie_frame(`handle`: Long,`frame`: Float,`width`: Int,`height`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_resend_auth_code(`handle`: Long,`phone`: RustBuffer.ByValue,`phoneCodeHash`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_resend_auth_code(`handle`: Long,`phone`: RustBuffer.ByValue,`phoneCodeHash`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_reset_notify_settings(
+    external fun uniffi_lunagram_mtproto_fn_func_reset_notify_settings(
         `handle`: Long, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_resolve_username(`handle`: Long,`username`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_resolve_username(`handle`: Long,`username`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_search_global(`handle`: Long,`query`: RustBuffer.ByValue,`offsetRate`: Int,`offsetPeerId`: Long,`offsetId`: Int,`limit`: Int,`folderId`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_search_global(`handle`: Long,`query`: RustBuffer.ByValue,`offsetRate`: Int,`offsetPeerId`: Long,`offsetId`: Int,`limit`: Int,`folderId`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_search_messages(`handle`: Long,`chatId`: Long,`query`: RustBuffer.ByValue,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_search_messages(`handle`: Long,`chatId`: Long,`query`: RustBuffer.ByValue,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_search_messages_filtered(`handle`: Long,`chatId`: Long,`query`: RustBuffer.ByValue,`filter`: RustBuffer.ByValue,`offsetId`: Int,`addOffset`: Int,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_search_messages_filtered(`handle`: Long,`chatId`: Long,`query`: RustBuffer.ByValue,`filter`: RustBuffer.ByValue,`offsetId`: Int,`addOffset`: Int,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_search_messages_page(`handle`: Long,`chatId`: Long,`query`: RustBuffer.ByValue,`filter`: RustBuffer.ByValue,`offsetId`: Int,`addOffset`: Int,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_search_messages_page(`handle`: Long,`chatId`: Long,`query`: RustBuffer.ByValue,`filter`: RustBuffer.ByValue,`offsetId`: Int,`addOffset`: Int,`limit`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_send_auth_code(`handle`: Long,`phone`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_send_auth_code(`handle`: Long,`phone`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_send_inline_bot_result(`handle`: Long,`chatId`: Long,`queryId`: Long,`resultId`: RustBuffer.ByValue,`replyToMsgId`: Int,`topMsgId`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_send_inline_bot_result(`handle`: Long,`chatId`: Long,`queryId`: Long,`resultId`: RustBuffer.ByValue,`replyToMsgId`: Int,`topMsgId`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_send_location(
+    external fun uniffi_lunagram_mtproto_fn_func_send_location(
         `handle`: Long,
         `chatId`: Long,
         `latitude`: Double,
@@ -1326,9 +1326,9 @@ internal object UniffiLib {
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_send_photo_message(`handle`: Long,`chatId`: Long,`path`: RustBuffer.ByValue,`caption`: RustBuffer.ByValue,`replyToMsgId`: Int,`topMsgId`: Int,`entitiesJson`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_send_photo_message(`handle`: Long,`chatId`: Long,`path`: RustBuffer.ByValue,`caption`: RustBuffer.ByValue,`replyToMsgId`: Int,`topMsgId`: Int,`entitiesJson`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_send_poll_vote(
+    external fun uniffi_lunagram_mtproto_fn_func_send_poll_vote(
         `handle`: Long,
         `chatId`: Long,
         `messageId`: Int,
@@ -1336,7 +1336,7 @@ internal object UniffiLib {
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_send_reaction(
+    external fun uniffi_lunagram_mtproto_fn_func_send_reaction(
         `handle`: Long,
         `chatId`: Long,
         `messageId`: Int,
@@ -1345,47 +1345,47 @@ internal object UniffiLib {
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_send_saved_gif(`handle`: Long,`chatId`: Long,`documentId`: Long,`replyToMsgId`: Int,`topMsgId`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_send_saved_gif(`handle`: Long,`chatId`: Long,`documentId`: Long,`replyToMsgId`: Int,`topMsgId`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_send_text_message(`handle`: Long,`chatId`: Long,`text`: RustBuffer.ByValue,`replyToMsgId`: Int,`entitiesJson`: RustBuffer.ByValue,`topMsgId`: Int,`webpageUrl`: RustBuffer.ByValue,`clientRandomId`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_send_text_message(`handle`: Long,`chatId`: Long,`text`: RustBuffer.ByValue,`replyToMsgId`: Int,`entitiesJson`: RustBuffer.ByValue,`topMsgId`: Int,`webpageUrl`: RustBuffer.ByValue,`clientRandomId`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_send_uploaded_album(`handle`: Long,`chatId`: Long,`items`: RustBuffer.ByValue,`replyToMsgId`: Int,`topMsgId`: Int,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_send_uploaded_album(`handle`: Long,`chatId`: Long,`items`: RustBuffer.ByValue,`replyToMsgId`: Int,`topMsgId`: Int,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_send_uploaded_media(`handle`: Long,`chatId`: Long,`item`: RustBuffer.ByValue,`replyToMsgId`: Int,`topMsgId`: Int,`entitiesJson`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_send_uploaded_media(`handle`: Long,`chatId`: Long,`item`: RustBuffer.ByValue,`replyToMsgId`: Int,`topMsgId`: Int,`entitiesJson`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_set_client_test_dc(
+    external fun uniffi_lunagram_mtproto_fn_func_set_client_test_dc(
         `handle`: Long, `test`: Byte, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_set_contact_joined_silent(
+    external fun uniffi_lunagram_mtproto_fn_func_set_contact_joined_silent(
         `handle`: Long, `silent`: Byte, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_set_dispatch_class(
+    external fun uniffi_lunagram_mtproto_fn_func_set_dispatch_class(
         `class`: Int, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_set_download_chunk_kib(
+    external fun uniffi_lunagram_mtproto_fn_func_set_download_chunk_kib(
         `kib`: Int, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_set_download_concurrency(
+    external fun uniffi_lunagram_mtproto_fn_func_set_download_concurrency(
         `lanes`: Int, `parts`: Int, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_set_download_progress_listener(
+    external fun uniffi_lunagram_mtproto_fn_func_set_download_progress_listener(
         `listener`: Long, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_set_file_part_kib(
+    external fun uniffi_lunagram_mtproto_fn_func_set_file_part_kib(
         `kib`: Int, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_set_init_connection_info(
+    external fun uniffi_lunagram_mtproto_fn_func_set_init_connection_info(
         `info`: RustBuffer.ByValue, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_set_proxy(
+    external fun uniffi_lunagram_mtproto_fn_func_set_proxy(
         `kind`: RustBuffer.ByValue,
         `host`: RustBuffer.ByValue,
         `port`: Short,
@@ -1395,21 +1395,21 @@ internal object UniffiLib {
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_set_transport_mode(
+    external fun uniffi_lunagram_mtproto_fn_func_set_transport_mode(
         `mode`: RustBuffer.ByValue, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_set_typing(
+    external fun uniffi_lunagram_mtproto_fn_func_set_typing(
         `handle`: Long, `chatId`: Long, `typing`: Byte, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_sign_in(`handle`: Long,`phone`: RustBuffer.ByValue,`phoneCodeHash`: RustBuffer.ByValue,`phoneCode`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun uniffi_lunagram_mtproto_fn_func_sign_in(`handle`: Long,`phone`: RustBuffer.ByValue,`phoneCodeHash`: RustBuffer.ByValue,`phoneCode`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun uniffi_monogram_mtproto_fn_func_start_updates(
+    external fun uniffi_lunagram_mtproto_fn_func_start_updates(
         `handle`: Long, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_toggle_todo_completed(
+    external fun uniffi_lunagram_mtproto_fn_func_toggle_todo_completed(
         `handle`: Long,
         `chatId`: Long,
         `messageId`: Int,
@@ -1418,11 +1418,11 @@ internal object UniffiLib {
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_unblock_user(
+    external fun uniffi_lunagram_mtproto_fn_func_unblock_user(
         `handle`: Long, `chatId`: Long, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_unregister_device(
+    external fun uniffi_lunagram_mtproto_fn_func_unregister_device(
         `handle`: Long,
         `tokenType`: Int,
         `token`: RustBuffer.ByValue,
@@ -1430,22 +1430,22 @@ internal object UniffiLib {
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_update_folder(
+    external fun uniffi_lunagram_mtproto_fn_func_update_folder(
         `handle`: Long, `folder`: RustBuffer.ByValue, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_update_folder_order(
+    external fun uniffi_lunagram_mtproto_fn_func_update_folder_order(
         `handle`: Long, `order`: RustBuffer.ByValue, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_update_lazy_sync_config(
+    external fun uniffi_lunagram_mtproto_fn_func_update_lazy_sync_config(
         `handle`: Long,
         `lazy`: Byte,
         `exceptions`: RustBuffer.ByValue,
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_update_notify_settings(
+    external fun uniffi_lunagram_mtproto_fn_func_update_notify_settings(
         `handle`: Long,
         `peerKind`: RustBuffer.ByValue,
         `chatId`: Long,
@@ -1457,187 +1457,187 @@ internal object UniffiLib {
         uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun uniffi_monogram_mtproto_fn_func_update_status(
+    external fun uniffi_lunagram_mtproto_fn_func_update_status(
         `handle`: Long, `offline`: Byte, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun ffi_monogram_mtproto_rustbuffer_alloc(`size`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun ffi_lunagram_mtproto_rustbuffer_alloc(`size`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun ffi_monogram_mtproto_rustbuffer_from_bytes(`bytes`: ForeignBytes.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    external fun ffi_lunagram_mtproto_rustbuffer_from_bytes(`bytes`: ForeignBytes.ByValue,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun ffi_monogram_mtproto_rustbuffer_free(
+    external fun ffi_lunagram_mtproto_rustbuffer_free(
         `buf`: RustBuffer.ByValue, uniffi_out_err: UniffiRustCallStatus,
     )
 
-    external fun ffi_monogram_mtproto_rustbuffer_reserve(`buf`: RustBuffer.ByValue,`additional`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun ffi_lunagram_mtproto_rustbuffer_reserve(`buf`: RustBuffer.ByValue,`additional`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun ffi_monogram_mtproto_rust_future_poll_u8(
+    external fun ffi_lunagram_mtproto_rust_future_poll_u8(
         `handle`: Long, `callback`: UniffiRustFutureContinuationCallback, `callbackData`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_cancel_u8(
+    external fun ffi_lunagram_mtproto_rust_future_cancel_u8(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_free_u8(
+    external fun ffi_lunagram_mtproto_rust_future_free_u8(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_complete_u8(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun ffi_lunagram_mtproto_rust_future_complete_u8(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Int
-    external fun ffi_monogram_mtproto_rust_future_poll_i8(
+    external fun ffi_lunagram_mtproto_rust_future_poll_i8(
         `handle`: Long, `callback`: UniffiRustFutureContinuationCallback, `callbackData`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_cancel_i8(
+    external fun ffi_lunagram_mtproto_rust_future_cancel_i8(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_free_i8(
+    external fun ffi_lunagram_mtproto_rust_future_free_i8(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_complete_i8(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun ffi_lunagram_mtproto_rust_future_complete_i8(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Byte
-    external fun ffi_monogram_mtproto_rust_future_poll_u16(
+    external fun ffi_lunagram_mtproto_rust_future_poll_u16(
         `handle`: Long, `callback`: UniffiRustFutureContinuationCallback, `callbackData`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_cancel_u16(
+    external fun ffi_lunagram_mtproto_rust_future_cancel_u16(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_free_u16(
+    external fun ffi_lunagram_mtproto_rust_future_free_u16(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_complete_u16(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun ffi_lunagram_mtproto_rust_future_complete_u16(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Int
-    external fun ffi_monogram_mtproto_rust_future_poll_i16(
+    external fun ffi_lunagram_mtproto_rust_future_poll_i16(
         `handle`: Long, `callback`: UniffiRustFutureContinuationCallback, `callbackData`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_cancel_i16(
+    external fun ffi_lunagram_mtproto_rust_future_cancel_i16(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_free_i16(
+    external fun ffi_lunagram_mtproto_rust_future_free_i16(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_complete_i16(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun ffi_lunagram_mtproto_rust_future_complete_i16(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Short
-    external fun ffi_monogram_mtproto_rust_future_poll_u32(
+    external fun ffi_lunagram_mtproto_rust_future_poll_u32(
         `handle`: Long, `callback`: UniffiRustFutureContinuationCallback, `callbackData`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_cancel_u32(
+    external fun ffi_lunagram_mtproto_rust_future_cancel_u32(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_free_u32(
+    external fun ffi_lunagram_mtproto_rust_future_free_u32(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_complete_u32(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun ffi_lunagram_mtproto_rust_future_complete_u32(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Int
-    external fun ffi_monogram_mtproto_rust_future_poll_i32(
+    external fun ffi_lunagram_mtproto_rust_future_poll_i32(
         `handle`: Long, `callback`: UniffiRustFutureContinuationCallback, `callbackData`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_cancel_i32(
+    external fun ffi_lunagram_mtproto_rust_future_cancel_i32(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_free_i32(
+    external fun ffi_lunagram_mtproto_rust_future_free_i32(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_complete_i32(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun ffi_lunagram_mtproto_rust_future_complete_i32(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Int
-    external fun ffi_monogram_mtproto_rust_future_poll_u64(
+    external fun ffi_lunagram_mtproto_rust_future_poll_u64(
         `handle`: Long, `callback`: UniffiRustFutureContinuationCallback, `callbackData`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_cancel_u64(
+    external fun ffi_lunagram_mtproto_rust_future_cancel_u64(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_free_u64(
+    external fun ffi_lunagram_mtproto_rust_future_free_u64(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_complete_u64(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun ffi_lunagram_mtproto_rust_future_complete_u64(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Long
-    external fun ffi_monogram_mtproto_rust_future_poll_i64(
+    external fun ffi_lunagram_mtproto_rust_future_poll_i64(
         `handle`: Long, `callback`: UniffiRustFutureContinuationCallback, `callbackData`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_cancel_i64(
+    external fun ffi_lunagram_mtproto_rust_future_cancel_i64(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_free_i64(
+    external fun ffi_lunagram_mtproto_rust_future_free_i64(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_complete_i64(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun ffi_lunagram_mtproto_rust_future_complete_i64(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Long
-    external fun ffi_monogram_mtproto_rust_future_poll_f32(
+    external fun ffi_lunagram_mtproto_rust_future_poll_f32(
         `handle`: Long, `callback`: UniffiRustFutureContinuationCallback, `callbackData`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_cancel_f32(
+    external fun ffi_lunagram_mtproto_rust_future_cancel_f32(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_free_f32(
+    external fun ffi_lunagram_mtproto_rust_future_free_f32(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_complete_f32(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun ffi_lunagram_mtproto_rust_future_complete_f32(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Float
-    external fun ffi_monogram_mtproto_rust_future_poll_f64(
+    external fun ffi_lunagram_mtproto_rust_future_poll_f64(
         `handle`: Long, `callback`: UniffiRustFutureContinuationCallback, `callbackData`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_cancel_f64(
+    external fun ffi_lunagram_mtproto_rust_future_cancel_f64(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_free_f64(
+    external fun ffi_lunagram_mtproto_rust_future_free_f64(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_complete_f64(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun ffi_lunagram_mtproto_rust_future_complete_f64(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): Double
-    external fun ffi_monogram_mtproto_rust_future_poll_rust_buffer(
+    external fun ffi_lunagram_mtproto_rust_future_poll_rust_buffer(
         `handle`: Long, `callback`: UniffiRustFutureContinuationCallback, `callbackData`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_cancel_rust_buffer(
+    external fun ffi_lunagram_mtproto_rust_future_cancel_rust_buffer(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_free_rust_buffer(
+    external fun ffi_lunagram_mtproto_rust_future_free_rust_buffer(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_complete_rust_buffer(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
+    external fun ffi_lunagram_mtproto_rust_future_complete_rust_buffer(`handle`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
-    external fun ffi_monogram_mtproto_rust_future_poll_void(
+    external fun ffi_lunagram_mtproto_rust_future_poll_void(
         `handle`: Long, `callback`: UniffiRustFutureContinuationCallback, `callbackData`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_cancel_void(
+    external fun ffi_lunagram_mtproto_rust_future_cancel_void(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_free_void(
+    external fun ffi_lunagram_mtproto_rust_future_free_void(
         `handle`: Long,
     )
 
-    external fun ffi_monogram_mtproto_rust_future_complete_void(
+    external fun ffi_lunagram_mtproto_rust_future_complete_void(
         `handle`: Long, uniffi_out_err: UniffiRustCallStatus,
     )
 
@@ -1648,437 +1648,437 @@ private fun uniffiCheckContractApiVersion(lib: IntegrityCheckingUniffiLib) {
     // Get the bindings contract version from our ComponentInterface
     val bindings_contract_version = 30
     // Get the scaffolding contract version by calling the into the dylib
-    val scaffolding_contract_version = lib.ffi_monogram_mtproto_uniffi_contract_version()
+    val scaffolding_contract_version = lib.ffi_lunagram_mtproto_uniffi_contract_version()
     if (bindings_contract_version != scaffolding_contract_version) {
         throw RuntimeException("UniFFI contract version mismatch: try cleaning and rebuilding your project")
     }
 }
 @Suppress("UNUSED_PARAMETER")
 private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
-    if ((lib.uniffi_monogram_mtproto_checksum_func_acknowledge_update_batch() and 0xFFFF) != 5843) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_acknowledge_update_batch() and 0xFFFF) != 5843) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_add_waveform_pcm() and 0xFFFF) != 55780) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_add_waveform_pcm() and 0xFFFF) != 55780) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_animated_emoji_max() and 0xFFFF) != 64831) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_animated_emoji_max() and 0xFFFF) != 64831) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_append_todo_items() and 0xFFFF) != 40508) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_append_todo_items() and 0xFFFF) != 40508) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_bind_request_control() and 0xFFFF) != 25628) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_bind_request_control() and 0xFFFF) != 25628) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_cancel_request_control() and 0xFFFF) != 16061) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_cancel_request_control() and 0xFFFF) != 16061) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_check_password() and 0xFFFF) != 43940) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_check_password() and 0xFFFF) != 43940) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_clear_active_dialog() and 0xFFFF) != 35684) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_clear_active_dialog() and 0xFFFF) != 35684) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_clear_proxy() and 0xFFFF) != 9892) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_clear_proxy() and 0xFFFF) != 9892) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_client_api_id() and 0xFFFF) != 53318) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_client_api_id() and 0xFFFF) != 53318) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_client_exists() and 0xFFFF) != 36467) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_client_exists() and 0xFFFF) != 36467) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_client_uses_test_dc() and 0xFFFF) != 18591) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_client_uses_test_dc() and 0xFFFF) != 18591) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_connect() and 0xFFFF) != 33063) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_connect() and 0xFFFF) != 33063) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_contacts_search() and 0xFFFF) != 47716) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_contacts_search() and 0xFFFF) != 47716) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_create_client() and 0xFFFF) != 12667) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_create_client() and 0xFFFF) != 12667) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_create_encrypted_client() and 0xFFFF) != 41140) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_create_encrypted_client() and 0xFFFF) != 41140) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_create_lottie() and 0xFFFF) != 23625) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_create_lottie() and 0xFFFF) != 23625) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_create_request_control() and 0xFFFF) != 3332) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_create_request_control() and 0xFFFF) != 3332) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_create_vpx_decoder() and 0xFFFF) != 63512) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_create_vpx_decoder() and 0xFFFF) != 63512) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_create_waveform() and 0xFFFF) != 24355) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_create_waveform() and 0xFFFF) != 24355) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_custom_emoji_is_free() and 0xFFFF) != 48167) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_custom_emoji_is_free() and 0xFFFF) != 48167) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_decode_vpx_alpha_packet() and 0xFFFF) != 29097) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_decode_vpx_alpha_packet() and 0xFFFF) != 29097) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_decode_vpx_packet() and 0xFFFF) != 27223) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_decode_vpx_packet() and 0xFFFF) != 27223) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_decrypt_push_payload() and 0xFFFF) != 44009) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_decrypt_push_payload() and 0xFFFF) != 44009) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_delete_folder() and 0xFFFF) != 5985) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_delete_folder() and 0xFFFF) != 5985) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_delete_message() and 0xFFFF) != 62832) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_delete_message() and 0xFFFF) != 62832) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_destroy_client() and 0xFFFF) != 9968) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_destroy_client() and 0xFFFF) != 9968) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_destroy_lottie() and 0xFFFF) != 20966) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_destroy_lottie() and 0xFFFF) != 20966) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_destroy_vpx_decoder() and 0xFFFF) != 65432) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_destroy_vpx_decoder() and 0xFFFF) != 65432) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_destroy_waveform() and 0xFFFF) != 61308) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_destroy_waveform() and 0xFFFF) != 61308) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_download_chunk_kib() and 0xFFFF) != 41354) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_download_chunk_kib() and 0xFFFF) != 41354) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_download_concurrency() and 0xFFFF) != 62399) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_download_concurrency() and 0xFFFF) != 62399) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_download_custom_emoji() and 0xFFFF) != 54633) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_download_custom_emoji() and 0xFFFF) != 54633) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_download_message_display() and 0xFFFF) != 24775) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_download_message_display() and 0xFFFF) != 24775) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_download_message_media() and 0xFFFF) != 18708) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_download_message_media() and 0xFFFF) != 18708) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_download_message_media_chunk() and 0xFFFF) != 46836) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_download_message_media_chunk() and 0xFFFF) != 46836) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_download_message_thumb() and 0xFFFF) != 47960) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_download_message_thumb() and 0xFFFF) != 47960) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_download_wallpaper() and 0xFFFF) != 51704) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_download_wallpaper() and 0xFFFF) != 51704) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_drain_updates() and 0xFFFF) != 3845) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_drain_updates() and 0xFFFF) != 3845) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_edit_forum_topic_hidden() and 0xFFFF) != 27878) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_edit_forum_topic_hidden() and 0xFFFF) != 27878) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_edit_text_message() and 0xFFFF) != 17813) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_edit_text_message() and 0xFFFF) != 17813) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_finish_waveform() and 0xFFFF) != 21863) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_finish_waveform() and 0xFFFF) != 21863) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_forward_messages() and 0xFFFF) != 63264) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_forward_messages() and 0xFFFF) != 63264) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_all_stickers() and 0xFFFF) != 28474) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_all_stickers() and 0xFFFF) != 28474) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_bot_callback_answer() and 0xFFFF) != 36176) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_bot_callback_answer() and 0xFFFF) != 36176) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_chats() and 0xFFFF) != 2402) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_chats() and 0xFFFF) != 2402) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_common_chats() and 0xFFFF) != 43261) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_common_chats() and 0xFFFF) != 43261) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_discussion_message() and 0xFFFF) != 11564) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_discussion_message() and 0xFFFF) != 11564) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_emoji_stickers() and 0xFFFF) != 38746) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_emoji_stickers() and 0xFFFF) != 38746) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_folders() and 0xFFFF) != 19095) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_folders() and 0xFFFF) != 19095) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_forum_topics() and 0xFFFF) != 13834) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_forum_topics() and 0xFFFF) != 13834) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_forum_topics_by_id() and 0xFFFF) != 62) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_forum_topics_by_id() and 0xFFFF) != 62) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_group_admin_tags() and 0xFFFF) != 1706) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_group_admin_tags() and 0xFFFF) != 1706) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_history() and 0xFFFF) != 13617) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_history() and 0xFFFF) != 13617) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_history_page() and 0xFFFF) != 29925) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_history_page() and 0xFFFF) != 29925) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_inline_bot_results() and 0xFFFF) != 54626) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_inline_bot_results() and 0xFFFF) != 54626) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_message_reactions_list() and 0xFFFF) != 31437) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_message_reactions_list() and 0xFFFF) != 31437) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_message_read_participants() and 0xFFFF) != 5263) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_message_read_participants() and 0xFFFF) != 5263) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_notify_exceptions() and 0xFFFF) != 22307) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_notify_exceptions() and 0xFFFF) != 22307) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_notify_settings() and 0xFFFF) != 43188) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_notify_settings() and 0xFFFF) != 43188) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_outbox_read_date() and 0xFFFF) != 9840) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_outbox_read_date() and 0xFFFF) != 9840) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_participants() and 0xFFFF) != 24154) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_participants() and 0xFFFF) != 24154) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_pinned_messages() and 0xFFFF) != 64998) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_pinned_messages() and 0xFFFF) != 64998) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_poll_votes() and 0xFFFF) != 47527) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_poll_votes() and 0xFFFF) != 47527) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_profile() and 0xFFFF) != 47208) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_profile() and 0xFFFF) != 47208) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_read_receipt_config() and 0xFFFF) != 31036) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_read_receipt_config() and 0xFFFF) != 31036) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_recent_reactions() and 0xFFFF) != 63454) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_recent_reactions() and 0xFFFF) != 63454) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_replies() and 0xFFFF) != 57661) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_replies() and 0xFFFF) != 57661) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_saved_gifs() and 0xFFFF) != 25721) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_saved_gifs() and 0xFFFF) != 25721) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_search_counters() and 0xFFFF) != 938) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_search_counters() and 0xFFFF) != 938) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_sticker_pack() and 0xFFFF) != 26753) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_sticker_pack() and 0xFFFF) != 26753) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_sticker_set() and 0xFFFF) != 56037) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_sticker_set() and 0xFFFF) != 56037) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_stickers() and 0xFFFF) != 17127) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_stickers() and 0xFFFF) != 17127) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_unread_mentions() and 0xFFFF) != 6529) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_unread_mentions() and 0xFFFF) != 6529) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_unread_reactions() and 0xFFFF) != 29271) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_unread_reactions() and 0xFFFF) != 29271) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_updates_state() and 0xFFFF) != 39105) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_updates_state() and 0xFFFF) != 39105) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_wallpapers() and 0xFFFF) != 22668) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_wallpapers() and 0xFFFF) != 22668) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_web_page() and 0xFFFF) != 28449) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_web_page() and 0xFFFF) != 28449) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_get_web_page_preview() and 0xFFFF) != 55665) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_get_web_page_preview() and 0xFFFF) != 55665) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_is_authorized() and 0xFFFF) != 9962) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_is_authorized() and 0xFFFF) != 9962) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_join_chat() and 0xFFFF) != 24402) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_join_chat() and 0xFFFF) != 24402) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_library_version() and 0xFFFF) != 52652) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_library_version() and 0xFFFF) != 52652) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_load_more_chats() and 0xFFFF) != 44522) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_load_more_chats() and 0xFFFF) != 44522) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_logout() and 0xFFFF) != 21984) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_logout() and 0xFFFF) != 21984) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_lottie_frame_count() and 0xFFFF) != 29890) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_lottie_frame_count() and 0xFFFF) != 29890) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_lottie_frame_rate() and 0xFFFF) != 17829) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_lottie_frame_rate() and 0xFFFF) != 17829) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_lottie_size() and 0xFFFF) != 51151) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_lottie_size() and 0xFFFF) != 51151) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_mark_dialog_unread() and 0xFFFF) != 40354) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_mark_dialog_unread() and 0xFFFF) != 40354) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_peek_message_inline_thumb() and 0xFFFF) != 34494) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_peek_message_inline_thumb() and 0xFFFF) != 34494) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_peek_peer_inline_thumb() and 0xFFFF) != 63664) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_peek_peer_inline_thumb() and 0xFFFF) != 63664) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_pending_update_batches() and 0xFFFF) != 10802) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_pending_update_batches() and 0xFFFF) != 10802) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_perf_set_enabled() and 0xFFFF) != 49824) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_perf_set_enabled() and 0xFFFF) != 49824) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_perf_snapshot() and 0xFFFF) != 54140) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_perf_snapshot() and 0xFFFF) != 54140) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_ping_proxy() and 0xFFFF) != 46980) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_ping_proxy() and 0xFFFF) != 46980) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_promote_request_control() and 0xFFFF) != 59110) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_promote_request_control() and 0xFFFF) != 59110) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_read_discussion() and 0xFFFF) != 59067) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_read_discussion() and 0xFFFF) != 59067) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_read_history() and 0xFFFF) != 10555) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_read_history() and 0xFFFF) != 10555) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_read_mentions() and 0xFFFF) != 64260) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_read_mentions() and 0xFFFF) != 64260) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_read_message_contents() and 0xFFFF) != 9777) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_read_message_contents() and 0xFFFF) != 9777) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_read_reactions() and 0xFFFF) != 29510) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_read_reactions() and 0xFFFF) != 29510) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_register_device() and 0xFFFF) != 43379) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_register_device() and 0xFFFF) != 43379) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_release_request_control() and 0xFFFF) != 4655) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_release_request_control() and 0xFFFF) != 4655) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_render_lottie_frame() and 0xFFFF) != 49231) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_render_lottie_frame() and 0xFFFF) != 49231) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_resend_auth_code() and 0xFFFF) != 22197) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_resend_auth_code() and 0xFFFF) != 22197) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_reset_notify_settings() and 0xFFFF) != 13731) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_reset_notify_settings() and 0xFFFF) != 13731) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_resolve_username() and 0xFFFF) != 49790) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_resolve_username() and 0xFFFF) != 49790) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_search_global() and 0xFFFF) != 25087) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_search_global() and 0xFFFF) != 25087) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_search_messages() and 0xFFFF) != 1768) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_search_messages() and 0xFFFF) != 1768) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_search_messages_filtered() and 0xFFFF) != 57700) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_search_messages_filtered() and 0xFFFF) != 57700) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_search_messages_page() and 0xFFFF) != 57507) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_search_messages_page() and 0xFFFF) != 57507) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_send_auth_code() and 0xFFFF) != 8829) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_send_auth_code() and 0xFFFF) != 8829) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_send_inline_bot_result() and 0xFFFF) != 10143) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_send_inline_bot_result() and 0xFFFF) != 10143) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_send_location() and 0xFFFF) != 5819) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_send_location() and 0xFFFF) != 5819) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_send_photo_message() and 0xFFFF) != 43362) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_send_photo_message() and 0xFFFF) != 43362) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_send_poll_vote() and 0xFFFF) != 17828) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_send_poll_vote() and 0xFFFF) != 17828) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_send_reaction() and 0xFFFF) != 64471) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_send_reaction() and 0xFFFF) != 64471) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_send_saved_gif() and 0xFFFF) != 47209) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_send_saved_gif() and 0xFFFF) != 47209) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_send_text_message() and 0xFFFF) != 30448) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_send_text_message() and 0xFFFF) != 30448) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_send_uploaded_album() and 0xFFFF) != 30233) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_send_uploaded_album() and 0xFFFF) != 30233) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_send_uploaded_media() and 0xFFFF) != 20720) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_send_uploaded_media() and 0xFFFF) != 20720) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_set_client_test_dc() and 0xFFFF) != 26005) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_set_client_test_dc() and 0xFFFF) != 26005) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_set_contact_joined_silent() and 0xFFFF) != 37991) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_set_contact_joined_silent() and 0xFFFF) != 37991) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_set_dispatch_class() and 0xFFFF) != 54615) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_set_dispatch_class() and 0xFFFF) != 54615) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_set_download_chunk_kib() and 0xFFFF) != 26348) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_set_download_chunk_kib() and 0xFFFF) != 26348) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_set_download_concurrency() and 0xFFFF) != 39908) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_set_download_concurrency() and 0xFFFF) != 39908) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_set_download_progress_listener() and 0xFFFF) != 23308) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_set_download_progress_listener() and 0xFFFF) != 23308) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_set_file_part_kib() and 0xFFFF) != 34374) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_set_file_part_kib() and 0xFFFF) != 34374) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_set_init_connection_info() and 0xFFFF) != 33347) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_set_init_connection_info() and 0xFFFF) != 33347) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_set_proxy() and 0xFFFF) != 39093) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_set_proxy() and 0xFFFF) != 39093) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_set_transport_mode() and 0xFFFF) != 17640) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_set_transport_mode() and 0xFFFF) != 17640) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_set_typing() and 0xFFFF) != 45608) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_set_typing() and 0xFFFF) != 45608) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_sign_in() and 0xFFFF) != 6295) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_sign_in() and 0xFFFF) != 6295) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_start_updates() and 0xFFFF) != 56295) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_start_updates() and 0xFFFF) != 56295) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_toggle_todo_completed() and 0xFFFF) != 1354) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_toggle_todo_completed() and 0xFFFF) != 1354) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_unblock_user() and 0xFFFF) != 9472) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_unblock_user() and 0xFFFF) != 9472) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_unregister_device() and 0xFFFF) != 63407) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_unregister_device() and 0xFFFF) != 63407) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_update_folder() and 0xFFFF) != 37089) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_update_folder() and 0xFFFF) != 37089) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_update_folder_order() and 0xFFFF) != 46483) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_update_folder_order() and 0xFFFF) != 46483) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_update_lazy_sync_config() and 0xFFFF) != 64388) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_update_lazy_sync_config() and 0xFFFF) != 64388) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_update_notify_settings() and 0xFFFF) != 40937) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_update_notify_settings() and 0xFFFF) != 40937) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_func_update_status() and 0xFFFF) != 57001) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_func_update_status() and 0xFFFF) != 57001) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if ((lib.uniffi_monogram_mtproto_checksum_method_downloadprogresslistener_on_progress() and 0xFFFF) != 19749) {
+    if ((lib.uniffi_lunagram_mtproto_checksum_method_downloadprogresslistener_on_progress() and 0xFFFF) != 19749) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
 }
@@ -5780,7 +5780,7 @@ internal object uniffiCallbackInterfaceDownloadProgressListener {
     // Registers the foreign callback with the Rust side.
     // This method is generated for each callback interface.
     internal fun register(lib: UniffiLib) {
-        lib.uniffi_monogram_mtproto_fn_init_callback_vtable_downloadprogresslistener(vtable)
+        lib.uniffi_lunagram_mtproto_fn_init_callback_vtable_downloadprogresslistener(vtable)
     }
 }
 
@@ -6730,7 +6730,7 @@ fun `acknowledgeUpdateBatch`(
     `batchId`: Long
 ) =
     uniffiRustCallWithError(MtprotoException) { _status ->
-        UniffiLib.uniffi_monogram_mtproto_fn_func_acknowledge_update_batch(
+        UniffiLib.uniffi_lunagram_mtproto_fn_func_acknowledge_update_batch(
 
 
             FfiConverterULong.lower(`handle`),
@@ -6750,7 +6750,7 @@ fun `addWaveformPcm`(
 )
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_add_waveform_pcm(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_add_waveform_pcm(
 
 
         FfiConverterULong.lower(`handle`),
@@ -6765,7 +6765,7 @@ fun `addWaveformPcm`(
 fun `animatedEmojiMax`(`handle`: ULong): Int {
             return FfiConverterInt.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_animated_emoji_max(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_animated_emoji_max(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -6784,7 +6784,7 @@ fun `appendTodoItems`(
 )
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_append_todo_items(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_append_todo_items(
 
 
         FfiConverterULong.lower(`handle`),
@@ -6798,7 +6798,7 @@ fun `appendTodoItems`(
 fun `bindRequestControl`(`id`: ULong): ULong {
             return FfiConverterULong.lift(
                 uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_bind_request_control(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_bind_request_control(
 
 
         FfiConverterULong.lower(`id`),_status)
@@ -6809,7 +6809,7 @@ fun `bindRequestControl`(`id`: ULong): ULong {
 fun `cancelRequestControl`(`id`: ULong)
         =
     uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_cancel_request_control(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_cancel_request_control(
 
 
         FfiConverterULong.lower(`id`),_status)
@@ -6820,7 +6820,7 @@ fun `cancelRequestControl`(`id`: ULong)
 fun `checkPassword`(`handle`: ULong, `password`: String): AuthSignedIn {
             return FfiConverterTypeAuthSignedIn.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_check_password(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_check_password(
 
 
         FfiConverterULong.lower(`handle`),
@@ -6834,7 +6834,7 @@ fun `checkPassword`(`handle`: ULong, `password`: String): AuthSignedIn {
 fun `clearActiveDialog`(`handle`: ULong)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_clear_active_dialog(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_clear_active_dialog(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -6845,7 +6845,7 @@ fun `clearActiveDialog`(`handle`: ULong)
     @Throws(MtprotoException::class) fun `clearProxy`()
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_clear_proxy(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_clear_proxy(
 
         _status)
 }
@@ -6854,7 +6854,7 @@ fun `clearActiveDialog`(`handle`: ULong)
 fun `clientApiId`(`handle`: ULong): Int {
             return FfiConverterInt.lift(
                 uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_client_api_id(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_client_api_id(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -6865,7 +6865,7 @@ fun `clientApiId`(`handle`: ULong): Int {
 fun `clientExists`(`handle`: ULong): Boolean {
             return FfiConverterBoolean.lift(
                 uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_client_exists(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_client_exists(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -6876,7 +6876,7 @@ fun `clientExists`(`handle`: ULong): Boolean {
 fun `clientUsesTestDc`(`handle`: ULong): Boolean {
             return FfiConverterBoolean.lift(
                 uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_client_uses_test_dc(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_client_uses_test_dc(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -6889,7 +6889,7 @@ fun `clientUsesTestDc`(`handle`: ULong): Boolean {
 fun `connect`(`handle`: ULong)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_connect(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_connect(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -6904,7 +6904,7 @@ fun `contactsSearch`(
 ): ContactsSearchDto {
             return FfiConverterTypeContactsSearchDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_contacts_search(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_contacts_search(
 
 
         FfiConverterULong.lower(`handle`),
@@ -6921,7 +6921,7 @@ fun `createClient`(
 ): ULong {
             return FfiConverterULong.lift(
                 uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_create_client(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_create_client(
 
 
         FfiConverterInt.lower(`apiId`),
@@ -6941,7 +6941,7 @@ fun `createEncryptedClient`(
 ): ULong {
             return FfiConverterULong.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_create_encrypted_client(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_create_encrypted_client(
 
 
         FfiConverterInt.lower(`apiId`),
@@ -6957,7 +6957,7 @@ fun `createEncryptedClient`(
 fun `createLottie`(`data`: ByteArray): ULong {
             return FfiConverterULong.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_create_lottie(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_create_lottie(
 
 
         FfiConverterByteArray.lower(`data`),_status)
@@ -6968,7 +6968,7 @@ fun `createLottie`(`data`: ByteArray): ULong {
 fun `createRequestControl`(): ULong {
             return FfiConverterULong.lift(
                 uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_create_request_control(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_create_request_control(
 
         _status)
 }
@@ -6980,7 +6980,7 @@ fun `createRequestControl`(): ULong {
 fun `createVpxDecoder`(): ULong {
             return FfiConverterULong.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_create_vpx_decoder(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_create_vpx_decoder(
 
         _status)
 }
@@ -6992,7 +6992,7 @@ fun `createVpxDecoder`(): ULong {
 fun `createWaveform`(`durationUs`: ULong): ULong {
             return FfiConverterULong.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_create_waveform(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_create_waveform(
 
 
         FfiConverterULong.lower(`durationUs`),_status)
@@ -7005,7 +7005,7 @@ fun `createWaveform`(`durationUs`: ULong): ULong {
 fun `customEmojiIsFree`(`handle`: ULong, `documentId`: Long): Boolean {
             return FfiConverterBoolean.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_custom_emoji_is_free(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_custom_emoji_is_free(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7019,7 +7019,7 @@ fun `customEmojiIsFree`(`handle`: ULong, `documentId`: Long): Boolean {
 fun `decodeVpxAlphaPacket`(`handle`: ULong, `data`: ByteArray): VpxAlphaFrame? {
             return FfiConverterOptionalTypeVpxAlphaFrame.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_decode_vpx_alpha_packet(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_decode_vpx_alpha_packet(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7033,7 +7033,7 @@ fun `decodeVpxAlphaPacket`(`handle`: ULong, `data`: ByteArray): VpxAlphaFrame? {
 fun `decodeVpxPacket`(`handle`: ULong, `data`: ByteArray): VpxFrame? {
             return FfiConverterOptionalTypeVpxFrame.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_decode_vpx_packet(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_decode_vpx_packet(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7047,7 +7047,7 @@ fun `decodeVpxPacket`(`handle`: ULong, `data`: ByteArray): VpxFrame? {
 fun `decryptPushPayload`(`secret`: ByteArray, `payload`: String): String {
             return FfiConverterString.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_decrypt_push_payload(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_decrypt_push_payload(
 
 
         FfiConverterByteArray.lower(`secret`),
@@ -7061,7 +7061,7 @@ fun `decryptPushPayload`(`secret`: ByteArray, `payload`: String): String {
 fun `deleteFolder`(`handle`: ULong, `id`: Int)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_delete_folder(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_delete_folder(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7078,7 +7078,7 @@ fun `deleteMessage`(
 )
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_delete_message(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_delete_message(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7091,7 +7091,7 @@ fun `deleteMessage`(
 fun `destroyClient`(`handle`: ULong)
         =
     uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_destroy_client(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_destroy_client(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -7101,7 +7101,7 @@ fun `destroyClient`(`handle`: ULong)
 fun `destroyLottie`(`handle`: ULong)
         =
     uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_destroy_lottie(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_destroy_lottie(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -7111,7 +7111,7 @@ fun `destroyLottie`(`handle`: ULong)
 fun `destroyVpxDecoder`(`handle`: ULong)
         =
     uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_destroy_vpx_decoder(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_destroy_vpx_decoder(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -7121,7 +7121,7 @@ fun `destroyVpxDecoder`(`handle`: ULong)
 fun `destroyWaveform`(`handle`: ULong)
         =
     uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_destroy_waveform(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_destroy_waveform(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -7131,7 +7131,7 @@ fun `destroyWaveform`(`handle`: ULong)
 fun `downloadChunkKib`(): Int {
             return FfiConverterInt.lift(
                 uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_download_chunk_kib(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_download_chunk_kib(
 
         _status)
 }
@@ -7141,7 +7141,7 @@ fun `downloadChunkKib`(): Int {
 fun `downloadConcurrency`(): List<Int> {
             return FfiConverterSequenceInt.lift(
                 uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_download_concurrency(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_download_concurrency(
 
         _status)
 }
@@ -7157,7 +7157,7 @@ fun `downloadCustomEmoji`(
 ): String {
             return FfiConverterString.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_download_custom_emoji(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_download_custom_emoji(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7177,7 +7177,7 @@ fun `downloadMessageDisplay`(
 ): String {
             return FfiConverterString.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_download_message_display(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_download_message_display(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7198,7 +7198,7 @@ fun `downloadMessageMedia`(
 ): String {
             return FfiConverterString.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_download_message_media(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_download_message_media(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7220,7 +7220,7 @@ fun `downloadMessageMediaChunk`(
 ): String {
             return FfiConverterString.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_download_message_media_chunk(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_download_message_media_chunk(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7242,7 +7242,7 @@ fun `downloadMessageThumb`(
 ): String {
             return FfiConverterString.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_download_message_thumb(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_download_message_thumb(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7263,7 +7263,7 @@ fun `downloadWallpaper`(
 ): String {
             return FfiConverterString.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_download_wallpaper(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_download_wallpaper(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7279,7 +7279,7 @@ fun `downloadWallpaper`(
 fun `drainUpdates`(`handle`: ULong): UpdateDrainDto {
     return FfiConverterTypeUpdateDrainDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_drain_updates(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_drain_updates(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -7297,7 +7297,7 @@ fun `editForumTopicHidden`(
 )
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_edit_forum_topic_hidden(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_edit_forum_topic_hidden(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7317,7 +7317,7 @@ fun `editTextMessage`(
 ): MessageDto {
             return FfiConverterTypeMessageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_edit_text_message(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_edit_text_message(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7334,7 +7334,7 @@ fun `editTextMessage`(
 fun `finishWaveform`(`handle`: ULong): List<Float> {
             return FfiConverterSequenceFloat.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_finish_waveform(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_finish_waveform(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -7353,7 +7353,7 @@ fun `forwardMessages`(
 ): List<MessageDto> {
             return FfiConverterSequenceTypeMessageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_forward_messages(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_forward_messages(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7370,7 +7370,7 @@ fun `forwardMessages`(
 fun `getAllStickers`(`handle`: ULong, `hash`: Long): StickerCatalogDto {
             return FfiConverterTypeStickerCatalogDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_all_stickers(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_all_stickers(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7389,7 +7389,7 @@ fun `getBotCallbackAnswer`(
 ): BotCallbackAnswerDto {
             return FfiConverterTypeBotCallbackAnswerDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_bot_callback_answer(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_bot_callback_answer(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7405,7 +7405,7 @@ fun `getBotCallbackAnswer`(
 fun `getChats`(`handle`: ULong): List<ChatDto> {
             return FfiConverterSequenceTypeChatDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_chats(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_chats(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -7426,7 +7426,7 @@ fun `getChats`(`handle`: ULong): List<ChatDto> {
         ): String {
             return FfiConverterString.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_common_chats(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_common_chats(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7446,7 +7446,7 @@ fun `getDiscussionMessage`(
 ): DiscussionDto {
             return FfiConverterTypeDiscussionDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_discussion_message(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_discussion_message(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7461,7 +7461,7 @@ fun `getDiscussionMessage`(
 fun `getEmojiStickers`(`handle`: ULong, `hash`: Long): StickerCatalogDto {
             return FfiConverterTypeStickerCatalogDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_emoji_stickers(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_emoji_stickers(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7475,7 +7475,7 @@ fun `getEmojiStickers`(`handle`: ULong, `hash`: Long): StickerCatalogDto {
 fun `getFolders`(`handle`: ULong): List<FolderDto> {
             return FfiConverterSequenceTypeFolderDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_folders(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_folders(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -7495,7 +7495,7 @@ fun `getForumTopics`(
 ): ForumTopicsPageDto {
             return FfiConverterTypeForumTopicsPageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_forum_topics(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_forum_topics(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7517,7 +7517,7 @@ fun `getForumTopicsById`(
 ): ForumTopicsPageDto {
             return FfiConverterTypeForumTopicsPageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_forum_topics_by_id(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_forum_topics_by_id(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7532,7 +7532,7 @@ fun `getForumTopicsById`(
 fun `getGroupAdminTags`(`handle`: ULong, `chatId`: Long): String {
             return FfiConverterString.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_group_admin_tags(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_group_admin_tags(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7550,7 +7550,7 @@ fun `getHistory`(
 ): List<MessageDto> {
             return FfiConverterSequenceTypeMessageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_history(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_history(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7572,7 +7572,7 @@ fun `getHistoryPage`(
 ): List<MessageDto> {
             return FfiConverterSequenceTypeMessageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_history_page(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_history_page(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7596,7 +7596,7 @@ fun `getInlineBotResults`(
 ): InlineBotResultsDto {
             return FfiConverterTypeInlineBotResultsDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_inline_bot_results(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_inline_bot_results(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7617,7 +7617,7 @@ fun `getMessageReactionsList`(
 ): ReactionPeersDto {
             return FfiConverterTypeReactionPeersDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_message_reactions_list(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_message_reactions_list(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7636,7 +7636,7 @@ fun `getMessageReadParticipants`(
 ): ReadParticipantsDto {
             return FfiConverterTypeReadParticipantsDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_message_read_participants(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_message_read_participants(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7654,7 +7654,7 @@ fun `getNotifyExceptions`(
 ): List<NotifyExceptionDto> {
             return FfiConverterSequenceTypeNotifyExceptionDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_notify_exceptions(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_notify_exceptions(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7672,7 +7672,7 @@ fun `getNotifySettings`(
 ): NotifySettingsDto {
             return FfiConverterTypeNotifySettingsDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_notify_settings(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_notify_settings(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7691,7 +7691,7 @@ fun `getOutboxReadDate`(
 ): OutboxReadDto {
             return FfiConverterTypeOutboxReadDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_outbox_read_date(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_outbox_read_date(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7716,7 +7716,7 @@ fun `getOutboxReadDate`(
         ): String {
             return FfiConverterString.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_participants(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_participants(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7738,7 +7738,7 @@ fun `getPinnedMessages`(
 ): List<MessageDto> {
             return FfiConverterSequenceTypeMessageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_pinned_messages(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_pinned_messages(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7757,7 +7757,7 @@ fun `getPollVotes`(
 ): PollVotersDto {
             return FfiConverterTypePollVotersDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_poll_votes(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_poll_votes(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7772,7 +7772,7 @@ fun `getPollVotes`(
 fun `getProfile`(`handle`: ULong, `peerId`: Long): ProfileDto {
             return FfiConverterTypeProfileDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_profile(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_profile(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7786,7 +7786,7 @@ fun `getProfile`(`handle`: ULong, `peerId`: Long): ProfileDto {
 fun `getReadReceiptConfig`(`handle`: ULong): ReadReceiptConfigDto {
             return FfiConverterTypeReadReceiptConfigDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_read_receipt_config(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_read_receipt_config(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -7799,7 +7799,7 @@ fun `getReadReceiptConfig`(`handle`: ULong): ReadReceiptConfigDto {
 fun `getRecentReactions`(`handle`: ULong): List<ReactionChoiceDto> {
             return FfiConverterSequenceTypeReactionChoiceDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_recent_reactions(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_recent_reactions(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -7819,7 +7819,7 @@ fun `getReplies`(
 ): List<MessageDto> {
             return FfiConverterSequenceTypeMessageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_replies(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_replies(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7837,7 +7837,7 @@ fun `getReplies`(
 fun `getSavedGifs`(`handle`: ULong): List<SavedGifDto> {
             return FfiConverterSequenceTypeSavedGifDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_saved_gifs(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_saved_gifs(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -7857,7 +7857,7 @@ fun `getSavedGifs`(`handle`: ULong): List<SavedGifDto> {
         ): String {
             return FfiConverterString.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_search_counters(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_search_counters(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7872,7 +7872,7 @@ fun `getSavedGifs`(`handle`: ULong): List<SavedGifDto> {
 fun `getStickerPack`(`handle`: ULong, `documentId`: Long): StickerPackDto {
             return FfiConverterTypeStickerPackDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_sticker_pack(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_sticker_pack(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7890,7 +7890,7 @@ fun `getStickerSet`(
 ): StickerPackDto {
             return FfiConverterTypeStickerPackDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_sticker_set(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_sticker_set(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7909,7 +7909,7 @@ fun `getStickers`(
 ): StickerListDto {
             return FfiConverterTypeStickerListDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_stickers(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_stickers(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7934,7 +7934,7 @@ fun `getStickers`(
         ): List<MessageDto> {
             return FfiConverterSequenceTypeMessageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_unread_mentions(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_unread_mentions(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7962,7 +7962,7 @@ fun `getStickers`(
         ): List<MessageDto> {
             return FfiConverterSequenceTypeMessageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_unread_reactions(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_unread_reactions(
 
 
         FfiConverterULong.lower(`handle`),
@@ -7980,7 +7980,7 @@ fun `getStickers`(
 fun `getUpdatesState`(`handle`: ULong): UpdatesStateDto {
             return FfiConverterTypeUpdatesStateDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_updates_state(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_updates_state(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -7993,7 +7993,7 @@ fun `getUpdatesState`(`handle`: ULong): UpdatesStateDto {
 fun `getWallpapers`(`handle`: ULong, `hash`: Long): WallpaperCatalogDto {
             return FfiConverterTypeWallpaperCatalogDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_wallpapers(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_wallpapers(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8007,7 +8007,7 @@ fun `getWallpapers`(`handle`: ULong, `hash`: Long): WallpaperCatalogDto {
 fun `getWebPage`(`handle`: ULong, `url`: String, `hash`: Int): InstantViewDto {
             return FfiConverterTypeInstantViewDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_web_page(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_web_page(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8022,7 +8022,7 @@ fun `getWebPage`(`handle`: ULong, `url`: String, `hash`: Int): InstantViewDto {
 fun `getWebPagePreview`(`handle`: ULong, `message`: String): InstantViewDto {
             return FfiConverterTypeInstantViewDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_get_web_page_preview(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_get_web_page_preview(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8036,7 +8036,7 @@ fun `getWebPagePreview`(`handle`: ULong, `message`: String): InstantViewDto {
 fun `isAuthorized`(`handle`: ULong): Boolean {
             return FfiConverterBoolean.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_is_authorized(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_is_authorized(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -8049,7 +8049,7 @@ fun `isAuthorized`(`handle`: ULong): Boolean {
 fun `joinChat`(`handle`: ULong, `chatId`: Long): JoinChatDto {
             return FfiConverterTypeJoinChatDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_join_chat(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_join_chat(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8061,7 +8061,7 @@ fun `joinChat`(`handle`: ULong, `chatId`: Long): JoinChatDto {
 fun `libraryVersion`(): String {
             return FfiConverterString.lift(
                 uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_library_version(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_library_version(
 
         _status)
 }
@@ -8079,7 +8079,7 @@ fun `loadMoreChats`(
 ): List<ChatDto> {
             return FfiConverterSequenceTypeChatDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_load_more_chats(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_load_more_chats(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8096,7 +8096,7 @@ fun `loadMoreChats`(
 fun `logout`(`handle`: ULong)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_logout(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_logout(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -8107,7 +8107,7 @@ fun `logout`(`handle`: ULong)
 fun `lottieFrameCount`(`handle`: ULong): UInt {
             return FfiConverterUInt.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_lottie_frame_count(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_lottie_frame_count(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -8120,7 +8120,7 @@ fun `lottieFrameCount`(`handle`: ULong): UInt {
 fun `lottieFrameRate`(`handle`: ULong): Float {
             return FfiConverterFloat.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_lottie_frame_rate(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_lottie_frame_rate(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -8133,7 +8133,7 @@ fun `lottieFrameRate`(`handle`: ULong): Float {
 fun `lottieSize`(`handle`: ULong): LottieSize {
             return FfiConverterTypeLottieSize.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_lottie_size(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_lottie_size(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -8153,7 +8153,7 @@ fun `lottieSize`(`handle`: ULong): LottieSize {
         )
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_mark_dialog_unread(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_mark_dialog_unread(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8169,7 +8169,7 @@ fun `peekMessageInlineThumb`(
 ): ByteArray? {
             return FfiConverterOptionalByteArray.lift(
                 uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_peek_message_inline_thumb(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_peek_message_inline_thumb(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8182,7 +8182,7 @@ fun `peekMessageInlineThumb`(
 fun `peekPeerInlineThumb`(`handle`: ULong, `peerId`: Long): ByteArray? {
             return FfiConverterOptionalByteArray.lift(
                 uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_peek_peer_inline_thumb(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_peek_peer_inline_thumb(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8196,7 +8196,7 @@ fun `peekPeerInlineThumb`(`handle`: ULong, `peerId`: Long): ByteArray? {
 fun `pendingUpdateBatches`(`handle`: ULong): List<UpdateBatchDto> {
     return FfiConverterSequenceTypeUpdateBatchDto.lift(
         uniffiRustCallWithError(MtprotoException) { _status ->
-            UniffiLib.uniffi_monogram_mtproto_fn_func_pending_update_batches(
+            UniffiLib.uniffi_lunagram_mtproto_fn_func_pending_update_batches(
 
 
                 FfiConverterULong.lower(`handle`), _status
@@ -8212,7 +8212,7 @@ fun `pendingUpdateBatches`(`handle`: ULong): List<UpdateBatchDto> {
         fun `perfSetEnabled`(`enabled`: Boolean)
         =
             uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_perf_set_enabled(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_perf_set_enabled(
 
 
         FfiConverterBoolean.lower(`enabled`),_status)
@@ -8226,7 +8226,7 @@ fun `pendingUpdateBatches`(`handle`: ULong): List<UpdateBatchDto> {
         fun `perfSnapshot`(`reset`: Boolean): String {
             return FfiConverterString.lift(
                 uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_perf_snapshot(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_perf_snapshot(
 
 
         FfiConverterBoolean.lower(`reset`),_status)
@@ -8246,7 +8246,7 @@ fun `pingProxy`(
 ): Long {
             return FfiConverterLong.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_ping_proxy(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_ping_proxy(
 
 
         FfiConverterString.lower(`kind`),
@@ -8261,7 +8261,7 @@ fun `pingProxy`(
 
 fun `promoteRequestControl`(`id`: ULong, `class`: Int) =
     uniffiRustCall { _status ->
-        UniffiLib.uniffi_monogram_mtproto_fn_func_promote_request_control(
+        UniffiLib.uniffi_lunagram_mtproto_fn_func_promote_request_control(
 
 
             FfiConverterULong.lower(`id`),
@@ -8279,7 +8279,7 @@ fun `readDiscussion`(
 )
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_read_discussion(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_read_discussion(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8293,7 +8293,7 @@ fun `readDiscussion`(
 fun `readHistory`(`handle`: ULong, `chatId`: Long, `maxId`: Int)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_read_history(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_read_history(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8310,7 +8310,7 @@ fun `readHistory`(`handle`: ULong, `chatId`: Long, `maxId`: Int)
         fun `readMentions`(`handle`: ULong, `chatId`: Long, `topMsgId`: Int)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_read_mentions(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_read_mentions(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8332,7 +8332,7 @@ fun `readHistory`(`handle`: ULong, `chatId`: Long, `maxId`: Int)
         )
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_read_message_contents(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_read_message_contents(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8349,7 +8349,7 @@ fun `readHistory`(`handle`: ULong, `chatId`: Long, `maxId`: Int)
         fun `readReactions`(`handle`: ULong, `chatId`: Long, `topMsgId`: Int)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_read_reactions(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_read_reactions(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8370,7 +8370,7 @@ fun `registerDevice`(
 )
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_register_device(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_register_device(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8386,7 +8386,7 @@ fun `registerDevice`(
 fun `releaseRequestControl`(`id`: ULong)
         =
     uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_release_request_control(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_release_request_control(
 
 
         FfiConverterULong.lower(`id`),_status)
@@ -8402,7 +8402,7 @@ fun `renderLottieFrame`(
 ): ByteArray {
             return FfiConverterByteArray.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_render_lottie_frame(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_render_lottie_frame(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8422,7 +8422,7 @@ fun `resendAuthCode`(
 ): AuthCodeSent {
             return FfiConverterTypeAuthCodeSent.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_resend_auth_code(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_resend_auth_code(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8437,7 +8437,7 @@ fun `resendAuthCode`(
 fun `resetNotifySettings`(`handle`: ULong)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_reset_notify_settings(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_reset_notify_settings(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -8448,7 +8448,7 @@ fun `resetNotifySettings`(`handle`: ULong)
 fun `resolveUsername`(`handle`: ULong, `username`: String): ResolvedPeerDto {
             return FfiConverterTypeResolvedPeerDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_resolve_username(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_resolve_username(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8470,7 +8470,7 @@ fun `searchGlobal`(
 ): GlobalMessageSearchDto {
             return FfiConverterTypeGlobalMessageSearchDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_search_global(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_search_global(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8494,7 +8494,7 @@ fun `searchMessages`(
 ): List<MessageDto> {
             return FfiConverterSequenceTypeMessageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_search_messages(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_search_messages(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8518,7 +8518,7 @@ fun `searchMessagesFiltered`(
 ): List<MessageDto> {
             return FfiConverterSequenceTypeMessageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_search_messages_filtered(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_search_messages_filtered(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8545,7 +8545,7 @@ fun `searchMessagesPage`(
 ): MessagesPageDto {
             return FfiConverterTypeMessagesPageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_search_messages_page(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_search_messages_page(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8564,7 +8564,7 @@ fun `searchMessagesPage`(
 fun `sendAuthCode`(`handle`: ULong, `phone`: String): AuthCodeSent {
             return FfiConverterTypeAuthCodeSent.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_send_auth_code(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_send_auth_code(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8585,7 +8585,7 @@ fun `sendInlineBotResult`(
 ): MessageDto {
             return FfiConverterTypeMessageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_send_inline_bot_result(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_send_inline_bot_result(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8611,7 +8611,7 @@ fun `sendLocation`(
 )
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_send_location(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_send_location(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8636,7 +8636,7 @@ fun `sendPhotoMessage`(
 ): MessageDto {
             return FfiConverterTypeMessageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_send_photo_message(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_send_photo_message(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8660,7 +8660,7 @@ fun `sendPollVote`(
 )
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_send_poll_vote(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_send_poll_vote(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8680,7 +8680,7 @@ fun `sendReaction`(
 )
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_send_reaction(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_send_reaction(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8701,7 +8701,7 @@ fun `sendSavedGif`(
 ): MessageDto {
             return FfiConverterTypeMessageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_send_saved_gif(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_send_saved_gif(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8727,7 +8727,7 @@ fun `sendTextMessage`(
 ): MessageDto {
             return FfiConverterTypeMessageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_send_text_message(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_send_text_message(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8753,7 +8753,7 @@ fun `sendUploadedAlbum`(
 ): List<MessageDto> {
             return FfiConverterSequenceTypeMessageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_send_uploaded_album(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_send_uploaded_album(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8777,7 +8777,7 @@ fun `sendUploadedMedia`(
 ): MessageDto {
             return FfiConverterTypeMessageDto.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_send_uploaded_media(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_send_uploaded_media(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8795,7 +8795,7 @@ fun `sendUploadedMedia`(
 fun `setClientTestDc`(`handle`: ULong, `test`: Boolean)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_set_client_test_dc(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_set_client_test_dc(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8807,7 +8807,7 @@ fun `setClientTestDc`(`handle`: ULong, `test`: Boolean)
 fun `setContactJoinedSilent`(`handle`: ULong, `silent`: Boolean)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_set_contact_joined_silent(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_set_contact_joined_silent(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8823,7 +8823,7 @@ fun `setContactJoinedSilent`(`handle`: ULong, `silent`: Boolean)
         fun `setDispatchClass`(`class`: Int)
         =
             uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_set_dispatch_class(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_set_dispatch_class(
 
 
         FfiConverterInt.lower(`class`),_status)
@@ -8833,7 +8833,7 @@ fun `setContactJoinedSilent`(`handle`: ULong, `silent`: Boolean)
 fun `setDownloadChunkKib`(`kib`: Int)
         =
     uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_set_download_chunk_kib(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_set_download_chunk_kib(
 
 
         FfiConverterInt.lower(`kib`),_status)
@@ -8847,7 +8847,7 @@ fun `setDownloadChunkKib`(`kib`: Int)
         fun `setDownloadConcurrency`(`lanes`: Int, `parts`: Int)
         =
             uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_set_download_concurrency(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_set_download_concurrency(
 
 
         FfiConverterInt.lower(`lanes`),
@@ -8858,7 +8858,7 @@ fun `setDownloadChunkKib`(`kib`: Int)
  fun `setDownloadProgressListener`(`listener`: DownloadProgressListener)
         =
      uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_set_download_progress_listener(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_set_download_progress_listener(
 
 
         FfiConverterTypeDownloadProgressListener.lower(`listener`),_status)
@@ -8868,7 +8868,7 @@ fun `setDownloadChunkKib`(`kib`: Int)
 fun `setFilePartKib`(`kib`: Int)
         =
     uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_set_file_part_kib(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_set_file_part_kib(
 
 
         FfiConverterInt.lower(`kib`),_status)
@@ -8878,7 +8878,7 @@ fun `setFilePartKib`(`kib`: Int)
  fun `setInitConnectionInfo`(`info`: InitConnectionInfo)
         =
      uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_set_init_connection_info(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_set_init_connection_info(
 
 
         FfiConverterTypeInitConnectionInfo.lower(`info`),_status)
@@ -8896,7 +8896,7 @@ fun `setProxy`(
 )
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_set_proxy(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_set_proxy(
 
 
         FfiConverterString.lower(`kind`),
@@ -8912,7 +8912,7 @@ fun `setProxy`(
 fun `setTransportMode`(`mode`: String)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_set_transport_mode(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_set_transport_mode(
 
 
         FfiConverterString.lower(`mode`),_status)
@@ -8923,7 +8923,7 @@ fun `setTransportMode`(`mode`: String)
 fun `setTyping`(`handle`: ULong, `chatId`: Long, `typing`: Boolean)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_set_typing(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_set_typing(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8941,7 +8941,7 @@ fun `signIn`(
 ): AuthSignedIn {
             return FfiConverterTypeAuthSignedIn.lift(
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_sign_in(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_sign_in(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8957,7 +8957,7 @@ fun `signIn`(
 fun `startUpdates`(`handle`: ULong)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_start_updates(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_start_updates(
 
 
         FfiConverterULong.lower(`handle`),_status)
@@ -8974,7 +8974,7 @@ fun `toggleTodoCompleted`(
 )
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_toggle_todo_completed(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_toggle_todo_completed(
 
 
         FfiConverterULong.lower(`handle`),
@@ -8989,7 +8989,7 @@ fun `toggleTodoCompleted`(
 fun `unblockUser`(`handle`: ULong, `chatId`: Long)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_unblock_user(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_unblock_user(
 
 
         FfiConverterULong.lower(`handle`),
@@ -9006,7 +9006,7 @@ fun `unregisterDevice`(
 )
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_unregister_device(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_unregister_device(
 
 
         FfiConverterULong.lower(`handle`),
@@ -9020,7 +9020,7 @@ fun `unregisterDevice`(
 fun `updateFolder`(`handle`: ULong, `folder`: FolderDto)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_update_folder(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_update_folder(
 
 
         FfiConverterULong.lower(`handle`),
@@ -9032,7 +9032,7 @@ fun `updateFolder`(`handle`: ULong, `folder`: FolderDto)
 fun `updateFolderOrder`(`handle`: ULong, `order`: List<Int>)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_update_folder_order(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_update_folder_order(
 
 
         FfiConverterULong.lower(`handle`),
@@ -9047,7 +9047,7 @@ fun `updateLazySyncConfig`(
 )
         =
     uniffiRustCall { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_update_lazy_sync_config(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_update_lazy_sync_config(
 
 
         FfiConverterULong.lower(`handle`),
@@ -9069,7 +9069,7 @@ fun `updateNotifySettings`(
 )
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_update_notify_settings(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_update_notify_settings(
 
 
         FfiConverterULong.lower(`handle`),
@@ -9087,7 +9087,7 @@ fun `updateNotifySettings`(
 fun `updateStatus`(`handle`: ULong, `offline`: Boolean)
         =
     uniffiRustCallWithError(MtprotoException) { _status ->
-    UniffiLib.uniffi_monogram_mtproto_fn_func_update_status(
+    UniffiLib.uniffi_lunagram_mtproto_fn_func_update_status(
 
 
         FfiConverterULong.lower(`handle`),
