@@ -1,19 +1,7 @@
 name: Android
 
 on:
-  push:
-  pull_request:
   workflow_dispatch:
-    inputs:
-      appVersionCode:
-        description: 'App version code (integer)'
-        required: true
-        default: '19'
-      appVersionName:
-        description: 'App version name (semver, e.g. 1.0.0)'
-        required: true
-        default: '0.4.2'
-
 concurrency:
   group: android-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
