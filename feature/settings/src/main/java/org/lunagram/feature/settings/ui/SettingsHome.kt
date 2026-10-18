@@ -239,15 +239,8 @@ private fun updateTileCopy(state: AppUpdateState): Pair<String, String?> {
             ) to if (commit == null) sub else "$sub · $commit"
         }
 
-        AppUpdateState.UpToDate -> {
-            val currentVersion = try {
-                BuildConfig.APP_VERSION_NAME
-            } catch (e: Exception) {
-                "unknown"
-            }
-            stringResource(R.string.settings_update_up_to_date) to
-                stringResource(R.string.settings_update_up_to_date_sub) + " · $currentVersion"
-        }
+        AppUpdateState.UpToDate -> stringResource(R.string.settings_update_up_to_date) to
+                stringResource(R.string.settings_update_up_to_date_sub) + " · $appVersion"
 
         is AppUpdateState.Downloading -> {
             val total = state.info.fileSize.takeIf { it > 0L } ?: 1L
