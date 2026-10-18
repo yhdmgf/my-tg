@@ -298,3 +298,4 @@ fun notificationHttpUrl(text: String): String? {
     if (host.isBlank() || '.' !in host) return null
     return trimmed
 }
+}
