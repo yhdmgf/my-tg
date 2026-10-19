@@ -272,7 +272,7 @@
     <string name="settings_input_bar_send_by_enter_sub">Enter odošle správu; Shift+Enter pridá nový riadok</string>
     <string name="settings_input_bar_fix_previews">Oprava náhľadov odkazov</string>
     <string name="settings_input_bar_fix_previews_sub">Opravovať náhľady odkazov pre X, Bluesky, TikTok, Reddit a Pixiv</string>
-    <string name="settings_about">Monogram</string>
+    <string name="settings_about">Lunagram</string>
     <string name="settings_update_beta">Beta aktualizácie</string>
     <string name="settings_update_beta_sub">Inštalovať CI zostavy z GitHub Actions</string>
     <string name="settings_update_beta_supporters">Automatické sťahovanie zostáv z GitHub Actions je dostupné len pre podporovateľov</string>

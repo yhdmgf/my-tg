@@ -93,7 +93,7 @@ suspend fun downloadHttpApk(
     return try {
         destination.parentFile?.mkdirs()
         client.prepareGet(url) {
-            header("User-Agent", "Monogram")
+            header("User-Agent", "Lunagram")
         }.execute { response ->
             if (!response.status.isSuccess()) {
                 error("HTTP ${response.status.value}")

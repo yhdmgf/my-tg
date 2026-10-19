@@ -42,13 +42,13 @@
         <item quantity="other">%1$d novas mensagens</item>
     </plurals>
     <string name="crash_title">Algo deu errado</string>
-    <string name="crash_subtitle">O Monogram encontrou um erro inesperado. O relatório abaixo ajuda a corrigir</string>
+    <string name="crash_subtitle">O Lunagram encontrou um erro inesperado. O relatório abaixo ajuda a corrigir</string>
     <string name="crash_log_label">Registro da falha</string>
     <string name="crash_copy">Copiar detalhes</string>
     <string name="crash_copied">Detalhes da falha copiados</string>
     <string name="crash_share">Compartilhar</string>
     <string name="crash_share_title">Compartilhar relatório de falha</string>
-    <string name="crash_restart">Reiniciar o Monogram</string>
+    <string name="crash_restart">Reiniciar o Lunagram</string>
     <string name="update_prompt_title">Atualizar para %1$s</string>
     <string name="update_prompt_skip">Ignorar</string>
     <string name="update_prompt_update">Atualizar</string>

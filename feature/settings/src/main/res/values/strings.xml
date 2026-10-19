@@ -272,7 +272,7 @@
     <string name="settings_input_bar_send_by_enter_sub">Enter sends a message; Shift+Enter inserts a new line</string>
     <string name="settings_input_bar_fix_previews">Fix link previews</string>
     <string name="settings_input_bar_fix_previews_sub">Fix link previews for X, Bluesky, TikTok, Reddit, and Pixiv</string>
-    <string name="settings_about">Monogram</string>
+    <string name="settings_about">Lunagram</string>
     <string name="settings_update_beta">Beta updates</string>
     <string name="settings_update_beta_sub">Install CI builds from GitHub Actions</string>
     <string name="settings_update_beta_supporters">Automatic GitHub Actions downloads are available only for supporters</string>

@@ -37,8 +37,8 @@ val selectedAbis = if (!targetAbiProp.isNullOrBlank()) {
 } else {
     listOf("armeabi-v7a", "arm64-v8a", "x86_64")
 }
-val appVersionCode: Int = providers.gradleProperty("appVersionCode").orNull?.toIntOrNull() ?: 19
-val appVersionName: String = providers.gradleProperty("appVersionName").orNull?.takeIf { it.isNotBlank() } ?: "0.4.2"
+val appVersionCode: Int = providers.gradleProperty("appVersionCode").orNull?.toIntOrNull() ?: 20
+val appVersionName: String = providers.gradleProperty("appVersionName").orNull?.takeIf { it.isNotBlank() } ?: "1.0.0"
 
 /** Short git SHA of the checked-out commit, shown next to the build type in settings. */
 val gitCommit: String = providers.exec {

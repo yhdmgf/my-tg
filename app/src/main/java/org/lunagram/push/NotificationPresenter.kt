@@ -61,7 +61,7 @@ object NotificationPresenter {
     /** Fired when the user clears a chat notification from the shade. */
     const val ACTION_DISMISS = "org.lunagram.push.DISMISS"
     const val EXTRA_CHAT_ID = "chat_id"
-    const val EXTRA_MESSAGE_ID = "monogram_message_id"
+    const val EXTRA_MESSAGE_ID = "lunagram_message_id"
     const val EXTRA_MAX_ID = "max_id"
     const val KEY_TEXT_REPLY = "push_reply_text"
 

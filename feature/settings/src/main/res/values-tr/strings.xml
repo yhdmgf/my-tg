@@ -272,7 +272,7 @@
     <string name="settings_input_bar_send_by_enter_sub">Enter mesajı gönderir; Shift+Enter yeni satır ekler</string>
     <string name="settings_input_bar_fix_previews">Bağlantı önizlemelerini düzelt</string>
     <string name="settings_input_bar_fix_previews_sub">X, Bluesky, TikTok, Reddit ve Pixiv için bağlantı önizlemelerini düzelt</string>
-    <string name="settings_about">Monogram</string>
+    <string name="settings_about">Lunagram</string>
     <string name="settings_update_beta">Beta güncellemeleri</string>
     <string name="settings_update_beta_sub">GitHub Actions üzerinden CI sürümlerini yükle</string>
     <string name="settings_update_beta_supporters">GitHub Actions derlemelerinin otomatik indirilmesi yalnızca destekçilere açıktır</string>

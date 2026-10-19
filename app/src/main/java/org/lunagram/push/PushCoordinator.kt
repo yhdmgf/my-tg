@@ -377,7 +377,7 @@ class PushCoordinator(
                 UnifiedPush.register(
                     context,
                     instance = instance,
-                    messageForDistributor = "Monogram"
+                    messageForDistributor = "Lunagram"
                 )
             }
             if (chosen.isNotBlank()) {

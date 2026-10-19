@@ -272,7 +272,7 @@
     <string name="settings_input_bar_send_by_enter_sub">Enter で送信、Shift+Enter で改行</string>
     <string name="settings_input_bar_fix_previews">リンクのプレビュー修正</string>
     <string name="settings_input_bar_fix_previews_sub">X、Bluesky、TikTok、Reddit、Pixivのリンクプレビューを修正</string>
-    <string name="settings_about">Monogram</string>
+    <string name="settings_about">Lunagram</string>
     <string name="settings_update_beta">ベータ版アップデート</string>
     <string name="settings_update_beta_sub">GitHub Actions から CI ビルドをインストール</string>
     <string name="settings_update_beta_supporters">GitHub Actions ビルドの自動ダウンロードはサポーター限定です</string>

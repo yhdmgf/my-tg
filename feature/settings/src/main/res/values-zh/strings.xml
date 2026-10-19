@@ -272,7 +272,7 @@
     <string name="settings_input_bar_send_by_enter_sub">Enter 发送消息；Shift+Enter 换行</string>
     <string name="settings_input_bar_fix_previews">修复链接预览</string>
     <string name="settings_input_bar_fix_previews_sub">修复 X、Bluesky、TikTok、Reddit 和 Pixiv 的链接预览</string>
-    <string name="settings_about">Monogram</string>
+    <string name="settings_about">Lunagram</string>
     <string name="settings_update_beta">Beta 测试版更新</string>
     <string name="settings_update_beta_sub">从 GitHub Actions 安装 CI 构建版本</string>
     <string name="settings_update_beta_supporters">仅赞助者可自动下载 GitHub Actions 构建</string>

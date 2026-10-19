@@ -119,8 +119,8 @@ jobs:
           ANDROID_NDK_HOME: ${{ steps.ndk.outputs.ndk-path }}
           ANDROID_NDK_ROOT: ${{ steps.ndk.outputs.ndk-path }}
         run: |
-          echo "appVersionCode=${{ github.event.inputs.appVersionCode || '19' }}" >> local.properties
-          echo "appVersionName=${{ github.event.inputs.appVersionName || '0.4.2' }}" >> local.properties
+          echo "appVersionCode=${{ github.event.inputs.appVersionCode || '20' }}" >> local.properties
+          echo "appVersionName=${{ github.event.inputs.appVersionName || '1.0.0' }}" >> local.properties
           echo "--- local.properties ---"
           cat local.properties
           ./gradlew --no-daemon -PtargetAbi=arm64-v8a -Punsigned=false :app:assembleDebug :app:assembleRelease

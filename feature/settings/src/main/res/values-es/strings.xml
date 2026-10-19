@@ -272,7 +272,7 @@
     <string name="settings_input_bar_send_by_enter_sub">Enter envía el mensaje; Shift+Enter inserta una línea</string>
     <string name="settings_input_bar_fix_previews">Corregir vistas previas de enlaces</string>
     <string name="settings_input_bar_fix_previews_sub">Corregir vistas previas de enlaces para X, Bluesky, TikTok, Reddit y Pixiv</string>
-    <string name="settings_about">Monogram</string>
+    <string name="settings_about">Lunagram</string>
     <string name="settings_update_beta">Actualizaciones beta</string>
     <string name="settings_update_beta_sub">Instalar compilaciones de CI desde GitHub Actions</string>
     <string name="settings_update_beta_supporters">La descarga automática de GitHub Actions está disponible solo para patrocinadores</string>
