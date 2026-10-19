@@ -160,7 +160,7 @@ internal fun LazyListScope.homeItems(
             )
         }
         item {
-            val (title, subtitle) = updateTileCopy(updateState)
+            val (title, subtitle) = updateTileCopy(updateState, appVersion)
             val changelog = updateChangelog(updateState)
             Column(Modifier.fillMaxWidth()) {
                 SettingsTile(
@@ -219,7 +219,7 @@ internal fun LazyListScope.homeItems(
 }
 
 @Composable
-private fun updateTileCopy(state: AppUpdateState): Pair<String, String?> {
+private fun updateTileCopy(state: AppUpdateState, appVersion: String): Pair<String, String?> {
     return when (state) {
         AppUpdateState.Idle -> stringResource(R.string.settings_update_check) to
                 stringResource(R.string.settings_update_check_sub)
