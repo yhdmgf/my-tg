@@ -86,8 +86,11 @@ jobs:
           GOOGLE_SERVICES: ${{ secrets.GOOGLE_SERVICES }}
           KEYS: ${{ secrets.KEYS }}
           KEYSTORE: ${{ secrets.KEYSTORE }}
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
         run: |
           set +x
+          touch local.properties
           if [ -n "$GOOGLE_SERVICES" ]; then
             printf '%s\n' "$GOOGLE_SERVICES" > app/google-services.json
           fi
@@ -97,22 +100,30 @@ jobs:
           if [ -n "$KEYSTORE" ]; then
             printf '%s' "$KEYSTORE" | base64 -d > release.keystore
             test -s release.keystore
-            if [ ! -f local.properties ] || ! grep -q '^RELEASE_STORE_FILE=' local.properties; then
+            if ! grep -q '^RELEASE_STORE_FILE=' local.properties; then
               printf 'RELEASE_STORE_FILE=release.keystore\n' >> local.properties
             fi
           fi
+          # Always inject API credentials into local.properties
+          if [ -n "$TELEGRAM_API_ID" ]; then
+            echo "API_ID=$TELEGRAM_API_ID" >> local.properties
+          fi
+          if [ -n "$TELEGRAM_API_HASH" ]; then
+            echo "API_HASH=$TELEGRAM_API_HASH" >> local.properties
+          fi
+          echo "--- local.properties ---"
+          cat local.properties
 
       - name: Assemble debug and release
         env:
-          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
-          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
           ANDROID_NDK_HOME: ${{ steps.ndk.outputs.ndk-path }}
           ANDROID_NDK_ROOT: ${{ steps.ndk.outputs.ndk-path }}
         run: |
           echo "appVersionCode=${{ github.event.inputs.appVersionCode || '19' }}" >> local.properties
           echo "appVersionName=${{ github.event.inputs.appVersionName || '0.4.2' }}" >> local.properties
+          echo "--- local.properties ---"
           cat local.properties
-          ./gradlew --no-daemon -PtargetAbi=arm64-v8a :app:assembleDebug :app:assembleRelease
+          ./gradlew --no-daemon -PtargetAbi=arm64-v8a -Punsigned=false :app:assembleDebug :app:assembleRelease
 
       - name: Stage APKs
         run: |
