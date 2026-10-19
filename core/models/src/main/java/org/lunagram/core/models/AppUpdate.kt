@@ -85,8 +85,7 @@ object AppUpdate {
         return if (type == "beta") setOf("beta", "release") else setOf("release")
     }
 
-    fun inAppUpdatesEnabled(buildType: String): Boolean =
-        buildType.lowercase() != "debug"
+    fun inAppUpdatesEnabled(buildType: String): Boolean = true
 
     /** Beta 更新开关：所有人可用，只看用户偏好 */
     fun actionsBetaAllowed(betaPref: Boolean, isSupporter: Boolean): Boolean = betaPref
