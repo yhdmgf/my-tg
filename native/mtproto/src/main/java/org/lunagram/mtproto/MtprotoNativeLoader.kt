@@ -12,7 +12,7 @@ object MtprotoNativeLoader {
     @Synchronized
     fun initializePlatformVerifier(context: Context) {
         if (platformVerifierInitialized || loadOrStub() === MtprotoNative.Stub) return
-        System.loadLibrary("monogram_mtproto")
+        System.loadLibrary("lunagram_mtproto")
         initPlatformVerifier(context.applicationContext)
         platformVerifierInitialized = true
     }
