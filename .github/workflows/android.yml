@@ -2,6 +2,12 @@ name: Android
 
 on:
   workflow_dispatch:
+    inputs:
+      versionName:
+        description: 'App version name (semver, e.g. 1.0.0)'
+        required: true
+        default: '1.0.0'
+        type: string
 concurrency:
   group: android-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -112,6 +118,7 @@ jobs:
             echo "API_HASH=$TELEGRAM_API_HASH" >> local.properties
           fi
           echo "--- local.properties ---"
+          echo "appVersionName=${{ github.event.inputs.versionName || '1.0.0' }}" >> local.properties
           cat local.properties
 
       - name: Assemble debug and release
@@ -119,8 +126,7 @@ jobs:
           ANDROID_NDK_HOME: ${{ steps.ndk.outputs.ndk-path }}
           ANDROID_NDK_ROOT: ${{ steps.ndk.outputs.ndk-path }}
         run: |
-          echo "appVersionCode=${{ github.event.inputs.appVersionCode || '20' }}" >> local.properties
-          echo "appVersionName=${{ github.event.inputs.appVersionName || '1.0.0' }}" >> local.properties
+          echo "appVersionName=${{ github.event.inputs.versionName || '1.0.0' }}" >> local.properties
           echo "--- local.properties ---"
           cat local.properties
           ./gradlew --no-daemon -PtargetAbi=arm64-v8a -Punsigned=false :app:assembleDebug :app:assembleRelease

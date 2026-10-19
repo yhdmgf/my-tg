@@ -37,8 +37,25 @@ val selectedAbis = if (!targetAbiProp.isNullOrBlank()) {
 } else {
     listOf("armeabi-v7a", "arm64-v8a", "x86_64")
 }
-val appVersionCode: Int = providers.gradleProperty("appVersionCode").orNull?.toIntOrNull() ?: 20
-val appVersionName: String = providers.gradleProperty("appVersionName").orNull?.takeIf { it.isNotBlank() } ?: "1.0.0"
+val appVersionName: String =
+    providers.gradleProperty("appVersionName").orNull?.takeIf { it.isNotBlank() } ?: "1.0.0"
+
+/**
+ * Derives versionCode from a semver versionName: major*10000 + minor*100 + patch.
+ * Examples: 1.0.0 -> 10000, 1.1.1 -> 10101, 1.3.5 -> 10305.
+ * An explicit -PappVersionCode=<int> still overrides the derived value.
+ */
+fun deriveVersionCode(versionName: String): Int {
+    val parts = versionName.trim().split(".", "-", "+").first().split(".")
+    val major = parts.getOrNull(0)?.toIntOrNull() ?: 0
+    val minor = parts.getOrNull(1)?.toIntOrNull() ?: 0
+    val patch = parts.getOrNull(2)?.toIntOrNull() ?: 0
+    return major * 10000 + minor * 100 + patch
+}
+
+val appVersionCode: Int =
+    providers.gradleProperty("appVersionCode").orNull?.toIntOrNull()
+        ?: deriveVersionCode(appVersionName)
 
 /** Short git SHA of the checked-out commit, shown next to the build type in settings. */
 val gitCommit: String = providers.exec {
