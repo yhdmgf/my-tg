@@ -199,10 +199,10 @@ class AppUpdateManager(
             TAG,
             "check source=github local=$localCode commit=$localCommit type=$buildType abis=${abis.joinToString()} beta=$betaPref",
         )
-        checkGitHub()
+        checkGitHub(betaPref)
     }
 
-    private suspend fun checkGitHub() {
+    private suspend fun checkGitHub(betaPref: Boolean) {
         _state.value = AppUpdateState.Checking
         val releases = when (val fetched = fetchGitHubReleases(httpClient)) {
             is Outcome.Ok -> fetched.value
